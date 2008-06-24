@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TestDataSet" targetNamespace="http://tempuri.org/TestDataSet.xsd" xmlns:mstns="http://tempuri.org/TestDataSet.xsd" xmlns="http://tempuri.org/TestDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TestDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="TestDataSet" msprop:Generator_DataSetName="TestDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="MasterTable" msprop:Generator_UserTableName="MasterTable" msprop:Generator_RowDeletedName="MasterTableRowDeleted" msprop:Generator_TableClassName="MasterTableDataTable" msprop:Generator_RowChangedName="MasterTableRowChanged" msprop:Generator_RowClassName="MasterTableRow" msprop:Generator_RowChangingName="MasterTableRowChanging" msprop:Generator_RowEvArgName="MasterTableRowChangeEvent" msprop:Generator_RowEvHandlerName="MasterTableRowChangeEventHandler" msprop:Generator_TablePropName="MasterTable" msprop:Generator_TableVarName="tableMasterTable" msprop:Generator_RowDeletingName="MasterTableRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DetailsTable" msprop:Generator_UserTableName="DetailsTable" msprop:Generator_RowDeletedName="DetailsTableRowDeleted" msprop:Generator_TableClassName="DetailsTableDataTable" msprop:Generator_RowChangedName="DetailsTableRowChanged" msprop:Generator_RowClassName="DetailsTableRow" msprop:Generator_RowChangingName="DetailsTableRowChanging" msprop:Generator_RowEvArgName="DetailsTableRowChangeEvent" msprop:Generator_RowEvHandlerName="DetailsTableRowChangeEventHandler" msprop:Generator_TablePropName="DetailsTable" msprop:Generator_TableVarName="tableDetailsTable" msprop:Generator_RowDeletingName="DetailsTableRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
+              <xs:element name="IdMasterTable" msprop:Generator_UserColumnName="IdMasterTable" msprop:Generator_ColumnPropNameInRow="IdMasterTable" msprop:Generator_ColumnVarNameInTable="columnIdMasterTable" msprop:Generator_ColumnPropNameInTable="IdMasterTableColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Details" msprop:Generator_UserColumnName="Details" msprop:Generator_ColumnPropNameInRow="Details" msprop:Generator_ColumnVarNameInTable="columnDetails" msprop:Generator_ColumnPropNameInTable="DetailsColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:MasterTable" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="DetailsTable_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DetailsTable" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:keyref name="FK_MasterTable_DetailsTable" refer="Constraint1" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:DetailsTable" />
+      <xs:field xpath="mstns:IdMasterTable" />
+    </xs:keyref>
+  </xs:element>
+</xs:schema>

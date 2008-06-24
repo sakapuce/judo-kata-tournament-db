@@ -1,0 +1,19 @@
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\bin\Debug\KataContestDB.exe.config
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\bin\Debug\KataContestDB.exe
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\bin\Debug\KataContestDB.pdb
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\bin\Debug\KataContestDAL.dll
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\bin\Debug\nunit.framework.dll
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\bin\Debug\nunit.framework.xml
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\bin\Debug\KataContestDAL.pdb
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\obj\Debug\ResolveAssemblyReference.cache
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\obj\Debug\KataContestDB.InputBox.resources
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\obj\Debug\KataContestDB.KatasUserControl.resources
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\obj\Debug\KataContestDB.ListOfKatasForm.resources
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\obj\Debug\KataContestDB.MainForm.resources
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\obj\Debug\KataContestDB.Properties.Resources.resources
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\obj\Debug\KataContestDB.csproj.GenerateResource.Cache
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\obj\Debug\KataContestDB.exe
+E:\MyWorks\Kata Contest DB\KataContestDB\KataContestDB\obj\Debug\KataContestDB.pdb
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\bin\Debug\KataContestDB.exe.config
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\obj\Debug\KataContestDB.exe
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\obj\Debug\KataContestDB.pdb

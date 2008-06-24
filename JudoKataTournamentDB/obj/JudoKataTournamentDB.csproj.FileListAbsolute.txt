@@ -1,0 +1,16 @@
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\bin\Debug\JudoKataTournamentDB.exe.config
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\obj\Debug\ResolveAssemblyReference.cache
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\obj\Debug\JudoKataTournamentDB.Properties.Resources.resources
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\obj\Debug\JudoKataTournamentDB.csproj.GenerateResource.Cache
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\obj\Debug\JudoKataTournamentDB.InputBox.resources
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\obj\Debug\JudoKataTournamentDB.KatasUserControl.resources
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\obj\Debug\JudoKataTournamentDB.ListOfKatasForm.resources
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\bin\Debug\JudoKataTournamentDB.exe
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\bin\Debug\JudoKataTournamentDB.pdb
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\bin\Debug\KataContestDAL.dll
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\bin\Debug\nunit.framework.dll
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\bin\Debug\nunit.framework.xml
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\bin\Debug\KataContestDAL.pdb
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\obj\Debug\JudoKataTournamentDB.MainForm.resources
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\obj\Debug\JudoKataTournamentDB.exe
+E:\MyWorks\Kata Tournament DB\Judo Kata Tournament DB\KataContestDB\obj\Debug\JudoKataTournamentDB.pdb

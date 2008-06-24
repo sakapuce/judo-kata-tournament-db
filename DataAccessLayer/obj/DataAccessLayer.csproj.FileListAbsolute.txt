@@ -1,0 +1,7 @@
+E:\MyWorks\Kata Contest DB\KataContestDB\DataAccessLayer\obj\Debug\ResolveAssemblyReference.cache
+E:\MyWorks\Kata Contest DB\KataContestDB\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+E:\MyWorks\Kata Contest DB\KataContestDB\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+E:\MyWorks\Kata Contest DB\KataContestDB\DataAccessLayer\bin\Debug\nunit.framework.dll
+E:\MyWorks\Kata Contest DB\KataContestDB\DataAccessLayer\bin\Debug\nunit.framework.xml
+E:\MyWorks\Kata Contest DB\KataContestDB\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+E:\MyWorks\Kata Contest DB\KataContestDB\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
