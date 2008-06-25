@@ -107,7 +107,7 @@ namespace DALHelper.Tests
         [Test]
         public void UpdateTest()
         {
-            
+            _persistor.Update();
         }
     }
 }
