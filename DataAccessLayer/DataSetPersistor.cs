@@ -43,19 +43,15 @@ namespace DALHelper
         {
             if (_dataset.HasChanges())
             {
-                if (_adapterSequenceForDelete.Count == 0)
-                {
-                    throw new System.InvalidOperationException("The update try to delete some data but no DbDataAdapter sequence were provided.");
-                }
-                if (_adapterSequenceForUpdate.Count == 0)
-                {
-                    throw new System.InvalidOperationException("The update try to modify some data but no DbDataAdapter sequence were provided.");
-                }
-
                 DataSet ds = _dataset.GetChanges(DataRowState.Deleted);
                 if(ds!=null)
                 {
-                    foreach (DbDataAdapter adapter in _adapterSequenceForUpdate)
+                    if (_adapterSequenceForDelete.Count == 0)
+                    {
+                        throw new System.InvalidOperationException("The update try to delete some data but no DbDataAdapter sequence were provided.");
+                    }
+
+                    foreach (DbDataAdapter adapter in _adapterSequenceForDelete)
                     {
                         adapter.Update(ds);
                     }
@@ -65,7 +61,13 @@ namespace DALHelper
                 ds = _dataset.GetChanges(DataRowState.Modified);
                 if(ds!=null)
                 {
-                    foreach (DbDataAdapter adapter in _adapterSequenceForDelete)
+
+                    if (_adapterSequenceForUpdate.Count == 0)
+                    {
+                        throw new System.InvalidOperationException("The update try to modify some data but no DbDataAdapter sequence were provided.");
+                    }
+                    
+                    foreach (DbDataAdapter adapter in _adapterSequenceForUpdate)
                     {
                         adapter.Update(ds);
                     }
