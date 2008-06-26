@@ -431,6 +431,7 @@ namespace DALHelper.Tests {
                 this.columnId.AutoIncrementStep = -1;
                 this.columnId.AllowDBNull = false;
                 this.columnId.Unique = true;
+                this.columnName.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -841,26 +842,11 @@ namespace DALHelper.Tests {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string Name {
                 get {
-                    try {
-                        return ((string)(this[this.tableMasterTable.NameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Name\' in table \'MasterTable\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableMasterTable.NameColumn]));
                 }
                 set {
                     this[this.tableMasterTable.NameColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsNameNull() {
-                return this.IsNull(this.tableMasterTable.NameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetNameNull() {
-                this[this.tableMasterTable.NameColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -65,7 +65,7 @@ namespace DALHelper.Tests
         public void TestCreateSelectCommand()
         {
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            const string expectedSelectQuery = "SELECT Id, FirstName, LastName FROM TestTable";
+            string expectedSelectQuery = "SELECT Id, FirstName, LastName FROM TestTable";
             Assert.AreEqual(expectedSelectQuery, tableHelper.CreateSelectQuery());
         }
 
@@ -84,7 +84,7 @@ namespace DALHelper.Tests
         public void TestCreateUpdateCommand()
         {
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            const string expectedSelectQuery = "UPDATE TestTable SET Id=@Id, FirstName=@FirstName, LastName=@LastName WHERE (Id=@Original_Id)";
+            string expectedSelectQuery = "UPDATE TestTable SET Id=@Id, FirstName=@FirstName, LastName=@LastName WHERE (Id=@Original_Id)";
             Assert.AreEqual(expectedSelectQuery, tableHelper.CreateUpdateQuery());
         }
     }

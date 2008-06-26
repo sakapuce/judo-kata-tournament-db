@@ -24,7 +24,7 @@ namespace DALHelper.Tests
             _dbHelper = DBHelper.Instance;
             _dbHelper.Init("JudoKataTournamentDb");
 
-            _dbHelper = DBHelper.Instance;
+            //TODO: Execute the script to create the test table (MasterTable and DetailsTable)
 
             _testDataSet = new TestDataSet();
 
@@ -37,33 +37,37 @@ namespace DALHelper.Tests
             //Data Adapters
             _masterAdapter.SelectCommand = _dbHelper.CreateCommand(_masterHelper.CreateSelectQuery());
             _masterAdapter.UpdateCommand = _dbHelper.CreateCommand(_masterHelper.CreateUpdateQuery());
-            _masterAdapter.InsertCommand = _dbHelper.CreateCommand(_masterHelper.CreateInsertQuery(false)); 
-            DbParameter IdParam = _masterAdapter.InsertCommand.CreateParameter();
-            IdParam.DbType = DbType.Int32;
-            IdParam.Direction = ParameterDirection.Output;
+            _masterAdapter.InsertCommand = _dbHelper.CreateCommand(_masterHelper.CreateInsertQuery(false));
+            DbParameter idParam = _masterAdapter.InsertCommand.CreateParameter();
+            idParam.DbType = DbType.Int32;
+            idParam.Direction = ParameterDirection.Output;
 
             _detailsAdapter.SelectCommand = _dbHelper.CreateCommand(_detailsHelper.CreateSelectQuery());
             _detailsAdapter.UpdateCommand = _dbHelper.CreateCommand(_detailsHelper.CreateUpdateQuery());
             _detailsAdapter.InsertCommand = _dbHelper.CreateCommand(_detailsHelper.CreateInsertQuery(false));
-            IdParam = _detailsAdapter.InsertCommand.CreateParameter();
-            IdParam.DbType = DbType.Int32;
-            IdParam.Direction = ParameterDirection.Output;
+            idParam = _detailsAdapter.InsertCommand.CreateParameter();
+            idParam.DbType = DbType.Int32;
+            idParam.Direction = ParameterDirection.Output;
         }
 
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
+            //TODO: Execute the script to create the dropt test tables (MasterTable and DetailsTable)
         }
         
         [SetUp]
         public void Setup()
         {
+            //TODO: Execute script to add test data in the MasterTable and DetailsTable
+
             _persistor = new DataSetPersistor(_testDataSet);
         }
 
         [TearDown]
         public void TearDown()
         {
+            //TODO: Execute script to delete test data from the MasterTable and DetailsTable
         }
 
         [Test]
@@ -75,8 +79,7 @@ namespace DALHelper.Tests
         [Test]
         public void SetAdapterSequenceForUpdateTest()
         {
-            List<DbDataAdapter> adapterSequence;
-            adapterSequence = new List<DbDataAdapter>();
+            List<DbDataAdapter> adapterSequence = new List<DbDataAdapter>();
 
             adapterSequence.Add(_masterAdapter);
             adapterSequence.Add(_detailsAdapter);
@@ -91,8 +94,7 @@ namespace DALHelper.Tests
         [Test]
         public void SetAdapterSequenceForDeleteTest()
         {
-            List<DbDataAdapter> adapterSequence;
-            adapterSequence = new List<DbDataAdapter>();
+            List<DbDataAdapter> adapterSequence = new List<DbDataAdapter>();
 
             adapterSequence.Add(_detailsAdapter);
             adapterSequence.Add(_masterAdapter);
@@ -105,9 +107,15 @@ namespace DALHelper.Tests
         }
 
         [Test]
-        public void UpdateTest()
+        public void FillDataSetTest()
         {
-            _persistor.Update();
+            List<DbDataAdapter> adapterSequence = new List<DbDataAdapter>();
+            adapterSequence.Add(_masterAdapter);
+            adapterSequence.Add(_detailsAdapter);
+
+            _persistor.SetAdapterSequenceForFill(adapterSequence);
+
+            _persistor.Fill();
         }
     }
 }
