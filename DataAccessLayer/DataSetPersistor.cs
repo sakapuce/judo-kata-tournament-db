@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -8,6 +9,7 @@ namespace DALHelper
     {
         private readonly IList<DbDataAdapter> _adapterSequenceForUpdate;
         private readonly IList<DbDataAdapter> _adapterSequenceForDelete;
+        private readonly IList<DbDataAdapter> _adapterSequenceForFill;
 
         private DataSet _dataset;
 
@@ -32,6 +34,7 @@ namespace DALHelper
             _dataset = ds;
             _adapterSequenceForUpdate = new List<DbDataAdapter>();
             _adapterSequenceForDelete = new List<DbDataAdapter>();
+            _adapterSequenceForFill = new List<DbDataAdapter>();
         }
 
         public DataSet DataSet
@@ -48,7 +51,7 @@ namespace DALHelper
                 {
                     if (_adapterSequenceForDelete.Count == 0)
                     {
-                        throw new System.InvalidOperationException("The update try to delete some data but no DbDataAdapter sequence were provided.");
+                        throw new InvalidOperationException("The update try to delete some data but no DbDataAdapter sequence were provided.");
                     }
 
                     foreach (DbDataAdapter adapter in _adapterSequenceForDelete)
@@ -64,7 +67,7 @@ namespace DALHelper
 
                     if (_adapterSequenceForUpdate.Count == 0)
                     {
-                        throw new System.InvalidOperationException("The update try to modify some data but no DbDataAdapter sequence were provided.");
+                        throw new InvalidOperationException("The update try to modify some data but no DbDataAdapter sequence were provided.");
                     }
                     
                     foreach (DbDataAdapter adapter in _adapterSequenceForUpdate)
@@ -89,6 +92,30 @@ namespace DALHelper
             foreach (DbDataAdapter adapter in collection)
             {
                 _adapterSequenceForDelete.Add(adapter);
+            }
+        }
+
+        public void SetAdapterSequenceForFill(IEnumerable<DbDataAdapter> collection)
+        {
+            foreach (DbDataAdapter adapter in collection)
+            {
+                _adapterSequenceForFill.Add(adapter);
+            }
+        }
+
+        /// <summary>
+        /// This function calls the DbDataTableAdapter to fill the datatable of the inner dataset
+        /// </summary>
+        public void Fill()
+        {
+            if(_adapterSequenceForFill.Count == 0)
+            {
+                throw new InvalidOperationException("Cannot fill the data tables if no DbDataAdapters were previously declared.");
+            }
+
+            foreach(DbDataAdapter adapter in _adapterSequenceForFill)
+            {
+                adapter.Fill(_dataset);
             }
         }
     }

@@ -2,14 +2,12 @@ using System.Configuration;
 using System.Data.Common;
 using System;
 using System.Data;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace DALHelper
-{   
+{
     /// <summary>
-    /// This class provide functions to simplify interaction with database.
-    /// DBHelper follows the Singleton design patterns.
+    /// This class implements the Singleton Design patterns and  provides functions to simplify interaction with database.
     /// Read http://www.yoda.arachsys.com/csharp/singleton.html to learn more about Singleton design pattern.
     /// </summary>
     public sealed class DBHelper
@@ -100,7 +98,7 @@ namespace DALHelper
             }
             else
             {
-                    throw new System.InvalidOperationException("The DBHelper instance has already been initialized previously. the call to the Init() function can't be completed.");
+                    throw new InvalidOperationException("The DBHelper instance has already been initialized previously. the call to the Init() function can't be completed.");
             }
         }
 
@@ -116,9 +114,13 @@ namespace DALHelper
         // not to mark type as beforefieldinit
         class Nested
         {
-            static Nested()
-            {
-            }
+            /**********************************************
+             * Empty static constructor is redundant... 
+             * It can be removed followings Resharper
+             * *******************************************/
+            //static Nested()
+            //{
+            //}
 
             internal static readonly DBHelper instance = new DBHelper();
         }
@@ -152,7 +154,7 @@ namespace DALHelper
 
         public DbDataReader CreateDataReader(string query)
         {
-            return CreateCommand(query).ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            return CreateCommand(query).ExecuteReader(CommandBehavior.CloseConnection);
         }
 
         public DataSet GetDataSet(string query)
@@ -164,6 +166,11 @@ namespace DALHelper
             adapter.SelectCommand = command;
             adapter.Fill(ds);
             return ds;
+        }
+
+        public void ExecuteScript(string script)
+        {
+            
         }
     }
 }

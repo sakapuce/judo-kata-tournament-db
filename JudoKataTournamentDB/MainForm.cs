@@ -7,11 +7,12 @@ namespace JudoKataTournamentDB
     public partial class MainForm : Form
     {
 
-        private UserControl currentUserControl;
+        private readonly UserControl currentUserControl;
         
         public MainForm()
         {
             InitializeComponent();
+            currentUserControl = null;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
