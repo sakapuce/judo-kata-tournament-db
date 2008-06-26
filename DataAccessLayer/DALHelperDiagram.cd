@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="DALHelper.DBHelper">
+    <Position X="1" Y="1.25" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>DBHelper.cs</FileName>
+      <HashCode>AAAoAAAQAAAAAAEgAAAEAAAAECAIAAAIUCACBAEQAAA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="DALHelper.DBHelper.Nested">
+        <TypeIdentifier>
+          <NewMemberFileName>DBHelper.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+  </Class>
+  <Class Name="DALHelper.DataSetPersistor">
+    <Position X="6.25" Y="1.25" Width="3" />
+    <TypeIdentifier>
+      <FileName>DataSetPersistor.cs</FileName>
+      <HashCode>AEQAABAARAAAAAIAAAAAABAAAAACCAAAAAAAAgAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+</ClassDiagram>
