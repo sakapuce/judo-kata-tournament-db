@@ -2,6 +2,7 @@ using System.Data;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.IO;
 
 namespace DALHelper.Tests
 {
@@ -24,7 +25,11 @@ namespace DALHelper.Tests
             _dbHelper = DBHelper.Instance;
             _dbHelper.Init("JudoKataTournamentDb");
 
-            //TODO: Execute the script to create the test table (MasterTable and DetailsTable)
+            //Create test tables
+            using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\CreateTestTables.sql", System.Environment.CurrentDirectory)))
+            {
+                _dbHelper.ExecuteScript(reader.ReadToEnd());
+            }
 
             _testDataSet = new TestDataSet();
 
@@ -53,21 +58,32 @@ namespace DALHelper.Tests
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            //TODO: Execute the script to create the dropt test tables (MasterTable and DetailsTable)
+            //Create test tables
+            using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\DropTestTables.sql", System.Environment.CurrentDirectory)))
+            {
+                _dbHelper.ExecuteScript(reader.ReadToEnd());
+            }
         }
         
         [SetUp]
         public void Setup()
         {
-            //TODO: Execute script to add test data in the MasterTable and DetailsTable
-
+            //Insert Test Datas
+            using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\InsertTestDatas.sql", System.Environment.CurrentDirectory)))
+            {
+                _dbHelper.ExecuteScript(reader.ReadToEnd());
+            }
             _persistor = new DataSetPersistor(_testDataSet);
         }
 
         [TearDown]
         public void TearDown()
         {
-            //TODO: Execute script to delete test data from the MasterTable and DetailsTable
+            //Delete Test Datas
+            using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\DeleteTestDatas.sql", System.Environment.CurrentDirectory)))
+            {
+                _dbHelper.ExecuteScript(reader.ReadToEnd());
+            }
         }
 
         [Test]

@@ -170,7 +170,9 @@ namespace DALHelper
 
         public void ExecuteScript(string script)
         {
-            
+            DbCommand cmd = CreateCommand(script);
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
         }
     }
 }

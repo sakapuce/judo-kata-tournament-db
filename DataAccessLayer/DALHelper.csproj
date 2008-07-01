@@ -101,7 +101,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Tests\Scripts\CreateTestTables.sql" />
+    <Content Include="Tests\Scripts\DeleteTestDatas.sql" />
     <Content Include="Tests\Scripts\DropTestTables.sql" />
+    <Content Include="Tests\Scripts\InsertTestDatas.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
