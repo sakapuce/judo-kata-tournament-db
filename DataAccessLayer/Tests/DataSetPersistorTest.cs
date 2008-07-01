@@ -132,6 +132,9 @@ namespace DALHelper.Tests
             _persistor.SetAdapterSequenceForFill(adapterSequence);
 
             _persistor.Fill();
+            
+            Assert.AreEqual(4,_testDataSet.MasterTable.Rows.Count);
+            Assert.AreEqual(4,_testDataSet.DetailsTable.Rows.Count);
         }
     }
 }
