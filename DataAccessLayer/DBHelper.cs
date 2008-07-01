@@ -170,9 +170,13 @@ namespace DALHelper
 
         public void ExecuteScript(string script)
         {
-            DbCommand cmd = CreateCommand(script);
-            cmd.CommandType = CommandType.Text;
-            cmd.ExecuteNonQuery();
+            string[] sqlcommands = script.Split(new string[] {"GO\r\n", "GO ", "GO\t"}, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string sql in sqlcommands)
+            {
+                DbCommand cmd = CreateCommand(sql);
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }
