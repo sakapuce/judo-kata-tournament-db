@@ -1,7 +1,5 @@
-using System.Data;
 using NUnit.Framework;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.IO;
 
 namespace DALHelper.Tests
@@ -10,11 +8,7 @@ namespace DALHelper.Tests
     public class DataSetPersistorTest
     {
         DataSetPersistor _persistor;
-        DBHelper _dbHelper;
         TestDataSet _testDataSet;
-
-        DbDataAdapter _masterAdapter;
-        DbDataAdapter _detailsAdapter;
 
         DataTableHelper _masterHelper;
         DataTableHelper _detailsHelper;
@@ -22,37 +16,19 @@ namespace DALHelper.Tests
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            _dbHelper = DBHelper.Instance;
-            _dbHelper.Init("JudoKataTournamentDb");
+            DBHelper.Instance.Init("JudoKataTournamentDb");
 
             //Create test tables
             using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\CreateTestTables.sql", System.Environment.CurrentDirectory)))
             {
-                _dbHelper.ExecuteScript(reader.ReadToEnd());
+                DBHelper.Instance.ExecuteScript(reader.ReadToEnd());
             }
 
             _testDataSet = new TestDataSet();
 
-            _masterAdapter = _dbHelper.CreateAdapter();
-            _detailsAdapter = _dbHelper.CreateAdapter();
-
             _masterHelper = new DataTableHelper(_testDataSet.MasterTable);
             _detailsHelper = new DataTableHelper(_testDataSet.DetailsTable);
-
-            //Data Adapters
-            _masterAdapter.SelectCommand = _dbHelper.CreateCommand(_masterHelper.CreateSelectQuery());
-            _masterAdapter.UpdateCommand = _dbHelper.CreateCommand(_masterHelper.CreateUpdateQuery());
-            _masterAdapter.InsertCommand = _dbHelper.CreateCommand(_masterHelper.CreateInsertQuery(false));
-            DbParameter idParam = _masterAdapter.InsertCommand.CreateParameter();
-            idParam.DbType = DbType.Int32;
-            idParam.Direction = ParameterDirection.Output;
-
-            _detailsAdapter.SelectCommand = _dbHelper.CreateCommand(_detailsHelper.CreateSelectQuery());
-            _detailsAdapter.UpdateCommand = _dbHelper.CreateCommand(_detailsHelper.CreateUpdateQuery());
-            _detailsAdapter.InsertCommand = _dbHelper.CreateCommand(_detailsHelper.CreateInsertQuery(false));
-            idParam = _detailsAdapter.InsertCommand.CreateParameter();
-            idParam.DbType = DbType.Int32;
-            idParam.Direction = ParameterDirection.Output;
+            
         }
 
         [TestFixtureTearDown]
@@ -61,7 +37,7 @@ namespace DALHelper.Tests
             //Create test tables
             using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\DropTestTables.sql", System.Environment.CurrentDirectory)))
             {
-                _dbHelper.ExecuteScript(reader.ReadToEnd());
+                DBHelper.Instance.ExecuteScript(reader.ReadToEnd());
             }
         }
         
@@ -71,7 +47,7 @@ namespace DALHelper.Tests
             //Insert Test Datas
             using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\InsertTestDatas.sql", System.Environment.CurrentDirectory)))
             {
-                _dbHelper.ExecuteScript(reader.ReadToEnd());
+                DBHelper.Instance.ExecuteScript(reader.ReadToEnd());
             }
             _persistor = new DataSetPersistor(_testDataSet);
         }
@@ -82,7 +58,7 @@ namespace DALHelper.Tests
             //Delete Test Datas
             using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\DeleteTestDatas.sql", System.Environment.CurrentDirectory)))
             {
-                _dbHelper.ExecuteScript(reader.ReadToEnd());
+                DBHelper.Instance.ExecuteScript(reader.ReadToEnd());
             }
         }
 
@@ -95,41 +71,48 @@ namespace DALHelper.Tests
         [Test]
         public void SetAdapterSequenceForUpdateTest()
         {
-            List<DbDataAdapter> adapterSequence = new List<DbDataAdapter>();
+            List<DataTableHelper> sequence = new List<DataTableHelper>();
 
-            adapterSequence.Add(_masterAdapter);
-            adapterSequence.Add(_detailsAdapter);
+            sequence.Add(_masterHelper);
+            sequence.Add(_detailsHelper);
 
-            _persistor.SetAdapterSequenceForUpdate(adapterSequence);
+            _persistor.SetSequenceForUpdate(sequence);
 
-            Assert.AreEqual(2, _persistor.AdapterSequenceForUpdate.Count);
-            Assert.AreEqual(_masterHelper.CreateSelectQuery(), _persistor.AdapterSequenceForUpdate[0].SelectCommand.CommandText);
-            Assert.AreEqual(_detailsHelper.CreateSelectQuery(), _persistor.AdapterSequenceForUpdate[1].SelectCommand.CommandText);        
+            Assert.AreEqual(2, _persistor.SequenceForUpdate.Count);
+
+
+            Assert.AreEqual(_masterHelper.CreateSelectQuery(), _persistor.SequenceForUpdate[0].Adapter.SelectCommand.CommandText);
+            Assert.AreEqual(_detailsHelper.CreateSelectQuery(), _persistor.SequenceForUpdate[1].Adapter.SelectCommand.CommandText);        
         }
 
         [Test]
         public void SetAdapterSequenceForDeleteTest()
         {
-            List<DbDataAdapter> adapterSequence = new List<DbDataAdapter>();
+            List<DataTableHelper> sequence = new List<DataTableHelper>();
 
-            adapterSequence.Add(_detailsAdapter);
-            adapterSequence.Add(_masterAdapter);
+            sequence.Add(_detailsHelper);
+            sequence.Add(_masterHelper);
 
-            _persistor.SetAdapterSequenceForDelete(adapterSequence);
+            _persistor.SetSequenceForDelete(sequence);
 
-            Assert.AreEqual(2, _persistor.AdapterSequenceForDelete.Count);
-            Assert.AreEqual(_detailsHelper.CreateSelectQuery(), _persistor.AdapterSequenceForDelete[0].SelectCommand.CommandText);
-            Assert.AreEqual(_masterHelper.CreateSelectQuery(), _persistor.AdapterSequenceForDelete[1].SelectCommand.CommandText);
+            Assert.AreEqual(2, _persistor.SequenceForDelete.Count);
+
+
+            Assert.AreEqual(_detailsHelper.CreateSelectQuery(), _persistor.SequenceForDelete[0].Adapter.SelectCommand.CommandText);
+            Assert.AreEqual(_masterHelper.CreateSelectQuery(), _persistor.SequenceForDelete[1].Adapter.SelectCommand.CommandText);
         }
 
         [Test]
         public void FillDataSetTest()
         {
-            List<DbDataAdapter> adapterSequence = new List<DbDataAdapter>();
-            adapterSequence.Add(_masterAdapter);
-            adapterSequence.Add(_detailsAdapter);
+            List<DataTableHelper> sequence = new List<DataTableHelper>();
 
-            _persistor.SetAdapterSequenceForFill(adapterSequence);
+            sequence.Add(_masterHelper);
+            sequence.Add(_detailsHelper);
+
+            _persistor.SetSequenceForFill(sequence);
+
+            Assert.AreEqual(2,_persistor.SequenceForFill.Count);
 
             _persistor.Fill();
             

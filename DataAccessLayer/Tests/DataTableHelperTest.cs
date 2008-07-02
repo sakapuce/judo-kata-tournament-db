@@ -48,7 +48,7 @@ namespace DALHelper.Tests
         public void TestConstructor()
         {
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            Assert.IsTrue(tableHelper.DataTable.TableName=="TestTable");
+            Assert.IsTrue(tableHelper.Table.TableName=="TestTable");
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace DALHelper.Tests
             int oldNumberOfColumns = _dataTable.Columns.Count;
             tableHelper.AddColumn("TestField");
 
-            Assert.IsTrue(tableHelper.DataTable.Columns.Count == oldNumberOfColumns+1);
+            Assert.IsTrue(tableHelper.Table.Columns.Count == oldNumberOfColumns+1);
         }
 
         [Test]

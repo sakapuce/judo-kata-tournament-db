@@ -174,8 +174,10 @@ namespace DALHelper
             DbCommand cmd = CreateCommand("");
             foreach (string sql in sqlcommands)
             {
+                //Remove blank spaces
                 cmd.CommandText = sql.Trim();
                 cmd.CommandType = CommandType.Text;
+                
                 if(cmd.CommandText != String.Empty)
                 {
                     cmd.ExecuteNonQuery();

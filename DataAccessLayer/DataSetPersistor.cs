@@ -7,34 +7,42 @@ namespace DALHelper
 {
     public class DataSetPersistor
     {
-        private readonly IList<DbDataAdapter> _adapterSequenceForUpdate;
-        private readonly IList<DbDataAdapter> _adapterSequenceForDelete;
-        private readonly IList<DbDataAdapter> _adapterSequenceForFill;
+        private readonly IList<DataTableHelper> _sequenceForUpdate;
+        private readonly IList<DataTableHelper> _sequenceForDelete;
+        private readonly IList<DataTableHelper> _sequenceForFill;
 
         private DataSet _dataset;
 
-        public IList<DbDataAdapter> AdapterSequenceForUpdate
+        public IList<DataTableHelper> SequenceForUpdate
         {
             get
             {
-                return _adapterSequenceForUpdate;
+                return _sequenceForUpdate;
             }
         }
 
-        public IList<DbDataAdapter> AdapterSequenceForDelete
+        public IList<DataTableHelper> SequenceForDelete
         {
             get
             {
-                return _adapterSequenceForDelete;
+                return _sequenceForDelete;
+            }
+        }
+
+        public IList<DataTableHelper> SequenceForFill
+        {
+            get
+            {
+                return _sequenceForFill;
             }
         }
         
         public DataSetPersistor(DataSet ds)
         {
             _dataset = ds;
-            _adapterSequenceForUpdate = new List<DbDataAdapter>();
-            _adapterSequenceForDelete = new List<DbDataAdapter>();
-            _adapterSequenceForFill = new List<DbDataAdapter>();
+            _sequenceForUpdate = new List<DataTableHelper>();
+            _sequenceForDelete = new List<DataTableHelper>();
+            _sequenceForFill = new List<DataTableHelper>();
         }
 
         public DataSet DataSet
@@ -49,14 +57,14 @@ namespace DALHelper
                 DataSet ds = _dataset.GetChanges(DataRowState.Deleted);
                 if(ds!=null)
                 {
-                    if (_adapterSequenceForDelete.Count == 0)
+                    if (_sequenceForDelete.Count == 0)
                     {
                         throw new InvalidOperationException("The update try to delete some data but no DbDataAdapter sequence were provided.");
                     }
 
-                    foreach (DbDataAdapter adapter in _adapterSequenceForDelete)
+                    foreach (DataTableHelper dtHelper in _sequenceForDelete)
                     {
-                        adapter.Update(ds);
+                        dtHelper.Update(ds);
                     }
                 }
                 
@@ -65,41 +73,41 @@ namespace DALHelper
                 if(ds!=null)
                 {
 
-                    if (_adapterSequenceForUpdate.Count == 0)
+                    if (_sequenceForUpdate.Count == 0)
                     {
                         throw new InvalidOperationException("The update try to modify some data but no DbDataAdapter sequence were provided.");
                     }
-                    
-                    foreach (DbDataAdapter adapter in _adapterSequenceForUpdate)
+
+                    foreach (DataTableHelper dtHelper in _sequenceForUpdate)
                     {
-                        adapter.Update(ds);
+                        dtHelper.Update(ds);
                     }
                 }
                 
             }
         }
 
-        public void SetAdapterSequenceForUpdate(IEnumerable<DbDataAdapter> collection)
+        public void SetSequenceForUpdate(IEnumerable<DataTableHelper> collection)
         {
-            foreach (DbDataAdapter adapter in collection)
+            foreach (DataTableHelper dtHelper in collection)
             {
-                _adapterSequenceForUpdate.Add(adapter);
+                _sequenceForUpdate.Add(dtHelper);
             }
         }
 
-        public void SetAdapterSequenceForDelete(IEnumerable<DbDataAdapter> collection)
+        public void SetSequenceForDelete(IEnumerable<DataTableHelper> collection)
         {
-            foreach (DbDataAdapter adapter in collection)
+            foreach (DataTableHelper dtHelper in collection)
             {
-                _adapterSequenceForDelete.Add(adapter);
+                _sequenceForDelete.Add(dtHelper);
             }
         }
 
-        public void SetAdapterSequenceForFill(IEnumerable<DbDataAdapter> collection)
+        public void SetSequenceForFill(IEnumerable<DataTableHelper> collection)
         {
-            foreach (DbDataAdapter adapter in collection)
+            foreach (DataTableHelper dtHelper in collection)
             {
-                _adapterSequenceForFill.Add(adapter);
+                _sequenceForFill.Add(dtHelper);
             }
         }
 
@@ -108,14 +116,14 @@ namespace DALHelper
         /// </summary>
         public void Fill()
         {
-            if(_adapterSequenceForFill.Count == 0)
+            if(_sequenceForFill.Count == 0)
             {
                 throw new InvalidOperationException("Cannot fill the data tables if no DbDataAdapters were previously declared.");
             }
 
-            foreach(DbDataAdapter adapter in _adapterSequenceForFill)
+            foreach (DataTableHelper dtHelper in _sequenceForFill)
             {
-                adapter.Fill(_dataset);
+                dtHelper.Fill(_dataset);
             }
         }
     }

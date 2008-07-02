@@ -295,7 +295,7 @@ namespace DALHelper.Tests {
         public delegate void DetailsTableRowChangeEventHandler(object sender, DetailsTableRowChangeEvent e);
         
         /// <summary>
-        ///Represents the strongly named DataTable class.
+        ///Represents the strongly named Table class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         [global::System.Serializable()]

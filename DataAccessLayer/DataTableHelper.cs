@@ -6,8 +6,9 @@ namespace DALHelper
     public class DataTableHelper
     {
         private DataTable _dataTable;
+        private DbDataAdapter _adapter;
 
-        public DataTable DataTable
+        public DataTable Table
         {
             get { return _dataTable; }
             private set { _dataTable = value; }
@@ -15,36 +16,70 @@ namespace DALHelper
     
         public DataTableHelper(DataTable dataTable)
         {
-            DataTable = dataTable;
+            Table = dataTable;
+            _adapter = CreateDefaultAdapter();
         }
 
-        public DbDataAdapter CreateDefaultAdapter()
+        public DbDataAdapter Adapter
         {
-            DBHelper dbHelper = DBHelper.Instance;
-            DbDataAdapter dbAdapter = dbHelper.CreateAdapter();
+            get
+            {
+                return _adapter;
+            }
 
-            dbAdapter.SelectCommand = dbHelper.CreateCommand(CreateSelectQuery());
-            dbAdapter.InsertCommand = dbHelper.CreateCommand(CreateInsertQuery());
-            dbAdapter.UpdateCommand = dbHelper.CreateCommand(CreateUpdateQuery());
+            set
+            {
+                _adapter = value;
+            }
+        }
 
-            return dbAdapter;
+        public DbDataAdapter SetAdapter(DbCommand selectCommand, DbCommand updateCommand, DbCommand insertCommand, DbCommand deleteCommand)
+        {
+            _adapter.SelectCommand = selectCommand;
+            _adapter.InsertCommand = insertCommand;
+            _adapter.UpdateCommand = updateCommand;
+            _adapter.DeleteCommand = deleteCommand;
+
+            return _adapter;
+        }
+
+        public DbDataAdapter SetAdapter(string selectQuery, string updateQuery, string insertQuery, string deleteQuery)
+        {
+            DbCommand selectCommand = DBHelper.Instance.CreateCommand(selectQuery);
+            DbCommand updateCommand = DBHelper.Instance.CreateCommand(selectQuery);
+            DbCommand insertCommand = DBHelper.Instance.CreateCommand(insertQuery);
+            DbCommand deleteCommand = DBHelper.Instance.CreateCommand(deleteQuery);
+
+            return SetAdapter(selectCommand, updateCommand, insertCommand, deleteCommand);
+        }
+
+
+        private DbDataAdapter CreateDefaultAdapter()
+        {
+            DbDataAdapter dbAdapter = DBHelper.Instance.CreateAdapter();
+
+            dbAdapter.SelectCommand = DBHelper.Instance.CreateCommand(CreateSelectQuery());
+            dbAdapter.InsertCommand = DBHelper.Instance.CreateCommand(CreateInsertQuery());
+            dbAdapter.UpdateCommand = DBHelper.Instance.CreateCommand(CreateUpdateQuery());
+
+             return dbAdapter;
         }
 
         public virtual string CreateSelectQuery()
         {
-            if (DataTable.Columns.Count == 0)
+            if (Table.Columns.Count == 0)
             {
-                throw new System.InvalidOperationException("The current DataTable contains no DataColumn. The 'SELECT' command cannot be created.");
+                throw new System.InvalidOperationException("The current Table contains no DataColumn. The 'SELECT' command cannot be created.");
             }
             string fields = string.Join(", ", GetColumnNames());
-            return string.Format("SELECT {0} FROM {1}", fields, DataTable.TableName);
+            return string.Format("SELECT {0} FROM {1}", fields, Table.TableName);
         }
 
         public virtual string CreateUpdateQuery()
         {
-            if (DataTable.Columns.Count == 0)
+            if (Table.Columns.Count == 0)
             {
-                throw new System.InvalidOperationException("The current DataTable contains no DataColumn. The 'UPDATE' command cannot be created.");
+                throw new System.InvalidOperationException("The current Table contains no DataColumn. The 'UPDATE' command cannot be created.");
             }
             
             string[] columnNames = GetColumnNames();
@@ -57,15 +92,15 @@ namespace DALHelper
                 i++;
             }
 
-            if (DataTable.PrimaryKey.Length == 0)
+            if (Table.PrimaryKey.Length == 0)
             {
-                throw new System.InvalidOperationException("The current DataTable contains no primary key. No 'WHERE' clause for the 'UPDATE' command can be provided without primary key.");
+                throw new System.InvalidOperationException("The current Table contains no primary key. No 'WHERE' clause for the 'UPDATE' command can be provided without primary key.");
             }
 
             //create default filters based on the primary keys
-            string[] filters = new string[DataTable.PrimaryKey.Length];
+            string[] filters = new string[Table.PrimaryKey.Length];
             i = 0;
-            foreach (DataColumn column in DataTable.PrimaryKey)
+            foreach (DataColumn column in Table.PrimaryKey)
             {
                 filters[i++] = column.ColumnName + "=" + "@Original_" + column.ColumnName;
             }
@@ -73,7 +108,7 @@ namespace DALHelper
             string strUpdates = string.Join(", ", updates);
             string strFilters = string.Join(" AND ", filters);
 
-            return string.Format(@"UPDATE {0} SET {1} WHERE ({2})", DataTable.TableName, strUpdates, strFilters);
+            return string.Format(@"UPDATE {0} SET {1} WHERE ({2})", Table.TableName, strUpdates, strFilters);
         }
 
         public virtual string CreateInsertQuery()
@@ -83,9 +118,9 @@ namespace DALHelper
 
         public virtual string CreateInsertQuery(bool InsertIdentity)
         {
-            if (DataTable.Columns.Count == 0)
+            if (Table.Columns.Count == 0)
             {
-                throw new System.InvalidOperationException("The current DataTable contains no DataColumn. The 'INSERT' command cannot be created.");
+                throw new System.InvalidOperationException("The current Table contains no DataColumn. The 'INSERT' command cannot be created.");
             }
             string fields;
             string inputParameters;
@@ -100,15 +135,15 @@ namespace DALHelper
                 fields = string.Join(", ", GetColumnNames(true));
                 inputParameters = string.Join(", ", GetInputParameters(true));
             }
-            return string.Format("INSERT INTO {0} ({1}) VALUES ({2})", DataTable.TableName, fields, inputParameters);
+            return string.Format("INSERT INTO {0} ({1}) VALUES ({2})", Table.TableName, fields, inputParameters);
         }
 
         public virtual string[] GetColumnNames()
         {
             int i = 0;
-            string[] columnNames = new string[DataTable.Columns.Count];
+            string[] columnNames = new string[Table.Columns.Count];
 
-            foreach (DataColumn column in DataTable.Columns)
+            foreach (DataColumn column in Table.Columns)
             {
                 columnNames[i++] = column.ColumnName;
             }
@@ -120,17 +155,17 @@ namespace DALHelper
         {
             if (IgnoreIdentityFields)
             {
-                if (DataTable.Columns.Count == DataTable.PrimaryKey.Length)
+                if (Table.Columns.Count == Table.PrimaryKey.Length)
                 {
                     throw new System.InvalidOperationException("No column name can be returned because all columns are primary keys and IgnorePrimaryKeys is set to true.");
                 }
 
                 int i = 0;
-                string[] columnNames = new string[DataTable.Columns.Count - DataTable.PrimaryKey.Length];
-                foreach (DataColumn column in DataTable.Columns)
+                string[] columnNames = new string[Table.Columns.Count - Table.PrimaryKey.Length];
+                foreach (DataColumn column in Table.Columns)
                 {
                     bool IsAnIdentity = false;
-                    foreach (DataColumn idColumn in DataTable.PrimaryKey)
+                    foreach (DataColumn idColumn in Table.PrimaryKey)
                     {
                         if (column.ColumnName == idColumn.ColumnName)
                         {
@@ -152,7 +187,7 @@ namespace DALHelper
         {
             if (IgnoreIdentityFields)
             {
-                if (DataTable.PrimaryKey.Length == DataTable.Columns.Count)
+                if (Table.PrimaryKey.Length == Table.Columns.Count)
                 {
                     throw new System.InvalidOperationException("No input paramaters can be returned because all columns are primary keys and IgnorePrimaryKeys is set to true.");
                 }
@@ -184,8 +219,18 @@ namespace DALHelper
         public DataColumn AddColumn(string columnName)
         {
             DataColumn column = new DataColumn(columnName);
-            DataTable.Columns.Add(column);
+            Table.Columns.Add(column);
             return column;
+        }
+
+        public void Update(DataSet dataset)
+        {
+            _adapter.Update(dataset, Table.TableName);
+        }
+
+        public void Fill(DataSet dataset)
+        {
+            _adapter.Fill(dataset, Table.TableName);
         }
     }
 }
