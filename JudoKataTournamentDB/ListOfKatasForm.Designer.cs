@@ -1,3 +1,5 @@
+using JudoKataTournamentDB.DataSets;
+
 namespace JudoKataTournamentDB
 {
     partial class ListOfKatasForm
@@ -29,7 +31,7 @@ namespace JudoKataTournamentDB
         private void InitializeComponent()
         {
             this.lbKatas = new System.Windows.Forms.ListBox();
-            this.katasDataSet = new DALHelper.KatasDataSet();
+            this.katasDataSet = new KatasDataSet();
             this.btnNew = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -112,6 +114,6 @@ namespace JudoKataTournamentDB
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
-        private DALHelper.KatasDataSet katasDataSet;
+        private KatasDataSet katasDataSet;
     }
 }

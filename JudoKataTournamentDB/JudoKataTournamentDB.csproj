@@ -49,6 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSets\KatasDataSet.cs">
+      <DependentUpon>KatasDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSets\KatasDataSet.Designer.cs">
+      <DependentUpon>KatasDataSet.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="InputBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +120,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataSets\KatasDataSet.xsc">
+      <DependentUpon>KatasDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\KatasDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>KatasDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\KatasDataSet.xss">
+      <DependentUpon>KatasDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Resources\UEJ-Light2.png" />
     <None Include="Resources\UEJ-Light.png" />
     <None Include="Resources\UEJ-128.png" />

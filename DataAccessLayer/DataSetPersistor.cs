@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 
 namespace DALHelper
 {
@@ -11,7 +10,7 @@ namespace DALHelper
         private readonly IList<DataTableHelper> _sequenceForDelete;
         private readonly IList<DataTableHelper> _sequenceForFill;
 
-        private DataSet _dataset;
+        private readonly DataSet _dataset;
 
         public IList<DataTableHelper> SequenceForUpdate
         {

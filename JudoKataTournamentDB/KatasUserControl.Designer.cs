@@ -1,3 +1,5 @@
+using JudoKataTournamentDB.DataSets;
+
 namespace JudoKataTournamentDB
 {
     partial class KatasUserControl
@@ -33,7 +35,7 @@ namespace JudoKataTournamentDB
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.katasDataSet = new DALHelper.KatasDataSet();
+            this.katasDataSet = new KatasDataSet();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.Katas = new System.Windows.Forms.GroupBox();
             this.Technics = new System.Windows.Forms.GroupBox();
@@ -216,7 +218,7 @@ namespace JudoKataTournamentDB
 
         #endregion
 
-        private DALHelper.KatasDataSet katasDataSet;
+        private KatasDataSet katasDataSet;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox Katas;
         private System.Windows.Forms.GroupBox Technics;

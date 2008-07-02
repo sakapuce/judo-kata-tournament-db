@@ -45,10 +45,10 @@ namespace DALHelper
 
         public DbDataAdapter SetAdapter(string selectQuery, string updateQuery, string insertQuery, string deleteQuery)
         {
-            DbCommand selectCommand = DBHelper.Instance.CreateCommand(selectQuery);
-            DbCommand updateCommand = DBHelper.Instance.CreateCommand(selectQuery);
-            DbCommand insertCommand = DBHelper.Instance.CreateCommand(insertQuery);
-            DbCommand deleteCommand = DBHelper.Instance.CreateCommand(deleteQuery);
+            DbCommand selectCommand = DbHelper.CreateCommand(selectQuery);
+            DbCommand updateCommand = DbHelper.CreateCommand(selectQuery);
+            DbCommand insertCommand = DbHelper.CreateCommand(insertQuery);
+            DbCommand deleteCommand = DbHelper.CreateCommand(deleteQuery);
 
             return SetAdapter(selectCommand, updateCommand, insertCommand, deleteCommand);
         }
@@ -56,11 +56,11 @@ namespace DALHelper
 
         private DbDataAdapter CreateDefaultAdapter()
         {
-            DbDataAdapter dbAdapter = DBHelper.Instance.CreateAdapter();
+            DbDataAdapter dbAdapter = DbHelper.CreateAdapter();
 
-            dbAdapter.SelectCommand = DBHelper.Instance.CreateCommand(CreateSelectQuery());
-            dbAdapter.InsertCommand = DBHelper.Instance.CreateCommand(CreateInsertQuery());
-            dbAdapter.UpdateCommand = DBHelper.Instance.CreateCommand(CreateUpdateQuery());
+            dbAdapter.SelectCommand = DbHelper.CreateCommand(CreateSelectQuery());
+            dbAdapter.InsertCommand = DbHelper.CreateCommand(CreateInsertQuery());
+            dbAdapter.UpdateCommand = DbHelper.CreateCommand(CreateUpdateQuery());
 
              return dbAdapter;
         }

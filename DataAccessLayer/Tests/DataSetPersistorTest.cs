@@ -16,12 +16,11 @@ namespace DALHelper.Tests
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            DBHelper.Instance.Init("JudoKataTournamentDb");
 
             //Create test tables
             using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\CreateTestTables.sql", System.Environment.CurrentDirectory)))
             {
-                DBHelper.Instance.ExecuteScript(reader.ReadToEnd());
+                DbHelper.ExecuteScript(reader.ReadToEnd());
             }
 
             _testDataSet = new TestDataSet();
@@ -37,7 +36,7 @@ namespace DALHelper.Tests
             //Create test tables
             using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\DropTestTables.sql", System.Environment.CurrentDirectory)))
             {
-                DBHelper.Instance.ExecuteScript(reader.ReadToEnd());
+                DbHelper.ExecuteScript(reader.ReadToEnd());
             }
         }
         
@@ -47,7 +46,7 @@ namespace DALHelper.Tests
             //Insert Test Datas
             using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\InsertTestDatas.sql", System.Environment.CurrentDirectory)))
             {
-                DBHelper.Instance.ExecuteScript(reader.ReadToEnd());
+                DbHelper.ExecuteScript(reader.ReadToEnd());
             }
             _persistor = new DataSetPersistor(_testDataSet);
         }
@@ -58,7 +57,7 @@ namespace DALHelper.Tests
             //Delete Test Datas
             using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\DeleteTestDatas.sql", System.Environment.CurrentDirectory)))
             {
-                DBHelper.Instance.ExecuteScript(reader.ReadToEnd());
+                DbHelper.ExecuteScript(reader.ReadToEnd());
             }
         }
 

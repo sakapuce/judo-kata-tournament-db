@@ -6,13 +6,10 @@ namespace DALHelper.Tests
     [TestFixture]
     public class DBHelperTest
     {
-        private DBHelper _dbHelper;
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            _dbHelper = DBHelper.Instance;
-            _dbHelper.Init("JudoKataTournamentDb");
         }
 
         [TestFixtureTearDown]
@@ -40,7 +37,7 @@ namespace DALHelper.Tests
         public void TestCreateConnection()
         {
             
-            DbConnection dbConnection = _dbHelper.CreateConnection();
+            DbConnection dbConnection = DbHelper.CreateConnection();
             Assert.IsNotNull(dbConnection, "DbHelper.CreateConnection() returns a null reference!");
         }
     }
