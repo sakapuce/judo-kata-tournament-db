@@ -127,6 +127,10 @@ namespace DALHelper
 
 #endregion
         
+        /// <summary>
+        /// Create and get the Connection with the current database.
+        /// </summary>
+        /// <returns></returns>
         public DbConnection CreateConnection()
         {
             DbConnection dbConnection = DbFactory.CreateConnection();
@@ -135,6 +139,11 @@ namespace DALHelper
             return dbConnection;
         }
 
+        /// <summary>
+        /// Create a command that can be execute with the database in used.
+        /// </summary>
+        /// <param name="query">a string that contains a query</param>
+        /// <returns>return a DbCommand with that matchs the query specified in parameter</returns>
         public DbCommand CreateCommand(string query)
         {
             DbCommand dbCommand = CreateConnection().CreateCommand();
