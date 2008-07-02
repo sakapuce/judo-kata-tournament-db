@@ -73,19 +73,27 @@ namespace DALHelper.Tests
         public void TestCreateInsertCommand()
         {
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            string expectedSelectQuery = "INSERT INTO TestTable (Id, FirstName, LastName) VALUES (@Id, @FirstName, @LastName)";
-            Assert.AreEqual(expectedSelectQuery, tableHelper.CreateInsertQuery());
+            string expectedInsertQuery = "INSERT INTO TestTable (Id, FirstName, LastName) VALUES (@Id, @FirstName, @LastName)";
+            Assert.AreEqual(expectedInsertQuery, tableHelper.CreateInsertQuery());
 
-            expectedSelectQuery = "INSERT INTO TestTable (FirstName, LastName) VALUES (@FirstName, @LastName)";
-            Assert.AreEqual(expectedSelectQuery, tableHelper.CreateInsertQuery(false));
+            expectedInsertQuery = "INSERT INTO TestTable (FirstName, LastName) VALUES (@FirstName, @LastName)";
+            Assert.AreEqual(expectedInsertQuery, tableHelper.CreateInsertQuery(false));
         }
 
         [Test]
         public void TestCreateUpdateCommand()
         {
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            string expectedSelectQuery = "UPDATE TestTable SET Id=@Id, FirstName=@FirstName, LastName=@LastName WHERE (Id=@Original_Id)";
-            Assert.AreEqual(expectedSelectQuery, tableHelper.CreateUpdateQuery());
+            string expectedUpdateQuery = "UPDATE TestTable SET Id=@Id, FirstName=@FirstName, LastName=@LastName WHERE (Id=@Original_Id)";
+            Assert.AreEqual(expectedUpdateQuery, tableHelper.CreateUpdateQuery());
+        }
+
+        [Test]
+        public void TestCreateDeleteCommand()
+        {
+            DataTableHelper tableHelper = new DataTableHelper(_dataTable);
+            string expectedDeleteQuery = "DELETE FROM MasterTable WHERE (Id=@Original_Id)";
+            Assert.AreEqual(expectedDeleteQuery, tableHelper.CreateDeleteQuery());
         }
     }
 }

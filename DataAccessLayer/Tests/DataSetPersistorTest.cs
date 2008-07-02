@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.IO;
+using NUnit.Framework.SyntaxHelpers;
 
 namespace DALHelper.Tests
 {
@@ -116,7 +117,32 @@ namespace DALHelper.Tests
             _persistor.Fill();
             
             Assert.AreEqual(4,_testDataSet.MasterTable.Rows.Count);
-            Assert.AreEqual(4,_testDataSet.DetailsTable.Rows.Count);
+            Assert.AreEqual(6,_testDataSet.DetailsTable.Rows.Count);
+        }
+
+        [Test]
+        public void DeleteRecordTest()
+        {
+            List<DataTableHelper> sequenceForFill = new List<DataTableHelper>();
+            List<DataTableHelper> sequenceForDelete = new List<DataTableHelper>();
+
+            sequenceForFill.Add(_masterHelper);
+            sequenceForFill.Add(_detailsHelper);
+
+            sequenceForDelete.Add(_detailsHelper);
+            sequenceForDelete.Add(_masterHelper);
+
+            _persistor.SetSequenceForFill(sequenceForFill);
+            _persistor.SetSequenceForDelete(sequenceForDelete);
+
+            _persistor.Fill();
+
+            _testDataSet.MasterTable.Select("Id=4")[0].Delete();
+
+            _persistor.Update();
+
+            Assert.AreEqual(3,_testDataSet.MasterTable.Rows.Count);
+            Assert.AreEqual(3,_testDataSet.DetailsTable.Rows.Count);
         }
     }
 }

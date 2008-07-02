@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using System.Data.Common;
 
@@ -61,8 +62,28 @@ namespace DALHelper
             dbAdapter.SelectCommand = DbHelper.CreateCommand(CreateSelectQuery());
             dbAdapter.InsertCommand = DbHelper.CreateCommand(CreateInsertQuery());
             dbAdapter.UpdateCommand = DbHelper.CreateCommand(CreateUpdateQuery());
+            dbAdapter.DeleteCommand = DbHelper.CreateCommand(CreateDeleteQuery());
 
-             return dbAdapter;
+            //create default parameters for update and delete queries
+            foreach (DataColumn column in Table.PrimaryKey)
+            {
+                DbParameter paramUpdate = dbAdapter.UpdateCommand.CreateParameter();
+                DbParameter paramDelete = dbAdapter.DeleteCommand.CreateParameter();
+                
+                paramUpdate.Direction = ParameterDirection.Input;
+                paramUpdate.ParameterName = string.Format("@Original_{0}", column.ColumnName);
+                paramUpdate.DbType = (DbType)Enum.Parse(typeof(DbType), column.DataType.Name);
+
+                paramDelete.Direction = ParameterDirection.Input;
+                paramDelete.ParameterName = string.Format("@Original_{0}", column.ColumnName);
+                paramDelete.DbType = (DbType)Enum.Parse(typeof(DbType), column.DataType.Name);
+                
+                
+                dbAdapter.UpdateCommand.Parameters.Add(paramUpdate);
+                dbAdapter.DeleteCommand.Parameters.Add(paramDelete);
+            }
+
+            return dbAdapter;
         }
 
         public virtual string CreateSelectQuery()
@@ -136,6 +157,25 @@ namespace DALHelper
                 inputParameters = string.Join(", ", GetInputParameters(true));
             }
             return string.Format("INSERT INTO {0} ({1}) VALUES ({2})", Table.TableName, fields, inputParameters);
+        }
+
+        public virtual string CreateDeleteQuery()
+        {
+            if (Table.Columns.Count == 0)
+            {
+                throw new System.InvalidOperationException("The current Table contains no DataColumn. The 'DELETE' command cannot be created.");
+            }
+
+            //create default filters based on the primary keys
+            string[] filters = new string[Table.PrimaryKey.Length];
+            int i = 0;
+            foreach (DataColumn column in Table.PrimaryKey)
+            {
+                filters[i++] = column.ColumnName + "=" + "@Original_" + column.ColumnName;
+            }
+            string strFilters = string.Join(" AND ", filters);
+
+            return string.Format("DELETE FROM MasterTable WHERE ({0})", strFilters);
         }
 
         public virtual string[] GetColumnNames()

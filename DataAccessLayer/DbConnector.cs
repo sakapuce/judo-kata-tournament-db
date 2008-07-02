@@ -78,7 +78,7 @@ namespace DALHelper
             DbConnector()
             {
                 IsInitialized = false;
-                Debug.Write("DbConnector singleton instance created but not yet initialized.");
+                Debug.WriteLine("DbConnector singleton instance created but not yet initialized.");
             }
 
             public void Init(string connectionName)
