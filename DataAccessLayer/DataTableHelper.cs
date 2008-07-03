@@ -90,7 +90,7 @@ namespace DALHelper
         {
             if (Table.Columns.Count == 0)
             {
-                throw new System.InvalidOperationException("The current Table contains no DataColumn. The 'SELECT' command cannot be created.");
+                throw new InvalidOperationException("The current Table contains no DataColumn. The 'SELECT' command cannot be created.");
             }
             string fields = string.Join(", ", GetColumnNames());
             return string.Format("SELECT {0} FROM {1}", fields, Table.TableName);
@@ -100,7 +100,7 @@ namespace DALHelper
         {
             if (Table.Columns.Count == 0)
             {
-                throw new System.InvalidOperationException("The current Table contains no DataColumn. The 'UPDATE' command cannot be created.");
+                throw new InvalidOperationException("The current Table contains no DataColumn. The 'UPDATE' command cannot be created.");
             }
             
             string[] columnNames = GetColumnNames();
@@ -115,7 +115,7 @@ namespace DALHelper
 
             if (Table.PrimaryKey.Length == 0)
             {
-                throw new System.InvalidOperationException("The current Table contains no primary key. No 'WHERE' clause for the 'UPDATE' command can be provided without primary key.");
+                throw new InvalidOperationException("The current Table contains no primary key. No 'WHERE' clause for the 'UPDATE' command can be provided without primary key.");
             }
 
             //create default filters based on the primary keys
@@ -141,7 +141,7 @@ namespace DALHelper
         {
             if (Table.Columns.Count == 0)
             {
-                throw new System.InvalidOperationException("The current Table contains no DataColumn. The 'INSERT' command cannot be created.");
+                throw new InvalidOperationException("The current Table contains no DataColumn. The 'INSERT' command cannot be created.");
             }
             string fields;
             string inputParameters;
@@ -163,7 +163,7 @@ namespace DALHelper
         {
             if (Table.Columns.Count == 0)
             {
-                throw new System.InvalidOperationException("The current Table contains no DataColumn. The 'DELETE' command cannot be created.");
+                throw new InvalidOperationException("The current Table contains no DataColumn. The 'DELETE' command cannot be created.");
             }
 
             //create default filters based on the primary keys
@@ -197,7 +197,7 @@ namespace DALHelper
             {
                 if (Table.Columns.Count == Table.PrimaryKey.Length)
                 {
-                    throw new System.InvalidOperationException("No column name can be returned because all columns are primary keys and IgnorePrimaryKeys is set to true.");
+                    throw new InvalidOperationException("No column name can be returned because all columns are primary keys and IgnorePrimaryKeys is set to true.");
                 }
 
                 int i = 0;
@@ -229,7 +229,7 @@ namespace DALHelper
             {
                 if (Table.PrimaryKey.Length == Table.Columns.Count)
                 {
-                    throw new System.InvalidOperationException("No input paramaters can be returned because all columns are primary keys and IgnorePrimaryKeys is set to true.");
+                    throw new InvalidOperationException("No input paramaters can be returned because all columns are primary keys and IgnorePrimaryKeys is set to true.");
                 }
 
                 string[] columnNames = GetColumnNames(true);
