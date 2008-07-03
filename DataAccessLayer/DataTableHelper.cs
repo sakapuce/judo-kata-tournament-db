@@ -77,6 +77,8 @@ namespace DALHelper
                 paramDelete.Direction = ParameterDirection.Input;
                 paramDelete.ParameterName = string.Format("@Original_{0}", column.ColumnName);
                 paramDelete.DbType = (DbType)Enum.Parse(typeof(DbType), column.DataType.Name);
+                paramDelete.SourceColumn = column.ColumnName;
+                paramDelete.SourceVersion = DataRowVersion.Original;
                 
                 
                 dbAdapter.UpdateCommand.Parameters.Add(paramUpdate);
@@ -175,7 +177,7 @@ namespace DALHelper
             }
             string strFilters = string.Join(" AND ", filters);
 
-            return string.Format("DELETE FROM MasterTable WHERE ({0})", strFilters);
+            return string.Format("DELETE FROM {0} WHERE ({1})", Table.TableName, strFilters);
         }
 
         public virtual string[] GetColumnNames()
@@ -263,9 +265,9 @@ namespace DALHelper
             return column;
         }
 
-        public void Update(DataSet dataset)
+        public void Update()
         {
-            _adapter.Update(dataset, Table.TableName);
+            _adapter.Update(Table);
         }
 
         public void Fill(DataSet dataset)

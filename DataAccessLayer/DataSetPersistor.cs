@@ -51,38 +51,28 @@ namespace DALHelper
 
         public void Update()
         {
-            if (_dataset.HasChanges())
+            if (!_dataset.HasChanges()) return;
+
+            DataSet ds = _dataset.GetChanges(DataRowState.Deleted);
+            if(ds!=null)
             {
-                DataSet ds = _dataset.GetChanges(DataRowState.Deleted);
-                if(ds!=null)
+                    
+                foreach (DataTableHelper dtHelper in _sequenceForDelete)
                 {
-                    if (_sequenceForDelete.Count == 0)
-                    {
-                        throw new InvalidOperationException("The update try to delete some data but no DbDataAdapter sequence were provided.");
-                    }
+                    Console.WriteLine(string.Format("Persistors deletes {0} rows from table '{1}'", dtHelper.Table.GetChanges(DataRowState.Deleted).Rows.Count, dtHelper.Table.TableName));
+                    dtHelper.Update();
+                }   
+            }
 
-                    foreach (DataTableHelper dtHelper in _sequenceForDelete)
-                    {
-                        dtHelper.Update(ds);
-                    }
-                }
-                
-
-                ds = _dataset.GetChanges(DataRowState.Modified);
-                if(ds!=null)
+            ds = _dataset.GetChanges(DataRowState.Modified | DataRowState.Added);
+            if(ds!=null)
+            {
+                    
+                foreach (DataTableHelper dtHelper in _sequenceForUpdate)
                 {
-
-                    if (_sequenceForUpdate.Count == 0)
-                    {
-                        throw new InvalidOperationException("The update try to modify some data but no DbDataAdapter sequence were provided.");
-                    }
-
-                    foreach (DataTableHelper dtHelper in _sequenceForUpdate)
-                    {
-                        dtHelper.Update(ds);
-                    }
-                }
-                
+                    Console.WriteLine(string.Format("Persistor adds or updates {0} rows from table '{1}'", dtHelper.Table.GetChanges(DataRowState.Deleted).Rows.Count, dtHelper.Table.TableName));
+                    dtHelper.Update();
+                }   
             }
         }
 

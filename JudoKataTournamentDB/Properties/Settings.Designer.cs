@@ -33,5 +33,16 @@ namespace JudoKataTournamentDB.Properties {
                 return ((string)(this["KataContestDatabaseConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=GVHE-WS-226LJ1J\\SQLEXPRESS;Initial Catalog=KataContestDb;Integrated S" +
+            "ecurity=True")]
+        public string KataContestDbConnectionString {
+            get {
+                return ((string)(this["KataContestDbConnectionString"]));
+            }
+        }
     }
 }

@@ -136,7 +136,14 @@ namespace DALHelper.Tests
 
             _persistor.Fill();
 
+            
+            foreach(TestDataSet.DetailsTableRow row in _testDataSet.DetailsTable.Select("IdMasterTable = 4"))
+            {
+                row.Delete();
+            }
+
             _testDataSet.MasterTable.Select("Id=4")[0].Delete();
+
 
             _persistor.Update();
 
