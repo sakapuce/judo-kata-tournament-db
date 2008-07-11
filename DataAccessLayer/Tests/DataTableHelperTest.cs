@@ -92,7 +92,7 @@ namespace DALHelper.Tests
         public void TestCreateDeleteCommand()
         {
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            string expectedDeleteQuery = "DELETE FROM MasterTable WHERE (Id=@Original_Id)";
+            string expectedDeleteQuery = "DELETE FROM TestTable WHERE (Id=@Original_Id)";
             Assert.AreEqual(expectedDeleteQuery, tableHelper.CreateDeleteQuery());
         }
     }
