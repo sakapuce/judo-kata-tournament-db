@@ -44,11 +44,6 @@ namespace DALHelper.Tests
             DataSetGraphTest dataset = new DataSetGraphTest();
             DataSetGraph dsGraph = new DataSetGraph(dataset);
             Assert.That(dsGraph.Vertices.Count, Is.EqualTo(5));
-            //foreach (IVertex vertex in dsGraph.Vertices)
-            //{
-            //    Console.WriteLine(string.Format("Vertex: {0}",vertex.Label));
-            //    Assert.That(vertex.Color,Is.EqualTo(VerticeColor.White));
-            //}
         }
 
         [Test]
@@ -57,10 +52,12 @@ namespace DALHelper.Tests
             DataSetGraphTest dataset = new DataSetGraphTest();
             DataSetGraph dsGraph = new DataSetGraph(dataset);
             IList<IVertex> verticesRoute = dsGraph.ComputeExecutionPlan();
-            foreach(IVertex vertex in verticesRoute)
-            {
-                Console.WriteLine(string.Format("Vertex: {0}", vertex.Label));
-            }
+
+            Assert.That(verticesRoute[0].Label, Is.EqualTo("DataTable4"));
+            Assert.That(verticesRoute[1].Label, Is.EqualTo("DataTable3"));
+            Assert.That(verticesRoute[2].Label, Is.EqualTo("DataTable2"));
+            Assert.That(verticesRoute[3].Label, Is.EqualTo("DataTable1"));
+            Assert.That(verticesRoute[4].Label, Is.EqualTo("DataTable5"));
         }
     }
 }
