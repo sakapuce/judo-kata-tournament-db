@@ -37,41 +37,125 @@
     </NestedTypes>
   </Class>
   <Class Name="DALHelper.DataSetGraph">
-    <Position X="8.75" Y="0.75" Width="1.5" />
+    <Position X="13" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>DataSetGraph.cs</FileName>
-      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAEAAAAAAAAAAAEAgIAQAAAAE=</HashCode>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Vertices" />
+    </ShowAsCollectionAssociation>
+    <AssociationLine Name="Vertices" Type="DALHelper.IVertex">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.1" Y="1.07" />
+      </MemberNameLabel>
+    </AssociationLine>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="DALHelper.DataSetVertice">
-    <Position X="8.25" Y="4.25" Width="1.5" />
+    <Position X="13" Y="8" Width="1.5" />
     <TypeIdentifier>
       <FileName>DataSetVertice.cs</FileName>
-      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAAIAAgAAAAAA=</HashCode>
+      <HashCode>AAAABAAAEAAAAgABAAAAAAAAAAAAAgAAAIAAgAAAAAA=</HashCode>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Color" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="AdjacentVertices" />
+      <Property Name="IncomingEdges" />
+      <Property Name="OutgoingEdges" />
+    </ShowAsCollectionAssociation>
+    <AssociationLine Name="Color" Type="DALHelper.VerticeColor">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.675" Y="0.11" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="AdjacentVertices" Type="DALHelper.IVertex" FixedFromPoint="true">
+      <Path>
+        <Point X="13.875" Y="8" />
+        <Point X="13.875" Y="6.889" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.244" Y="0.841" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="IncomingEdges" Type="DALHelper.IEdge" FixedFromPoint="true">
+      <Path>
+        <Point X="14.5" Y="9.062" />
+        <Point X="17.25" Y="9.062" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.579" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="OutgoingEdges" Type="DALHelper.IEdge" FixedFromPoint="true">
+      <Path>
+        <Point X="14.5" Y="8.5" />
+        <Point X="17.25" Y="8.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.62" Y="0.091" />
+      </MemberNameLabel>
+    </AssociationLine>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="DALHelper.DataSetEdge">
-    <Position X="10.25" Y="4.25" Width="1.5" />
+    <Position X="10" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>DataSetEdge.cs</FileName>
-      <HashCode>AgAAAAAAAAAQAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AgAAAAAAEAAQAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="To" />
+      <Property Name="From" />
+    </ShowAsAssociation>
+    <AssociationLine Name="To" Type="DALHelper.IVertex" FixedFromPoint="true">
+      <Path>
+        <Point X="11.5" Y="6.625" />
+        <Point X="13" Y="6.625" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.975" Y="0.081" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="From" Type="DALHelper.IVertex" FixedFromPoint="true">
+      <Path>
+        <Point X="11.5" Y="6.062" />
+        <Point X="13" Y="6.062" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.891" Y="0.081" />
+      </MemberNameLabel>
+    </AssociationLine>
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="DALHelper.IGraph">
-    <Position X="11.25" Y="0.5" Width="1.5" />
+    <Position X="13" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>IGraph.cs</FileName>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Interface>
   <Interface Name="DALHelper.IVertex">
-    <Position X="11.25" Y="2.25" Width="1.5" />
+    <Position X="13" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <FileName>IVertex.cs</FileName>
-      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAAIAAgAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAEAAAAAABAAAAAAAAAAAAAgAAAIAAgAAAAAA=</HashCode>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="DALHelper.IEdge">
+    <Position X="17.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>IEdge.cs</FileName>
+      <HashCode>AgAAAAAAEAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DALHelper.VerticeColor">
+    <Position X="10.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>IVertex.cs</FileName>
+      <HashCode>AAAEAABAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
 </ClassDiagram>

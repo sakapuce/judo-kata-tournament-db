@@ -30,5 +30,13 @@ namespace DALHelper
         }
 
         #endregion
+
+        public string Label
+        {
+            get
+            {
+                return _relation.RelationName;
+            }
+        }
     }
 }

@@ -11,5 +11,10 @@ namespace DALHelper
         { 
             get;
         }
+
+        string Label
+        {
+            get;
+        }
     }
 }
