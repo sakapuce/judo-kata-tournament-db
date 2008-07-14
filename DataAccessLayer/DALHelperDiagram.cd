@@ -11,7 +11,7 @@
   <Class Name="DALHelper.DbHelper">
     <Position X="0.5" Y="0.5" Width="3" />
     <TypeIdentifier>
-      <FileName>DbHelper.cs</FileName>
+      <FileName>DbConnector.cs</FileName>
       <NewMemberFileName>DBHelper.cs</NewMemberFileName>
       <HashCode>AAAoAAAAAAAAAAEAQAAEAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
@@ -36,4 +36,42 @@
       </Class>
     </NestedTypes>
   </Class>
+  <Class Name="DALHelper.DataSetGraph">
+    <Position X="8.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DataSetGraph.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DALHelper.DataSetVertice">
+    <Position X="8.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DataSetVertice.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAAIAAgAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DALHelper.DataSetEdge">
+    <Position X="10.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DataSetEdge.cs</FileName>
+      <HashCode>AgAAAAAAAAAQAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DALHelper.IGraph">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>IGraph.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DALHelper.IVertex">
+    <Position X="11.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>IVertex.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAAIAAgAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
 </ClassDiagram>

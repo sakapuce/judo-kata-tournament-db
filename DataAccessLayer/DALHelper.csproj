@@ -38,15 +38,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSetEdge.cs" />
+    <Compile Include="DataSetGraph.cs" />
     <Compile Include="DataSetPersistor.cs" />
+    <Compile Include="DataSetVertice.cs">
+    </Compile>
     <Compile Include="DataTableHelper.cs" />
     <Compile Include="DbConnector.cs" />
     <Compile Include="DbHelper.cs" />
+    <Compile Include="IEdge.cs" />
+    <Compile Include="IGraph.cs" />
+    <Compile Include="IVertex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\DataSetGraphTest.cs">
+      <DependentUpon>DataSetGraphTest.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tests\DSGraphTest.cs">
+    </Compile>
+    <Compile Include="Tests\DataSetGraphTest.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetGraphTest.xsd</DependentUpon>
     </Compile>
     <Compile Include="Tests\DataSetPersistorTest.cs" />
     <Compile Include="Tests\DataTableHelperTest.cs" />
@@ -67,6 +85,17 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Tests\DataSetGraphTest.xsc">
+      <DependentUpon>DataSetGraphTest.xsd</DependentUpon>
+    </None>
+    <None Include="Tests\DataSetGraphTest.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetGraphTest.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Tests\DataSetGraphTest.xss">
+      <DependentUpon>DataSetGraphTest.xsd</DependentUpon>
     </None>
     <None Include="Tests\TestDataSet.xsc">
       <DependentUpon>TestDataSet.xsd</DependentUpon>

@@ -4,6 +4,7 @@ using System.Data.Common;
 
 namespace DALHelper
 {
+    //TODO: Refactor this class to use the DbCommandBuilder class for creating default SELECT, INSERT, UPDATE and DELETE DbCommand
     public class DataTableHelper
     {
         private DataTable _dataTable;
