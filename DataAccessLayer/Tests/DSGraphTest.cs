@@ -43,7 +43,7 @@ namespace DALHelper.Tests
         {
             DataSetGraphTest dataset = new DataSetGraphTest();
             DataSetGraph dsGraph = new DataSetGraph(dataset);
-            Assert.That(dsGraph.Vertices.Count, Is.EqualTo(5));
+            Assert.That(dsGraph.Vertices.Count, Is.EqualTo(7));
         }
 
         [Test]
@@ -58,6 +58,8 @@ namespace DALHelper.Tests
             Assert.That(verticesRoute[2].Label, Is.EqualTo("DataTable2"));
             Assert.That(verticesRoute[3].Label, Is.EqualTo("DataTable1"));
             Assert.That(verticesRoute[4].Label, Is.EqualTo("DataTable5"));
+            Assert.That(verticesRoute[5].Label, Is.EqualTo("DataTable7"));
+            Assert.That(verticesRoute[6].Label, Is.EqualTo("DataTable6"));
         }
     }
 }

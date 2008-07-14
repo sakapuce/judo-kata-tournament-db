@@ -61,6 +61,22 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="DataTable6" msprop:Generator_UserTableName="DataTable6" msprop:Generator_RowDeletedName="DataTable6RowDeleted" msprop:Generator_TableClassName="DataTable6DataTable" msprop:Generator_RowChangedName="DataTable6RowChanged" msprop:Generator_RowClassName="DataTable6Row" msprop:Generator_RowChangingName="DataTable6RowChanging" msprop:Generator_RowEvArgName="DataTable6RowChangeEvent" msprop:Generator_RowEvHandlerName="DataTable6RowChangeEventHandler" msprop:Generator_TablePropName="DataTable6" msprop:Generator_TableVarName="tableDataTable6" msprop:Generator_RowDeletingName="DataTable6RowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
+              <xs:element name="Field" msprop:Generator_UserColumnName="Field" msprop:Generator_ColumnPropNameInRow="Field" msprop:Generator_ColumnVarNameInTable="columnField" msprop:Generator_ColumnPropNameInTable="FieldColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable7" msprop:Generator_UserTableName="DataTable7" msprop:Generator_RowDeletedName="DataTable7RowDeleted" msprop:Generator_TableClassName="DataTable7DataTable" msprop:Generator_RowChangedName="DataTable7RowChanged" msprop:Generator_RowClassName="DataTable7Row" msprop:Generator_RowChangingName="DataTable7RowChanging" msprop:Generator_RowEvArgName="DataTable7RowChangeEvent" msprop:Generator_RowEvHandlerName="DataTable7RowChangeEventHandler" msprop:Generator_TablePropName="DataTable7" msprop:Generator_TableVarName="tableDataTable7" msprop:Generator_RowDeletingName="DataTable7RowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
+              <xs:element name="ParentId" msprop:Generator_UserColumnName="ParentId" msprop:Generator_ColumnPropNameInRow="ParentId" msprop:Generator_ColumnVarNameInTable="columnParentId" msprop:Generator_ColumnPropNameInTable="ParentIdColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -83,6 +99,14 @@
       <xs:selector xpath=".//mstns:DataTable5" />
       <xs:field xpath="mstns:Id" />
     </xs:unique>
+    <xs:unique name="DataTable6_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTable6" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="DataTable7_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTable7" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
@@ -91,6 +115,7 @@
       <msdata:Relationship name="FK_DataTable3_DataTable4" msdata:parent="DataTable3" msdata:child="DataTable4" msdata:parentkey="Id" msdata:childkey="ParentId1" msprop:Generator_UserRelationName="FK_DataTable3_DataTable4" msprop:Generator_RelationVarName="relationFK_DataTable3_DataTable4" msprop:Generator_UserChildTable="DataTable4" msprop:Generator_UserParentTable="DataTable3" msprop:Generator_ParentPropName="DataTable3Row" msprop:Generator_ChildPropName="GetDataTable4Rows" />
       <msdata:Relationship name="DataTable5_DataTable4" msdata:parent="DataTable5" msdata:child="DataTable4" msdata:parentkey="Id" msdata:childkey="ParentId2" msprop:Generator_UserRelationName="DataTable5_DataTable4" msprop:Generator_RelationVarName="relationDataTable5_DataTable4" msprop:Generator_UserChildTable="DataTable4" msprop:Generator_UserParentTable="DataTable5" msprop:Generator_ParentPropName="DataTable5Row" msprop:Generator_ChildPropName="GetDataTable4Rows" />
       <msdata:Relationship name="DataTable3_DataTable1" msdata:parent="DataTable3" msdata:child="DataTable1" msdata:parentkey="Id" msdata:childkey="ParentId" msprop:Generator_UserRelationName="DataTable3_DataTable1" msprop:Generator_RelationVarName="relationDataTable3_DataTable1" msprop:Generator_UserChildTable="DataTable1" msprop:Generator_UserParentTable="DataTable3" msprop:Generator_ParentPropName="DataTable3Row" msprop:Generator_ChildPropName="GetDataTable1Rows" />
+      <msdata:Relationship name="DataTable6_DataTable7" msdata:parent="DataTable6" msdata:child="DataTable7" msdata:parentkey="Id" msdata:childkey="ParentId" msprop:Generator_UserRelationName="DataTable6_DataTable7" msprop:Generator_RelationVarName="relationDataTable6_DataTable7" msprop:Generator_UserChildTable="DataTable7" msprop:Generator_UserParentTable="DataTable6" msprop:Generator_ParentPropName="DataTable6Row" msprop:Generator_ChildPropName="GetDataTable7Rows" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
