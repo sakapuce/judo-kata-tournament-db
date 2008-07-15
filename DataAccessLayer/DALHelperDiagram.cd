@@ -2,13 +2,13 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Font Name="Tahoma" Size="8.25" />
   <Comment CommentText="DataSetGraph wraps a DataSet and implements the IGraph inferface. This class is used to compute the update sequence that must be followed when updating the inner DataSet.">
-    <Position X="10.031" Y="3.177" Height="0.635" Width="2.731" />
+    <Position X="10.031" Y="3.052" Height="0.635" Width="2.731" />
   </Comment>
   <Class Name="DALHelper.DataSetPersistor">
     <Position X="4" Y="0.5" Width="3" />
     <TypeIdentifier>
       <FileName>DataSetPersistor.cs</FileName>
-      <HashCode>AAQAAAAAACBgAAICAAAAAABAQBAACAAAAAAAAhAAAAE=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAIAAAAAAAAAAAAACAAAAAAAAkAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="DALHelper.DbHelper">
@@ -43,14 +43,14 @@
     <Position X="8.5" Y="1.75" Width="2" />
     <TypeIdentifier>
       <FileName>DataSetGraph.cs</FileName>
-      <HashCode>ACAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAEAgAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAEAgAAAAAAAA=</HashCode>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Vertices" />
     </ShowAsCollectionAssociation>
     <AssociationLine Name="Vertices" Type="DALHelper.IVertex">
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="0.069" Y="1.539" Height="0.16" Width="0.868" />
+        <Position X="0.069" Y="1.664" Height="0.16" Width="0.868" />
       </MemberNameLabel>
     </AssociationLine>
     <Lollipop Position="0.2" />
@@ -59,7 +59,7 @@
     <Position X="8.5" Y="8" Width="1.5" />
     <TypeIdentifier>
       <FileName>DataSetVertice.cs</FileName>
-      <HashCode>AAAABAAAEAAAAgABAAAAAAAAAAAAAgAAAIAAgAAAAAA=</HashCode>
+      <HashCode>AAAABAAAEAAAAgABAAAAQAAAAAAAAgAAAIAAgAAAAAA=</HashCode>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Color" />

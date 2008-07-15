@@ -19,6 +19,9 @@ namespace DALHelper
             get { return _dataset; }
         }
 
+        /// <summary>
+        /// Set a specific DataTableHelper for a particular table of the inner dataset.
+        /// </summary>
         public void SetDataTableHelper(string tableName, DataTableHelper helper)
         {
             DataTable table = _dataset.Tables[tableName];
@@ -41,6 +44,9 @@ namespace DALHelper
             table.ExtendedProperties["DataTableHelper"] = helper;
         }
 
+        /// <summary>
+        /// This funtions calls the INSERT, DELETE and UPDATE queries to update the inner dataset and reflects the changes done on it.
+        /// </summary>
         public void Update()
         {
             if (!_dataset.HasChanges()) return;
@@ -86,7 +92,7 @@ namespace DALHelper
         }
 
         /// <summary>
-        /// This function fills the tables of the inner dataset
+        /// This function fills the tables of the inner dataset by calling the SELECT queries on each table.
         /// </summary>
         public void Fill()
         {

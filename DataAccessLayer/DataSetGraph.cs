@@ -8,6 +8,11 @@ namespace DALHelper
         private readonly DataSet _dataset;
         private readonly List<IVertex> _vertices;
 
+        /// <summary>
+        /// The DataSetGraph class implements the IGraph interface. This constructor returns an instance of DataSetGraph.
+        /// It can be used to abstract any DataSet as a Graph (a set of Vertices connected by edges)
+        /// </summary>
+        /// <param name="dataset">a DataSet on top of which the DataSetGraph must be constructed.</param>
         public DataSetGraph(DataSet dataset)
         {
             _dataset = dataset;
@@ -17,15 +22,6 @@ namespace DALHelper
             {
                 _vertices.Add(new DataSetVertice(table));
             }
-        }
-
-        /// <summary>
-        /// Returns the list of vertices following the Depth-First-Search algorithm
-        /// </summary>
-        /// <returns>a List of IVertex objects</returns>
-        public List<IVertex> ComputeDFSItinerary()
-        {
-            return DFS.ComputeItinerary(this);
         }
 
         #region IGraph Members
