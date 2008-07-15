@@ -5,7 +5,7 @@ using NUnit.Framework.SyntaxHelpers;
 namespace DALHelper.Tests
 {
     [TestFixture]
-    public class DSGraphTest
+    public class GraphTest
     {
         [TestFixtureSetUp]
         public void SetUpFixture()
@@ -38,7 +38,7 @@ namespace DALHelper.Tests
         }
 
         [Test]
-        public void TestDataSetGraphConstructor()
+        public void GraphConstructor()
         {
             DataSetGraphTest dataset = new DataSetGraphTest();
             DataSetGraph dsGraph = new DataSetGraph(dataset);
@@ -46,11 +46,10 @@ namespace DALHelper.Tests
         }
 
         [Test]
-        public void ComputeExecutionPlanTest()
+        public void ComputeDFSItineraryTest()
         {
-            DataSetGraphTest dataset = new DataSetGraphTest();
-            DataSetGraph dsGraph = new DataSetGraph(dataset);
-            IList<IVertex> verticesRoute = dsGraph.ComputeExecutionPlan();
+
+            IList<IVertex> verticesRoute = DFS.ComputeItinerary(new DataSetGraph(new DataSetGraphTest()));
 
             Assert.That(verticesRoute[0].Label, Is.EqualTo("DataTable4"));
             Assert.That(verticesRoute[1].Label, Is.EqualTo("DataTable3"));
