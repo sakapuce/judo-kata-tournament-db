@@ -37,17 +37,17 @@
     </NestedTypes>
   </Class>
   <Class Name="DALHelper.DataSetGraph">
-    <Position X="8.5" Y="1.75" Width="1.5" />
+    <Position X="8.5" Y="1.75" Width="2" />
     <TypeIdentifier>
       <FileName>DataSetGraph.cs</FileName>
-      <HashCode>AAAAAAAAAAAAAAIAAAAAEAAAAAAAAAAAEAgIAQAAAAE=</HashCode>
+      <HashCode>ACAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAEAgAAAAAAAA=</HashCode>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Vertices" />
     </ShowAsCollectionAssociation>
     <AssociationLine Name="Vertices" Type="DALHelper.IVertex">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.1" Y="1.07" />
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.069" Y="1.539" Height="0.16" Width="0.868" />
       </MemberNameLabel>
     </AssociationLine>
     <Lollipop Position="0.2" />
@@ -129,6 +129,13 @@
       </MemberNameLabel>
     </AssociationLine>
     <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DALHelper.DFS">
+    <Position X="11" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DFS.cs</FileName>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+    </TypeIdentifier>
   </Class>
   <Interface Name="DALHelper.IGraph">
     <Position X="8.5" Y="0.5" Width="1.5" />

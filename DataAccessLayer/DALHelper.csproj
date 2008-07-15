@@ -46,6 +46,7 @@
     <Compile Include="DataTableHelper.cs" />
     <Compile Include="DbConnector.cs" />
     <Compile Include="DbHelper.cs" />
+    <Compile Include="DFS.cs" />
     <Compile Include="IEdge.cs" />
     <Compile Include="IGraph.cs" />
     <Compile Include="IVertex.cs" />
@@ -59,7 +60,7 @@
       <DependentUpon>DataSetGraphTest.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Tests\DSGraphTest.cs">
+    <Compile Include="Tests\GraphTest.cs">
     </Compile>
     <Compile Include="Tests\DataSetGraphTest.Designer.cs">
       <AutoGen>True</AutoGen>
