@@ -53,16 +53,13 @@ namespace DALHelper
 
                 foreach (IVertex vertex in itinerary)
                 {
-                    DataTable table = vertex as DataTable;
-                    if(table != null)
+                    DataSetVertice dsVertex = vertex as DataSetVertice;
+                    if (dsVertex != null)
                     {
-                        DataTableHelper helper = table.ExtendedProperties["DataTableHelper"] as DataTableHelper;
-                        if (helper == null)
-                        {
-                            helper = new DataTableHelper(table);
-                            Console.WriteLine(string.Format("Persistors deletes {0} rows from table '{1}'", helper.Table.GetChanges(DataRowState.Deleted).Rows.Count, helper.Table.TableName));
-                            helper.Update();
-                        }
+                        DataTableHelper helper = dsVertex.Table.ExtendedProperties["DataTableHelper"] as DataTableHelper ?? new DataTableHelper(dsVertex.Table);
+
+                        Console.WriteLine(string.Format("Persistors deletes {0} rows from table '{1}'", helper.Table.GetChanges(DataRowState.Deleted).Rows.Count, helper.Table.TableName));
+                        helper.Update();
                     }
                 }
             }
@@ -75,16 +72,14 @@ namespace DALHelper
 
                 foreach (IVertex vertex in itinerary)
                 {
-                    DataTable table = vertex as DataTable;
-                    if (table != null)
+                    DataSetVertice dsVertex = vertex as DataSetVertice;
+                    if (dsVertex != null)
                     {
-                        DataTableHelper helper = table.ExtendedProperties["DataTableHelper"] as DataTableHelper;
-                        if (helper == null)
-                        {
-                            helper = new DataTableHelper(table);
-                            Console.WriteLine(string.Format("Persistor adds or updates {0} rows from table '{1}'", helper.Table.GetChanges(DataRowState.Deleted).Rows.Count, helper.Table.TableName));
-                            helper.Update();
-                        }
+                        DataTableHelper helper = dsVertex.Table.ExtendedProperties["DataTableHelper"] as DataTableHelper ?? new DataTableHelper(dsVertex.Table);
+
+                        Console.WriteLine(string.Format("Persistor adds {0} rows into table '{1}'", helper.Table.GetChanges(DataRowState.Added).Rows.Count, helper.Table.TableName));
+                        Console.WriteLine(string.Format("Persistor updates {0} rows into table '{1}'", helper.Table.GetChanges(DataRowState.Modified).Rows.Count, helper.Table.TableName));
+                        helper.Update();
                     }
                 }
             }
