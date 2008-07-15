@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using System.Collections.Generic;
 using System.IO;
 
 namespace DALHelper.Tests
@@ -10,8 +9,6 @@ namespace DALHelper.Tests
         DataSetPersistor _persistor;
         TestDataSet _testDataSet;
 
-        DataTableHelper _masterHelper;
-        DataTableHelper _detailsHelper;
         
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
@@ -24,9 +21,6 @@ namespace DALHelper.Tests
             }
 
             _testDataSet = new TestDataSet();
-
-            _masterHelper = new DataTableHelper(_testDataSet.MasterTable);
-            _detailsHelper = new DataTableHelper(_testDataSet.DetailsTable);
             
         }
 
@@ -66,52 +60,10 @@ namespace DALHelper.Tests
         {
             Assert.IsTrue(true);
         }
-       
-        [Test]
-        public void SetAdapterSequenceForUpdateTest()
-        {
-            List<DataTableHelper> sequence = new List<DataTableHelper>();
-
-            sequence.Add(_masterHelper);
-            sequence.Add(_detailsHelper);
-
-            _persistor.SetSequenceForUpdate(sequence);
-
-            Assert.AreEqual(2, _persistor.SequenceForUpdate.Count);
-
-
-            Assert.AreEqual(_masterHelper.CreateSelectQuery(), _persistor.SequenceForUpdate[0].Adapter.SelectCommand.CommandText);
-            Assert.AreEqual(_detailsHelper.CreateSelectQuery(), _persistor.SequenceForUpdate[1].Adapter.SelectCommand.CommandText);        
-        }
-
-        [Test]
-        public void SetAdapterSequenceForDeleteTest()
-        {
-            List<DataTableHelper> sequence = new List<DataTableHelper>();
-
-            sequence.Add(_detailsHelper);
-            sequence.Add(_masterHelper);
-
-            _persistor.SetSequenceForDelete(sequence);
-
-            Assert.AreEqual(2, _persistor.SequenceForDelete.Count);
-
-
-            Assert.AreEqual(_detailsHelper.CreateSelectQuery(), _persistor.SequenceForDelete[0].Adapter.SelectCommand.CommandText);
-            Assert.AreEqual(_masterHelper.CreateSelectQuery(), _persistor.SequenceForDelete[1].Adapter.SelectCommand.CommandText);
-        }
 
         [Test]
         public void FillDataSetTest()
         {
-            List<DataTableHelper> sequence = new List<DataTableHelper>();
-
-            sequence.Add(_masterHelper);
-            sequence.Add(_detailsHelper);
-
-            _persistor.SetSequenceForFill(sequence);
-
-            Assert.AreEqual(2,_persistor.SequenceForFill.Count);
 
             _persistor.Fill();
             
@@ -122,18 +74,6 @@ namespace DALHelper.Tests
         [Test]
         public void DeleteRecordTest()
         {
-            List<DataTableHelper> sequenceForFill = new List<DataTableHelper>();
-            List<DataTableHelper> sequenceForDelete = new List<DataTableHelper>();
-
-            sequenceForFill.Add(_masterHelper);
-            sequenceForFill.Add(_detailsHelper);
-
-            sequenceForDelete.Add(_detailsHelper);
-            sequenceForDelete.Add(_masterHelper);
-
-            _persistor.SetSequenceForFill(sequenceForFill);
-            _persistor.SetSequenceForDelete(sequenceForDelete);
-
             _persistor.Fill();
 
             

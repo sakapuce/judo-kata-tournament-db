@@ -29,6 +29,8 @@ namespace DALHelper.Tests {
         
         private DetailsTableDataTable tableDetailsTable;
         
+        private global::System.Data.DataRelation relationFK_MasterTable_DetailsTable;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -204,6 +206,7 @@ namespace DALHelper.Tests {
                     this.tableDetailsTable.InitVars();
                 }
             }
+            this.relationFK_MasterTable_DetailsTable = this.Relations["FK_MasterTable_DetailsTable"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -217,14 +220,10 @@ namespace DALHelper.Tests {
             base.Tables.Add(this.tableMasterTable);
             this.tableDetailsTable = new DetailsTableDataTable();
             base.Tables.Add(this.tableDetailsTable);
-            global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_MasterTable_DetailsTable", new global::System.Data.DataColumn[] {
+            this.relationFK_MasterTable_DetailsTable = new global::System.Data.DataRelation("FK_MasterTable_DetailsTable", new global::System.Data.DataColumn[] {
                         this.tableMasterTable.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableDetailsTable.IdMasterTableColumn});
-            this.tableDetailsTable.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+                        this.tableDetailsTable.IdMasterTableColumn}, false);
+            this.Relations.Add(this.relationFK_MasterTable_DetailsTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -643,12 +642,15 @@ namespace DALHelper.Tests {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public DetailsTableRow AddDetailsTableRow(int Id, int IdMasterTable, string Details) {
+            public DetailsTableRow AddDetailsTableRow(int Id, MasterTableRow parentMasterTableRowByFK_MasterTable_DetailsTable, string Details) {
                 DetailsTableRow rowDetailsTableRow = ((DetailsTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
-                        IdMasterTable,
+                        null,
                         Details};
+                if ((parentMasterTableRowByFK_MasterTable_DetailsTable != null)) {
+                    columnValuesArray[1] = parentMasterTableRowByFK_MasterTable_DetailsTable[0];
+                }
                 rowDetailsTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDetailsTableRow);
                 return rowDetailsTableRow;
@@ -848,6 +850,16 @@ namespace DALHelper.Tests {
                     this[this.tableMasterTable.NameColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public DetailsTableRow[] GetDetailsTableRows() {
+                if ((this.Table.ChildRelations["FK_MasterTable_DetailsTable"] == null)) {
+                    return new DetailsTableRow[0];
+                }
+                else {
+                    return ((DetailsTableRow[])(base.GetChildRows(this.Table.ChildRelations["FK_MasterTable_DetailsTable"])));
+                }
+            }
         }
         
         /// <summary>
@@ -901,6 +913,16 @@ namespace DALHelper.Tests {
                 }
                 set {
                     this[this.tableDetailsTable.DetailsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public MasterTableRow MasterTableRow {
+                get {
+                    return ((MasterTableRow)(this.GetParentRow(this.Table.ParentRelations["FK_MasterTable_DetailsTable"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_MasterTable_DetailsTable"]);
                 }
             }
             

@@ -18,17 +18,17 @@
         <xs:element name="MasterTable" msprop:Generator_UserTableName="MasterTable" msprop:Generator_RowDeletedName="MasterTableRowDeleted" msprop:Generator_RowChangedName="MasterTableRowChanged" msprop:Generator_RowClassName="MasterTableRow" msprop:Generator_RowChangingName="MasterTableRowChanging" msprop:Generator_RowEvArgName="MasterTableRowChangeEvent" msprop:Generator_RowEvHandlerName="MasterTableRowChangeEventHandler" msprop:Generator_TableClassName="MasterTableDataTable" msprop:Generator_TableVarName="tableMasterTable" msprop:Generator_RowDeletingName="MasterTableRowDeleting" msprop:Generator_TablePropName="MasterTable">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
-              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" />
+              <xs:element name="Id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
         <xs:element name="DetailsTable" msprop:Generator_UserTableName="DetailsTable" msprop:Generator_RowDeletedName="DetailsTableRowDeleted" msprop:Generator_RowChangedName="DetailsTableRowChanged" msprop:Generator_RowClassName="DetailsTableRow" msprop:Generator_RowChangingName="DetailsTableRowChanging" msprop:Generator_RowEvArgName="DetailsTableRowChangeEvent" msprop:Generator_RowEvHandlerName="DetailsTableRowChangeEventHandler" msprop:Generator_TableClassName="DetailsTableDataTable" msprop:Generator_TableVarName="tableDetailsTable" msprop:Generator_RowDeletingName="DetailsTableRowDeleting" msprop:Generator_TablePropName="DetailsTable">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Id" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
-              <xs:element name="IdMasterTable" msprop:Generator_UserColumnName="IdMasterTable" msprop:Generator_ColumnVarNameInTable="columnIdMasterTable" msprop:Generator_ColumnPropNameInRow="IdMasterTable" msprop:Generator_ColumnPropNameInTable="IdMasterTableColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="Details" msprop:Generator_UserColumnName="Details" msprop:Generator_ColumnVarNameInTable="columnDetails" msprop:Generator_ColumnPropNameInRow="Details" msprop:Generator_ColumnPropNameInTable="DetailsColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Id" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
+              <xs:element name="IdMasterTable" msprop:Generator_UserColumnName="IdMasterTable" msprop:Generator_ColumnPropNameInRow="IdMasterTable" msprop:Generator_ColumnVarNameInTable="columnIdMasterTable" msprop:Generator_ColumnPropNameInTable="IdMasterTableColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Details" msprop:Generator_UserColumnName="Details" msprop:Generator_ColumnPropNameInRow="Details" msprop:Generator_ColumnVarNameInTable="columnDetails" msprop:Generator_ColumnPropNameInTable="DetailsColumn" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -42,9 +42,10 @@
       <xs:selector xpath=".//mstns:DetailsTable" />
       <xs:field xpath="mstns:Id" />
     </xs:unique>
-    <xs:keyref name="FK_MasterTable_DetailsTable" refer="Constraint1" msdata:ConstraintOnly="true">
-      <xs:selector xpath=".//mstns:DetailsTable" />
-      <xs:field xpath="mstns:IdMasterTable" />
-    </xs:keyref>
   </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK_MasterTable_DetailsTable" msdata:parent="MasterTable" msdata:child="DetailsTable" msdata:parentkey="Id" msdata:childkey="IdMasterTable" msprop:Generator_UserRelationName="FK_MasterTable_DetailsTable" msprop:Generator_RelationVarName="relationFK_MasterTable_DetailsTable" msprop:Generator_UserChildTable="DetailsTable" msprop:Generator_UserParentTable="MasterTable" msprop:Generator_ParentPropName="MasterTableRow" msprop:Generator_ChildPropName="GetDetailsTableRows" />
+    </xs:appinfo>
+  </xs:annotation>
 </xs:schema>
