@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Font Name="Tahoma" Size="8.25" />
-  <Comment CommentText="DataSetGraph implements the IGraph inferface and is used to compute the update sequence that must be followed when updating the dataset">
-    <Position X="10.031" Y="3.177" Height="0.698" Width="2.585" />
+  <Comment CommentText="DataSetGraph wraps a DataSet and implements the IGraph inferface. This class is used to compute the update sequence that must be followed when updating the inner DataSet.">
+    <Position X="10.031" Y="3.177" Height="0.635" Width="2.731" />
   </Comment>
   <Class Name="DALHelper.DataSetPersistor">
     <Position X="4" Y="0.5" Width="3" />
