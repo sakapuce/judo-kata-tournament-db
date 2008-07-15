@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Font Name="Tahoma" Size="8.25" />
+  <Comment CommentText="DataSetGraph implements the IGraph inferface and is used to compute the update sequence that must be followed when updating the dataset">
+    <Position X="10.031" Y="3.177" Height="0.698" Width="2.585" />
+  </Comment>
   <Class Name="DALHelper.DataSetPersistor">
     <Position X="4" Y="0.5" Width="3" />
     <TypeIdentifier>
@@ -131,7 +134,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="DALHelper.DFS">
-    <Position X="11" Y="2.25" Width="1.5" />
+    <Position X="10.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>DFS.cs</FileName>
       <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
