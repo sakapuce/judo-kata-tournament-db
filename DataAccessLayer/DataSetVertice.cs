@@ -17,6 +17,14 @@ namespace DALHelper
                 _table.ExtendedProperties.Add("VerticeColor",VerticeColor.White);
             }
         }
+
+        public DataTable Table
+        {
+            get
+            {
+                return _table;
+            }
+        }
         
         public ICollection<IEdge> IncomingEdges
         {
