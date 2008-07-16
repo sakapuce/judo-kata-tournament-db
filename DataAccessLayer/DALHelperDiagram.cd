@@ -4,6 +4,9 @@
   <Comment CommentText="DataSetGraph wraps a DataSet and implements the IGraph inferface. This class is used to compute the update sequence that must be followed when updating the inner DataSet.">
     <Position X="10.031" Y="3.052" Height="0.635" Width="2.731" />
   </Comment>
+  <Comment CommentText="DbConnector is a Singleton class used to maintain the connection and get basic objects to deal with the Database">
+    <Position X="1.167" Y="7.719" Height="0.573" Width="2.315" />
+  </Comment>
   <Class Name="DALHelper.DataSetPersistor">
     <Position X="4" Y="0.5" Width="3" />
     <TypeIdentifier>
@@ -14,30 +17,13 @@
   <Class Name="DALHelper.DbHelper">
     <Position X="0.5" Y="0.5" Width="3" />
     <TypeIdentifier>
-      <FileName>DbConnector.cs</FileName>
+      <FileName>DbHelper.cs</FileName>
       <NewMemberFileName>DBHelper.cs</NewMemberFileName>
       <HashCode>AAAoAAAAAAAAAAEAQAAEAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
-    <NestedTypes>
-      <Class Name="DALHelper.DbHelper.DbConnector">
-        <TypeIdentifier>
-          <NewMemberFileName>DbConnector.cs</NewMemberFileName>
-        </TypeIdentifier>
-        <Compartments>
-          <Compartment Name="Nested Types" Collapsed="false" />
-        </Compartments>
-        <NestedTypes>
-          <Class Name="DALHelper.DbHelper.DbConnector.Nested">
-            <TypeIdentifier>
-              <NewMemberFileName>DbConnector.cs</NewMemberFileName>
-            </TypeIdentifier>
-          </Class>
-        </NestedTypes>
-      </Class>
-    </NestedTypes>
   </Class>
   <Class Name="DALHelper.DataSetGraph">
     <Position X="8.5" Y="1.75" Width="2" />
@@ -121,6 +107,30 @@
       <FileName>DFS.cs</FileName>
       <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
     </TypeIdentifier>
+  </Class>
+  <Class Name="DALHelper.DataTableHelper">
+    <Position X="4" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>DataTableHelper.cs</FileName>
+      <HashCode>AAQAAgAAAEACAAIAAAAEQiAAAIAAGAAAAAACAAAAABA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DALHelper.DbConnector">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DbConnector.cs</FileName>
+      <HashCode>AAAAAAAQAAAAAAEgAAAAAAAAECAIAAAIUCACBAEQAAA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="DALHelper.DbConnector.Nested">
+        <TypeIdentifier>
+          <NewMemberFileName>DbConnector.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
   </Class>
   <Interface Name="DALHelper.IGraph">
     <Position X="8.5" Y="0.5" Width="1.5" />

@@ -9,145 +9,142 @@ namespace DALHelper
     /// This class implements the Singleton Design patterns and  provides functions to simplify interaction with database.
     /// Read http://www.yoda.arachsys.com/csharp/singleton.html to learn more about Singleton design pattern.
     /// </summary>
-    public static partial class DbHelper
+    internal sealed class DbConnector
     {
-        internal sealed class DbConnector
+
+        #region Private Fields
+        private string _connectionString;
+        private DbProviderFactory _dbFactory;
+        private string _providerName;
+        private bool _isInitialized;
+        private string _connectionName;
+        #endregion
+
+
+        #region Properties
+        /// <summary>
+        /// Get the DbProviderFactory object instance of the currernt DbConnector
+        /// </summary>
+        public DbProviderFactory DbFactory
         {
+            get { return _dbFactory; }
+            private set { _dbFactory = value; }
+        }
 
-            #region Private Fields
-            private string _connectionString;
-            private DbProviderFactory _dbFactory;
-            private string _providerName;
-            private bool _isInitialized;
-            private string _connectionName;
-            #endregion
+        /// <summary>
+        /// Get the ConnectionString used by the current DbConnector object
+        /// </summary>
+        public string ConnectionString
+        {
+            get { return _connectionString; }
+            private set { _connectionString = value; }
+        }
+
+        /// <summary>
+        /// Get the provider name of the currernt DbConnector instance
+        /// </summary>
+        public string ProviderName
+        {
+            get { return _providerName; }
+            private set { _providerName = value; }
+        }
+
+        public bool IsInitialized
+        {
+            get { return _isInitialized; }
+            private set { _isInitialized = value; }
+        }
+
+        public string ConnectionName
+        {
+            get { return _connectionName; }
+            private set { _connectionName = value; }
+        }
+
+        #endregion
 
 
-            #region Properties
-            /// <summary>
-            /// Get the DbProviderFactory object instance of the currernt DbConnector
-            /// </summary>
-            public DbProviderFactory DbFactory
+        #region Constructor based on Singleton design pattern
+        /// <summary>
+        /// Get an instance of DbConnector.
+        /// 
+        /// IMPORTANT:
+        /// After creating the first instance, invoke the Init() function
+        /// to provide the connection name which will be used to identify the entry
+        /// in the ConnectionStrings section of the application config file. 
+        /// </summary>
+        DbConnector()
+        {
+            IsInitialized = false;
+            Debug.WriteLine("DbConnector singleton instance created but not yet initialized.");
+        }
+
+        public void Init(string connectionName)
+        {
+            Debug.WriteLine(String.Format("DbConnector.Init(connectionName:{0}) is invoked", connectionName));
+            if (IsInitialized == false)
             {
-                get { return _dbFactory; }
-                private set { _dbFactory = value; }
+                ConnectionName = connectionName;
+                ConnectionString = ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString;
+                ProviderName = ConfigurationManager.ConnectionStrings[ConnectionName].ProviderName;
+                DbFactory = DbProviderFactories.GetFactory(ProviderName);
+                IsInitialized = true;
             }
-
-            /// <summary>
-            /// Get the ConnectionString used by the current DbConnector object
-            /// </summary>
-            public string ConnectionString
+            else if (connectionName == ConnectionName)
             {
-                get { return _connectionString; }
-                private set { _connectionString = value; }
-            }
 
-            /// <summary>
-            /// Get the provider name of the currernt DbConnector instance
-            /// </summary>
-            public string ProviderName
+                Debug.WriteLine(String.Format("DbConnector can't be initialized twice with the same connection name ({0}). This Init call is ignored.", connectionName));
+            }
+            else
             {
-                get { return _providerName; }
-                private set { _providerName = value; }
+                throw new InvalidOperationException("The DbConnector instance has already been initialized previously. the call to the Init() function can't be completed.");
             }
+        }
 
-            public bool IsInitialized
+        public static DbConnector Instance
+        {
+            get
             {
-                get { return _isInitialized; }
-                private set { _isInitialized = value; }
+                return Nested.instance;
             }
+        }
 
-            public string ConnectionName
-            {
-                get { return _connectionName; }
-                private set { _connectionName = value; }
-            }
+        // Explicit static constructor to tell C# compiler
+        // not to mark type as beforefieldinit
+        class Nested
+        {
+            /**********************************************
+             * Empty static constructor is redundant... 
+             * It can be removed followings Resharper
+             * *******************************************/
+            //static Nested()
+            //{
+            //}
 
-            #endregion
+            internal static readonly DbConnector instance = new DbConnector();
+        }
 
+        #endregion
 
-            #region Constructor based on Singleton design pattern
-            /// <summary>
-            /// Get an instance of DbConnector.
-            /// 
-            /// IMPORTANT:
-            /// After creating the first instance, invoke the Init() function
-            /// to provide the connection name which will be used to identify the entry
-            /// in the ConnectionStrings section of the application config file. 
-            /// </summary>
-            DbConnector()
-            {
-                IsInitialized = false;
-                Debug.WriteLine("DbConnector singleton instance created but not yet initialized.");
-            }
+        /// <summary>
+        /// Create and get the Connection with the current database.
+        /// </summary>
+        /// <returns></returns>
+        public DbConnection CreateConnection()
+        {
+            DbConnection dbConnection = DbFactory.CreateConnection();
+            dbConnection.ConnectionString = ConnectionString;
+            dbConnection.Open();
+            return dbConnection;
+        }
 
-            public void Init(string connectionName)
-            {
-                Debug.WriteLine(String.Format("DbConnector.Init(connectionName:{0}) is invoked", connectionName));
-                if (IsInitialized == false)
-                {
-                    ConnectionName = connectionName;
-                    ConnectionString = ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString;
-                    ProviderName = ConfigurationManager.ConnectionStrings[ConnectionName].ProviderName;
-                    DbFactory = DbProviderFactories.GetFactory(ProviderName);
-                    IsInitialized = true;
-                }
-                else if (connectionName == ConnectionName)
-                {
-
-                    Debug.WriteLine(String.Format("DbConnector can't be initialized twice with the same connection name ({0}). This Init call is ignored.", connectionName));
-                }
-                else
-                {
-                    throw new InvalidOperationException("The DbConnector instance has already been initialized previously. the call to the Init() function can't be completed.");
-                }
-            }
-
-            public static DbConnector Instance
-            {
-                get
-                {
-                    return Nested.instance;
-                }
-            }
-
-            // Explicit static constructor to tell C# compiler
-            // not to mark type as beforefieldinit
-            class Nested
-            {
-                /**********************************************
-                 * Empty static constructor is redundant... 
-                 * It can be removed followings Resharper
-                 * *******************************************/
-                //static Nested()
-                //{
-                //}
-
-                internal static readonly DbConnector instance = new DbConnector();
-            }
-
-            #endregion
-
-            /// <summary>
-            /// Create and get the Connection with the current database.
-            /// </summary>
-            /// <returns></returns>
-            public DbConnection CreateConnection()
-            {
-                DbConnection dbConnection = DbFactory.CreateConnection();
-                dbConnection.ConnectionString = ConnectionString;
-                dbConnection.Open();
-                return dbConnection;
-            }
-
-            /// <summary>
-            /// Create a new DbDataAdapter
-            /// </summary>
-            /// <returns>returns an instance of DbDataAdapter for the current DbHelper</returns>
-            public DbDataAdapter CreateAdapter()
-            {
-                return DbFactory.CreateDataAdapter();
-            }
-        }   
-    }
+        /// <summary>
+        /// Create a new DbDataAdapter
+        /// </summary>
+        /// <returns>returns an instance of DbDataAdapter for the current DbHelper</returns>
+        public DbDataAdapter CreateAdapter()
+        {
+            return DbFactory.CreateDataAdapter();
+        }
+    }   
 }

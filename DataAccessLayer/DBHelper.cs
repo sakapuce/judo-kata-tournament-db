@@ -4,12 +4,8 @@ using System.Data;
 
 namespace DALHelper
 {
-    public static partial class DbHelper
+    public static class DbHelper
     {
-
-#region Private Fields
-
-#endregion
 
         static DbHelper()
         {
@@ -67,7 +63,10 @@ namespace DALHelper
             adapter.Fill(ds);
             return ds;
         }
-
+        /// <summary>
+        /// Executes a SQL script (Batch)
+        /// </summary>
+        /// <param name="script">a string containing the script to be executed.</param>
         public static void ExecuteScript(string script)
         {
             string[] sqlcommands = script.Split(new string[] {"GO\r\n", "GO ", "GO\t"}, StringSplitOptions.RemoveEmptyEntries);
