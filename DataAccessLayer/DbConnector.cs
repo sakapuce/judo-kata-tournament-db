@@ -127,6 +127,15 @@ namespace DALHelper
         #endregion
 
         /// <summary>
+        /// Returns a new instance of the provider's class that implements the DbCommandBuilder class.
+        /// </summary>
+        /// <returns>A new instance of DbCommandBuilder.</returns>
+        public DbCommandBuilder CreateDbCommandBuilder()
+        {
+            return DbFactory.CreateCommandBuilder();
+        }
+
+        /// <summary>
         /// Create and get the Connection with the current database.
         /// </summary>
         /// <returns></returns>

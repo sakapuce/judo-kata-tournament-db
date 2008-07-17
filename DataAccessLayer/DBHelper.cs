@@ -40,6 +40,15 @@ namespace DALHelper
         }
 
         /// <summary>
+        /// Returns a new instance of the provider's class that implements the DbCommandBuilder class.
+        /// </summary>
+        /// <returns>A new instance of DbCommandBuilder.</returns>
+        public static DbCommandBuilder CreateDbCommandBuilder()
+        {
+            return DbConnector.Instance.CreateDbCommandBuilder();
+        }
+
+        /// <summary>
         /// Create a new DbDataAdapter
         /// </summary>
         /// <returns>returns an instance of DbDataAdapter for the current DbHelper</returns>

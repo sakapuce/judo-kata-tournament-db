@@ -1,3 +1,4 @@
+using System.IO;
 using NUnit.Framework;
 using System.Data;
 
@@ -8,33 +9,48 @@ namespace DALHelper.Tests
     public class DataTableHelperTest
     {
         private DataTable _dataTable;
+
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
+        {
+            //Create test tables
+            using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\CreateTestTables.sql", System.Environment.CurrentDirectory)))
+            {
+                DbHelper.ExecuteScript(reader.ReadToEnd());
+            }
+        }
+
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            //Create test tables
+            using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\DropTestTables.sql", System.Environment.CurrentDirectory)))
+            {
+                DbHelper.ExecuteScript(reader.ReadToEnd());
+            }
+        }
         
         [SetUp]
         public void SetUp()
         {
-            _dataTable = new DataTable("TestTable");
-            
-            // Add an Id column as primary key
-            DataColumn idColumn = new DataColumn("Id", System.Type.GetType("System.Int32"));
-            idColumn.AutoIncrement = true;
-            idColumn.AutoIncrementSeed = -1;
-            idColumn.AutoIncrementStep = -1;
-            _dataTable.Columns.Add(idColumn);
+            _dataTable = new TestDataSet.DetailsTableDataTable();
 
-            _dataTable.PrimaryKey = new DataColumn[] { idColumn };
-
-            // Add a FirstName column
-            DataColumn firstNameColumn = new DataColumn("FirstName", System.Type.GetType("System.String"));
-            _dataTable.Columns.Add(firstNameColumn);
-
-            // Add a LastName column
-            DataColumn lastNameColumn = new DataColumn("LastName", System.Type.GetType("System.String"));
-            _dataTable.Columns.Add(lastNameColumn);
+            //Insert Test Datas
+            using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\InsertTestDatas.sql", System.Environment.CurrentDirectory)))
+            {
+                DbHelper.ExecuteScript(reader.ReadToEnd());
+            }
         }
 
         [TearDown]
         public void TearDown()
         {
+            //Delete Test Datas
+            using (StreamReader reader = new StreamReader(string.Format(@"{0}\..\..\Tests\Scripts\DeleteTestDatas.sql", System.Environment.CurrentDirectory)))
+            {
+                DbHelper.ExecuteScript(reader.ReadToEnd());
+            }
+            
             _dataTable = null;
         }
 
@@ -43,57 +59,44 @@ namespace DALHelper.Tests
         {
             Assert.IsTrue(true);
         }
-
+        
         [Test]
         public void TestConstructor()
         {
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            Assert.IsTrue(tableHelper.Table.TableName=="TestTable");
-        }
-
-        [Test]
-        public void TestAddColumn()
-        {
-            DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            int oldNumberOfColumns = _dataTable.Columns.Count;
-            tableHelper.AddColumn("TestField");
-
-            Assert.IsTrue(tableHelper.Table.Columns.Count == oldNumberOfColumns+1);
+            Assert.IsTrue(tableHelper.Table.TableName=="DetailsTable");
         }
 
         [Test]
         public void TestCreateSelectCommand()
         {
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            string expectedSelectQuery = "SELECT Id, FirstName, LastName FROM TestTable";
-            Assert.AreEqual(expectedSelectQuery, tableHelper.CreateSelectQuery());
+            const string expectedSelectQuery = "SELECT Id, IdMasterTable, Details FROM DetailsTable";
+            Assert.AreEqual(expectedSelectQuery, tableHelper.Adapter.SelectCommand.CommandText);
         }
 
         [Test]
         public void TestCreateInsertCommand()
         {
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            string expectedInsertQuery = "INSERT INTO TestTable (Id, FirstName, LastName) VALUES (@Id, @FirstName, @LastName)";
-            Assert.AreEqual(expectedInsertQuery, tableHelper.CreateInsertQuery());
-
-            expectedInsertQuery = "INSERT INTO TestTable (FirstName, LastName) VALUES (@FirstName, @LastName)";
-            Assert.AreEqual(expectedInsertQuery, tableHelper.CreateInsertQuery(false));
+            const string expectedInsertQuery = "INSERT INTO [DetailsTable] ([IdMasterTable], [Details]) VALUES (@p1, @p2)";
+            Assert.AreEqual(expectedInsertQuery, tableHelper.Adapter.InsertCommand.CommandText);
         }
 
         [Test]
         public void TestCreateUpdateCommand()
         {
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            string expectedUpdateQuery = "UPDATE TestTable SET Id=@Id, FirstName=@FirstName, LastName=@LastName WHERE (Id=@Original_Id)";
-            Assert.AreEqual(expectedUpdateQuery, tableHelper.CreateUpdateQuery());
+            const string expectedUpdateQuery = "UPDATE [DetailsTable] SET [IdMasterTable] = @p1, [Details] = @p2 WHERE (([Id] = @p3) AND ([IdMasterTable] = @p4))";
+            Assert.AreEqual(expectedUpdateQuery, tableHelper.Adapter.UpdateCommand.CommandText);
         }
 
         [Test]
         public void TestCreateDeleteCommand()
         {
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            string expectedDeleteQuery = "DELETE FROM TestTable WHERE (Id=@Original_Id)";
-            Assert.AreEqual(expectedDeleteQuery, tableHelper.CreateDeleteQuery());
+            const string expectedDeleteQuery = "DELETE FROM [DetailsTable] WHERE (([Id] = @p1) AND ([IdMasterTable] = @p2))";
+            Assert.AreEqual(expectedDeleteQuery, tableHelper.Adapter.DeleteCommand.CommandText);
         }
     }
 }
