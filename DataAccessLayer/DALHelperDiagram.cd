@@ -19,7 +19,7 @@
     <TypeIdentifier>
       <FileName>DbHelper.cs</FileName>
       <NewMemberFileName>DBHelper.cs</NewMemberFileName>
-      <HashCode>AAAoAAAAAAAAAAEAQAAEAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAoAAAAAAAAAAEAQAAEAAAAAQAIAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
@@ -112,14 +112,14 @@
     <Position X="4" Y="3" Width="2.5" />
     <TypeIdentifier>
       <FileName>DataTableHelper.cs</FileName>
-      <HashCode>AAQAAgAAAEACAAIAAAAEQiAAAIAAGAAAAAACAAAAABA=</HashCode>
+      <HashCode>AAQAAAAAAEAAAAIAAAAEQCAAAIAAGAAAAAACAAAAABA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="DALHelper.DbConnector">
     <Position X="0.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>DbConnector.cs</FileName>
-      <HashCode>AAAAAAAQAAAAAAEgAAAAAAAAECAIAAAIUCACBAEQAAA=</HashCode>
+      <HashCode>AAAAAAAQAAAAAAEgAAAAAAAAESAIAAAIUCACBAEQAAA=</HashCode>
     </TypeIdentifier>
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />

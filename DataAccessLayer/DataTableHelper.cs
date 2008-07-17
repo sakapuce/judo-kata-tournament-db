@@ -4,7 +4,6 @@ using System.Data.Common;
 
 namespace DALHelper
 {
-    //TODO: Refactor this class to use the DbCommandBuilder class for creating default SELECT, INSERT, UPDATE and DELETE DbCommand
     public class DataTableHelper
     {
         private DataTable _dataTable;
@@ -168,6 +167,12 @@ namespace DALHelper
         public void Fill(DataSet dataset)
         {
             _adapter.Fill(dataset, Table.TableName);
+        }
+
+        public void Fill(DataSet dataset, Int32[] ids)
+        {
+            //TODO: fill the inner DataTable by executing a SELECT statement filtered on a set of IDs
+            throw new NotImplementedException("This function has not been implemented yet.");
         }
     }
 }
