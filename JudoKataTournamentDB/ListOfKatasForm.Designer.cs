@@ -30,90 +30,295 @@ namespace JudoKataTournamentDB
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbKatas = new System.Windows.Forms.ListBox();
-            this.katasDataSet = new KatasDataSet();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this._lbKatas = new System.Windows.Forms.ListBox();
+            this.katasDataSet = new JudoKataTournamentDB.DataSets.KatasDataSet();
+            this._btnNewKata = new System.Windows.Forms.Button();
+            this._btnDeleteKata = new System.Windows.Forms.Button();
+            this.groupBoxKata = new System.Windows.Forms.GroupBox();
+            this.groupBoxTechnics = new System.Windows.Forms.GroupBox();
+            this._dvTechnics = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._btnUp = new System.Windows.Forms.Button();
+            this._btnDown = new System.Windows.Forms.Button();
+            this.groupBoxTechnicDetails = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this._textBoxId = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this._richTextBoxNotes = new System.Windows.Forms.RichTextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.katasDataSet)).BeginInit();
+            this.groupBoxKata.SuspendLayout();
+            this.groupBoxTechnics.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._dvTechnics)).BeginInit();
+            this.groupBoxTechnicDetails.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lbKatas
+            // _lbKatas
             // 
-            this.lbKatas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this._lbKatas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbKatas.DataSource = this.katasDataSet;
-            this.lbKatas.DisplayMember = "Katas.Name";
-            this.lbKatas.FormattingEnabled = true;
-            this.lbKatas.Location = new System.Drawing.Point(12, 12);
-            this.lbKatas.Name = "lbKatas";
-            this.lbKatas.Size = new System.Drawing.Size(225, 199);
-            this.lbKatas.TabIndex = 0;
-            this.lbKatas.ValueMember = "Katas.Id";
+            this._lbKatas.DataSource = this.katasDataSet;
+            this._lbKatas.DisplayMember = "Katas.Name";
+            this._lbKatas.FormattingEnabled = true;
+            this._lbKatas.Location = new System.Drawing.Point(6, 19);
+            this._lbKatas.Name = "_lbKatas";
+            this._lbKatas.Size = new System.Drawing.Size(473, 121);
+            this._lbKatas.TabIndex = 0;
+            this._lbKatas.ValueMember = "Katas.Id";
             // 
             // katasDataSet
             // 
             this.katasDataSet.DataSetName = "KatasDataSet";
             this.katasDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // btnNew
+            // _btnNewKata
             // 
-            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNew.Location = new System.Drawing.Point(260, 12);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(75, 23);
-            this.btnNew.TabIndex = 1;
-            this.btnNew.Text = "New";
-            this.btnNew.UseVisualStyleBackColor = true;
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            this._btnNewKata.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnNewKata.Location = new System.Drawing.Point(485, 19);
+            this._btnNewKata.Name = "_btnNewKata";
+            this._btnNewKata.Size = new System.Drawing.Size(75, 23);
+            this._btnNewKata.TabIndex = 1;
+            this._btnNewKata.Text = "New";
+            this._btnNewKata.UseVisualStyleBackColor = true;
+            this._btnNewKata.Click += new System.EventHandler(this.btnNew_Click);
             // 
-            // btnEdit
+            // _btnDeleteKata
             // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.Location = new System.Drawing.Point(260, 42);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 2;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            this._btnDeleteKata.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnDeleteKata.Location = new System.Drawing.Point(485, 48);
+            this._btnDeleteKata.Name = "_btnDeleteKata";
+            this._btnDeleteKata.Size = new System.Drawing.Size(75, 23);
+            this._btnDeleteKata.TabIndex = 3;
+            this._btnDeleteKata.Text = "Delete";
+            this._btnDeleteKata.UseVisualStyleBackColor = true;
+            this._btnDeleteKata.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnDelete
+            // groupBoxKata
             // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(260, 72);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 3;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.groupBoxKata.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxKata.Controls.Add(this._lbKatas);
+            this.groupBoxKata.Controls.Add(this._btnDeleteKata);
+            this.groupBoxKata.Controls.Add(this._btnNewKata);
+            this.groupBoxKata.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxKata.Name = "groupBoxKata";
+            this.groupBoxKata.Size = new System.Drawing.Size(566, 156);
+            this.groupBoxKata.TabIndex = 4;
+            this.groupBoxKata.TabStop = false;
+            this.groupBoxKata.Text = "Katas";
+            // 
+            // groupBoxTechnics
+            // 
+            this.groupBoxTechnics.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBoxTechnics.Controls.Add(this._btnDown);
+            this.groupBoxTechnics.Controls.Add(this._btnUp);
+            this.groupBoxTechnics.Controls.Add(this._dvTechnics);
+            this.groupBoxTechnics.Location = new System.Drawing.Point(12, 174);
+            this.groupBoxTechnics.Name = "groupBoxTechnics";
+            this.groupBoxTechnics.Size = new System.Drawing.Size(289, 179);
+            this.groupBoxTechnics.TabIndex = 5;
+            this.groupBoxTechnics.TabStop = false;
+            this.groupBoxTechnics.Text = "Technics";
+            // 
+            // _dvTechnics
+            // 
+            this._dvTechnics.AllowUserToAddRows = false;
+            this._dvTechnics.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this._dvTechnics.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this._dvTechnics.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this._dvTechnics.AutoGenerateColumns = false;
+            this._dvTechnics.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this._dvTechnics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this._dvTechnics.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameDataGridViewTextBoxColumn});
+            this._dvTechnics.DataMember = "Katas.FK_Technics_Katas";
+            this._dvTechnics.DataSource = this.katasDataSet;
+            this._dvTechnics.Location = new System.Drawing.Point(6, 19);
+            this._dvTechnics.MultiSelect = false;
+            this._dvTechnics.Name = "_dvTechnics";
+            this._dvTechnics.RowHeadersVisible = false;
+            this._dvTechnics.Size = new System.Drawing.Size(192, 152);
+            this._dvTechnics.TabIndex = 0;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // _btnUp
+            // 
+            this._btnUp.Location = new System.Drawing.Point(204, 19);
+            this._btnUp.Name = "_btnUp";
+            this._btnUp.Size = new System.Drawing.Size(75, 23);
+            this._btnUp.TabIndex = 1;
+            this._btnUp.Text = "Up";
+            this._btnUp.UseVisualStyleBackColor = true;
+            // 
+            // _btnDown
+            // 
+            this._btnDown.Location = new System.Drawing.Point(204, 48);
+            this._btnDown.Name = "_btnDown";
+            this._btnDown.Size = new System.Drawing.Size(75, 23);
+            this._btnDown.TabIndex = 2;
+            this._btnDown.Text = "Down";
+            this._btnDown.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxTechnicDetails
+            // 
+            this.groupBoxTechnicDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxTechnicDetails.Controls.Add(this.label4);
+            this.groupBoxTechnicDetails.Controls.Add(this._richTextBoxNotes);
+            this.groupBoxTechnicDetails.Controls.Add(this.textBox2);
+            this.groupBoxTechnicDetails.Controls.Add(this.label3);
+            this.groupBoxTechnicDetails.Controls.Add(this.textBox1);
+            this.groupBoxTechnicDetails.Controls.Add(this.label2);
+            this.groupBoxTechnicDetails.Controls.Add(this._textBoxId);
+            this.groupBoxTechnicDetails.Controls.Add(this.label1);
+            this.groupBoxTechnicDetails.Location = new System.Drawing.Point(308, 175);
+            this.groupBoxTechnicDetails.MinimumSize = new System.Drawing.Size(253, 0);
+            this.groupBoxTechnicDetails.Name = "groupBoxTechnicDetails";
+            this.groupBoxTechnicDetails.Size = new System.Drawing.Size(270, 178);
+            this.groupBoxTechnicDetails.TabIndex = 6;
+            this.groupBoxTechnicDetails.TabStop = false;
+            this.groupBoxTechnicDetails.Text = "Technic Details";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(16, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Id";
+            // 
+            // _textBoxId
+            // 
+            this._textBoxId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._textBoxId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.katasDataSet, "Katas.FK_Technics_Katas.Id", true));
+            this._textBoxId.Enabled = false;
+            this._textBoxId.Location = new System.Drawing.Point(29, 17);
+            this._textBoxId.MaximumSize = new System.Drawing.Size(60, 20);
+            this._textBoxId.MinimumSize = new System.Drawing.Size(46, 20);
+            this._textBoxId.Name = "_textBoxId";
+            this._textBoxId.ReadOnly = true;
+            this._textBoxId.Size = new System.Drawing.Size(46, 20);
+            this._textBoxId.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 52);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(84, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Technic\'s Name";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.katasDataSet, "Katas.FK_Technics_Katas.Name", true));
+            this.textBox1.Location = new System.Drawing.Point(97, 49);
+            this.textBox1.MinimumSize = new System.Drawing.Size(103, 20);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(108, 20);
+            this.textBox1.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 86);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Score Max";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.katasDataSet, "Katas.FK_Technics_Katas.ScoreMax", true));
+            this.textBox2.Location = new System.Drawing.Point(71, 83);
+            this.textBox2.MaximumSize = new System.Drawing.Size(60, 20);
+            this.textBox2.MinimumSize = new System.Drawing.Size(36, 20);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(36, 20);
+            this.textBox2.TabIndex = 5;
+            // 
+            // _richTextBoxNotes
+            // 
+            this._richTextBoxNotes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._richTextBoxNotes.Location = new System.Drawing.Point(6, 129);
+            this._richTextBoxNotes.Name = "_richTextBoxNotes";
+            this._richTextBoxNotes.Size = new System.Drawing.Size(258, 41);
+            this._richTextBoxNotes.TabIndex = 6;
+            this._richTextBoxNotes.Text = "";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 113);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Notes";
             // 
             // ListOfKatasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 236);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.btnNew);
-            this.Controls.Add(this.lbKatas);
-            this.MinimumSize = new System.Drawing.Size(291, 179);
+            this.ClientSize = new System.Drawing.Size(592, 368);
+            this.Controls.Add(this.groupBoxTechnicDetails);
+            this.Controls.Add(this.groupBoxTechnics);
+            this.Controls.Add(this.groupBoxKata);
+            this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "ListOfKatasForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "List of Katas";
+            this.Text = "Edit Katas";
             ((System.ComponentModel.ISupportInitialize)(this.katasDataSet)).EndInit();
+            this.groupBoxKata.ResumeLayout(false);
+            this.groupBoxTechnics.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this._dvTechnics)).EndInit();
+            this.groupBoxTechnicDetails.ResumeLayout(false);
+            this.groupBoxTechnicDetails.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox lbKatas;
-        private System.Windows.Forms.Button btnNew;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.ListBox _lbKatas;
+        private System.Windows.Forms.Button _btnNewKata;
+        private System.Windows.Forms.Button _btnDeleteKata;
         private KatasDataSet katasDataSet;
+        private System.Windows.Forms.GroupBox groupBoxKata;
+        private System.Windows.Forms.GroupBox groupBoxTechnics;
+        private System.Windows.Forms.DataGridView _dvTechnics;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button _btnUp;
+        private System.Windows.Forms.Button _btnDown;
+        private System.Windows.Forms.GroupBox groupBoxTechnicDetails;
+        private System.Windows.Forms.TextBox _textBoxId;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RichTextBox _richTextBoxNotes;
+        private System.Windows.Forms.Label label4;
     }
 }

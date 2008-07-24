@@ -34,7 +34,7 @@ namespace JudoKataTournamentDB
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if(lbKatas.SelectedIndex>=0)
+            if(_lbKatas.SelectedIndex>=0)
             {
                 //int kataId = (int)lbKatas.SelectedValue;
                 //TO DO: open an edit window to change the corresponding technics of the kata
@@ -43,9 +43,9 @@ namespace JudoKataTournamentDB
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (lbKatas.SelectedIndex >= 0)
+            if (_lbKatas.SelectedIndex >= 0)
             {
-                int kataId = (int)lbKatas.SelectedValue;
+                int kataId = (int)_lbKatas.SelectedValue;
                 katasDataSet.Katas.Select(string.Format("Id = {0}", kataId))[0].Delete();
             }
         }

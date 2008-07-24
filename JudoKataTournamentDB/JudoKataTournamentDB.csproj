@@ -103,6 +103,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="TechnicsUserControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TechnicsUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -117,6 +121,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="TechnicsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TechnicsUserControl.Designer.cs">
+      <DependentUpon>TechnicsUserControl.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
