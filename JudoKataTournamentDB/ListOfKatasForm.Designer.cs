@@ -30,7 +30,7 @@ namespace JudoKataTournamentDB
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this._lbKatas = new System.Windows.Forms.ListBox();
             this.katasDataSet = new JudoKataTournamentDB.DataSets.KatasDataSet();
             this._btnNewKata = new System.Windows.Forms.Button();
@@ -50,11 +50,14 @@ namespace JudoKataTournamentDB
             this.label2 = new System.Windows.Forms.Label();
             this._textBoxId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this._mnSave = new System.Windows.Forms.MenuStrip();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.katasDataSet)).BeginInit();
             this.groupBoxKata.SuspendLayout();
             this.groupBoxTechnics.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dvTechnics)).BeginInit();
             this.groupBoxTechnicDetails.SuspendLayout();
+            this._mnSave.SuspendLayout();
             this.SuspendLayout();
             // 
             // _lbKatas
@@ -67,7 +70,7 @@ namespace JudoKataTournamentDB
             this._lbKatas.FormattingEnabled = true;
             this._lbKatas.Location = new System.Drawing.Point(6, 19);
             this._lbKatas.Name = "_lbKatas";
-            this._lbKatas.Size = new System.Drawing.Size(582, 121);
+            this._lbKatas.Size = new System.Drawing.Size(572, 95);
             this._lbKatas.TabIndex = 0;
             this._lbKatas.ValueMember = "Katas.Id";
             // 
@@ -79,7 +82,7 @@ namespace JudoKataTournamentDB
             // _btnNewKata
             // 
             this._btnNewKata.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._btnNewKata.Location = new System.Drawing.Point(594, 19);
+            this._btnNewKata.Location = new System.Drawing.Point(584, 19);
             this._btnNewKata.Name = "_btnNewKata";
             this._btnNewKata.Size = new System.Drawing.Size(75, 23);
             this._btnNewKata.TabIndex = 1;
@@ -90,7 +93,7 @@ namespace JudoKataTournamentDB
             // _btnDeleteKata
             // 
             this._btnDeleteKata.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._btnDeleteKata.Location = new System.Drawing.Point(594, 48);
+            this._btnDeleteKata.Location = new System.Drawing.Point(584, 48);
             this._btnDeleteKata.Name = "_btnDeleteKata";
             this._btnDeleteKata.Size = new System.Drawing.Size(75, 23);
             this._btnDeleteKata.TabIndex = 3;
@@ -105,9 +108,9 @@ namespace JudoKataTournamentDB
             this.groupBoxKata.Controls.Add(this._lbKatas);
             this.groupBoxKata.Controls.Add(this._btnDeleteKata);
             this.groupBoxKata.Controls.Add(this._btnNewKata);
-            this.groupBoxKata.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxKata.Location = new System.Drawing.Point(12, 27);
             this.groupBoxKata.Name = "groupBoxKata";
-            this.groupBoxKata.Size = new System.Drawing.Size(675, 156);
+            this.groupBoxKata.Size = new System.Drawing.Size(665, 141);
             this.groupBoxKata.TabIndex = 4;
             this.groupBoxKata.TabStop = false;
             this.groupBoxKata.Text = "Katas";
@@ -121,7 +124,7 @@ namespace JudoKataTournamentDB
             this.groupBoxTechnics.Controls.Add(this._dvTechnics);
             this.groupBoxTechnics.Location = new System.Drawing.Point(12, 174);
             this.groupBoxTechnics.Name = "groupBoxTechnics";
-            this.groupBoxTechnics.Size = new System.Drawing.Size(289, 284);
+            this.groupBoxTechnics.Size = new System.Drawing.Size(289, 349);
             this.groupBoxTechnics.TabIndex = 5;
             this.groupBoxTechnics.TabStop = false;
             this.groupBoxTechnics.Text = "Technics";
@@ -148,8 +151,8 @@ namespace JudoKataTournamentDB
             // 
             this._dvTechnics.AllowUserToAddRows = false;
             this._dvTechnics.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this._dvTechnics.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this._dvTechnics.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this._dvTechnics.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
             this._dvTechnics.AutoGenerateColumns = false;
@@ -163,7 +166,7 @@ namespace JudoKataTournamentDB
             this._dvTechnics.MultiSelect = false;
             this._dvTechnics.Name = "_dvTechnics";
             this._dvTechnics.RowHeadersVisible = false;
-            this._dvTechnics.Size = new System.Drawing.Size(192, 257);
+            this._dvTechnics.Size = new System.Drawing.Size(192, 322);
             this._dvTechnics.TabIndex = 0;
             // 
             // nameDataGridViewTextBoxColumn
@@ -188,7 +191,7 @@ namespace JudoKataTournamentDB
             this.groupBoxTechnicDetails.Location = new System.Drawing.Point(308, 175);
             this.groupBoxTechnicDetails.MinimumSize = new System.Drawing.Size(253, 0);
             this.groupBoxTechnicDetails.Name = "groupBoxTechnicDetails";
-            this.groupBoxTechnicDetails.Size = new System.Drawing.Size(379, 283);
+            this.groupBoxTechnicDetails.Size = new System.Drawing.Size(369, 348);
             this.groupBoxTechnicDetails.TabIndex = 6;
             this.groupBoxTechnicDetails.TabStop = false;
             this.groupBoxTechnicDetails.Text = "Technic Details";
@@ -207,9 +210,10 @@ namespace JudoKataTournamentDB
             this._richTextBoxNotes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this._richTextBoxNotes.DataBindings.Add(new System.Windows.Forms.Binding("Rtf", this.katasDataSet, "Katas.FK_Technics_Katas.Notes", true));
             this._richTextBoxNotes.Location = new System.Drawing.Point(6, 129);
             this._richTextBoxNotes.Name = "_richTextBoxNotes";
-            this._richTextBoxNotes.Size = new System.Drawing.Size(367, 146);
+            this._richTextBoxNotes.Size = new System.Drawing.Size(357, 211);
             this._richTextBoxNotes.TabIndex = 6;
             this._richTextBoxNotes.Text = "";
             // 
@@ -222,7 +226,7 @@ namespace JudoKataTournamentDB
             this.textBox2.MaximumSize = new System.Drawing.Size(60, 20);
             this.textBox2.MinimumSize = new System.Drawing.Size(36, 20);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(60, 20);
+            this.textBox2.Size = new System.Drawing.Size(50, 20);
             this.textBox2.TabIndex = 5;
             // 
             // label3
@@ -242,7 +246,7 @@ namespace JudoKataTournamentDB
             this.textBox1.Location = new System.Drawing.Point(97, 49);
             this.textBox1.MinimumSize = new System.Drawing.Size(103, 20);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(217, 20);
+            this.textBox1.Size = new System.Drawing.Size(207, 20);
             this.textBox1.TabIndex = 3;
             // 
             // label2
@@ -265,7 +269,7 @@ namespace JudoKataTournamentDB
             this._textBoxId.MinimumSize = new System.Drawing.Size(46, 20);
             this._textBoxId.Name = "_textBoxId";
             this._textBoxId.ReadOnly = true;
-            this._textBoxId.Size = new System.Drawing.Size(60, 20);
+            this._textBoxId.Size = new System.Drawing.Size(50, 20);
             this._textBoxId.TabIndex = 1;
             // 
             // label1
@@ -277,14 +281,33 @@ namespace JudoKataTournamentDB
             this.label1.TabIndex = 0;
             this.label1.Text = "Id";
             // 
+            // _mnSave
+            // 
+            this._mnSave.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem});
+            this._mnSave.Location = new System.Drawing.Point(0, 0);
+            this._mnSave.Name = "_mnSave";
+            this._mnSave.Size = new System.Drawing.Size(691, 24);
+            this._mnSave.TabIndex = 7;
+            this._mnSave.Text = "Save";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
             // ListOfKatasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 473);
+            this.ClientSize = new System.Drawing.Size(691, 538);
             this.Controls.Add(this.groupBoxTechnicDetails);
             this.Controls.Add(this.groupBoxTechnics);
             this.Controls.Add(this.groupBoxKata);
+            this.Controls.Add(this._mnSave);
+            this.MainMenuStrip = this._mnSave;
             this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "ListOfKatasForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -295,7 +318,10 @@ namespace JudoKataTournamentDB
             ((System.ComponentModel.ISupportInitialize)(this._dvTechnics)).EndInit();
             this.groupBoxTechnicDetails.ResumeLayout(false);
             this.groupBoxTechnicDetails.PerformLayout();
+            this._mnSave.ResumeLayout(false);
+            this._mnSave.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -320,5 +346,7 @@ namespace JudoKataTournamentDB
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RichTextBox _richTextBoxNotes;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.MenuStrip _mnSave;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
     }
 }

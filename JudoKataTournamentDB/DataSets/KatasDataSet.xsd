@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="KataContestDatabaseConnectionString" IsAppSettingsProperty="True" Modifier="Assembly" Name="KataContestDatabaseConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.JudoKataTournamentDB.Properties.Settings.GlobalReference.Default.KataContestDatabaseConnectionString" Provider="System.Data.SqlClient">
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="KataContestDatabaseConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="KataContestDatabaseConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.JudoKataTournamentDB.Properties.Settings.GlobalReference.Default.KataContestDatabaseConnectionString" Provider="System.Data.SqlClient">
           </Connection>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="KataContestDbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="KataContestDbConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.JudoKataTournamentDB.Properties.Settings.GlobalReference.Default.KataContestDbConnectionString" Provider="System.Data.SqlClient">
           </Connection>
@@ -22,8 +22,8 @@
         <xs:element name="Katas" msprop:Generator_UserTableName="Katas" msprop:Generator_RowDeletedName="KatasRowDeleted" msprop:Generator_RowChangedName="KatasRowChanged" msprop:Generator_RowClassName="KatasRow" msprop:Generator_RowChangingName="KatasRowChanging" msprop:Generator_RowEvArgName="KatasRowChangeEvent" msprop:Generator_RowEvHandlerName="KatasRowChangeEventHandler" msprop:Generator_TableClassName="KatasDataTable" msprop:Generator_TableVarName="tableKatas" msprop:Generator_RowDeletingName="KatasRowDeleting" msprop:Generator_TablePropName="Katas">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
-              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" minOccurs="0">
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -36,17 +36,18 @@
         <xs:element name="Technics" msprop:Generator_UserTableName="Technics" msprop:Generator_RowDeletedName="TechnicsRowDeleted" msprop:Generator_RowChangedName="TechnicsRowChanged" msprop:Generator_RowClassName="TechnicsRow" msprop:Generator_RowChangingName="TechnicsRowChanging" msprop:Generator_RowEvArgName="TechnicsRowChangeEvent" msprop:Generator_RowEvHandlerName="TechnicsRowChangeEventHandler" msprop:Generator_TableClassName="TechnicsDataTable" msprop:Generator_TableVarName="tableTechnics" msprop:Generator_RowDeletingName="TechnicsRowDeleting" msprop:Generator_TablePropName="Technics">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
-              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" minOccurs="0">
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="KataId" msprop:Generator_UserColumnName="KataId" msprop:Generator_ColumnVarNameInTable="columnKataId" msprop:Generator_ColumnPropNameInRow="KataId" msprop:Generator_ColumnPropNameInTable="KataIdColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="ScoreMax" msprop:Generator_UserColumnName="ScoreMax" msprop:Generator_ColumnVarNameInTable="columnScoreMax" msprop:Generator_ColumnPropNameInRow="ScoreMax" msprop:Generator_ColumnPropNameInTable="ScoreMaxColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="Position" msprop:Generator_UserColumnName="Position" msprop:Generator_ColumnVarNameInTable="columnPosition" msprop:Generator_ColumnPropNameInRow="Position" msprop:Generator_ColumnPropNameInTable="PositionColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="KataId" msprop:Generator_UserColumnName="KataId" msprop:Generator_ColumnPropNameInRow="KataId" msprop:Generator_ColumnVarNameInTable="columnKataId" msprop:Generator_ColumnPropNameInTable="KataIdColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="ScoreMax" msprop:Generator_UserColumnName="ScoreMax" msprop:Generator_ColumnPropNameInRow="ScoreMax" msprop:Generator_ColumnVarNameInTable="columnScoreMax" msprop:Generator_ColumnPropNameInTable="ScoreMaxColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Position" msprop:Generator_UserColumnName="Position" msprop:Generator_ColumnPropNameInRow="Position" msprop:Generator_ColumnVarNameInTable="columnPosition" msprop:Generator_ColumnPropNameInTable="PositionColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Notes" msprop:Generator_UserColumnName="Notes" msprop:Generator_ColumnPropNameInRow="Notes" msprop:Generator_ColumnVarNameInTable="columnNotes" msprop:Generator_ColumnPropNameInTable="NotesColumn" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

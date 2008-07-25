@@ -89,8 +89,8 @@ namespace DALHelper
                         if (!ReferenceEquals(helper, dsVertex.Table.ExtendedProperties["DataTableHelper"]))
                             dsVertex.Table.ExtendedProperties["DataTableHelper"] = helper;
 
-                        Console.WriteLine(string.Format("Persistor adds {0} rows into table '{1}'", helper.Table.GetChanges(DataRowState.Added).Rows.Count, helper.Table.TableName));
-                        Console.WriteLine(string.Format("Persistor updates {0} rows into table '{1}'", helper.Table.GetChanges(DataRowState.Modified).Rows.Count, helper.Table.TableName));
+                        //Console.WriteLine(string.Format("Persistor adds {0} rows into table '{1}'", helper.Table.GetChanges(DataRowState.Added).Rows.Count, helper.Table.TableName));
+                        //Console.WriteLine(string.Format("Persistor updates {0} rows into table '{1}'", helper.Table.GetChanges(DataRowState.Modified).Rows.Count, helper.Table.TableName));
                         helper.Update();
                     }
                 }

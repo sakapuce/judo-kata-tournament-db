@@ -32,13 +32,13 @@ namespace JudoKataTournamentDB
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            if(_lbKatas.SelectedIndex>=0)
-            {
-                //int kataId = (int)lbKatas.SelectedValue;
-            }
-        }
+        //private void btnEdit_Click(object sender, EventArgs e)
+        //{
+        //    if(_lbKatas.SelectedIndex>=0)
+        //    {
+        //        int kataId = (int)lbKatas.SelectedValue;
+        //    }
+        //}
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -46,6 +46,14 @@ namespace JudoKataTournamentDB
             {
                 int kataId = (int)_lbKatas.SelectedValue;
                 katasDataSet.Katas.Select(string.Format("Id = {0}", kataId))[0].Delete();
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(katasDataSet.HasChanges())
+            {
+                persistor.Update();
             }
         }
     }

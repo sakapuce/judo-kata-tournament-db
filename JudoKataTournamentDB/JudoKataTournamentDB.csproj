@@ -51,7 +51,6 @@
   <ItemGroup>
     <Compile Include="DataSets\KatasDataSet.cs">
       <DependentUpon>KatasDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="DataSets\KatasDataSet.Designer.cs">
       <DependentUpon>KatasDataSet.xsd</DependentUpon>
