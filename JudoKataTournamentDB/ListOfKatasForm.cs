@@ -37,7 +37,6 @@ namespace JudoKataTournamentDB
             if(_lbKatas.SelectedIndex>=0)
             {
                 //int kataId = (int)lbKatas.SelectedValue;
-                //TO DO: open an edit window to change the corresponding technics of the kata
             }
         }
 
