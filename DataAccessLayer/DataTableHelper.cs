@@ -157,7 +157,7 @@ namespace DALHelper
                     throw new InvalidOperationException("The current Table contains no DataColumn. The 'SELECT' command cannot be created.");
                 }
                 string fields = string.Join(", ", GetColumnNames());
-                return string.Format("SELECT {0} FROM {1}", fields, Table.TableName);   
+                return string.Format("SELECT {0} FROM {1}", fields, Table.TableName);
             }
         }
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Windows.Forms;
 using DALHelper;
 using JudoKataTournamentDB.DataSets;
@@ -7,7 +8,7 @@ namespace JudoKataTournamentDB
 {
     public partial class ListOfKatasForm : Form
     {
-        private DataSetPersistor persistor;
+        private DataSetPersistor _persistor;
         
         public ListOfKatasForm()
         {
@@ -17,8 +18,8 @@ namespace JudoKataTournamentDB
 
         private void  DataBind()
         {
-            persistor = new DataSetPersistor(katasDataSet);
-            persistor.Fill();
+            _persistor = new DataSetPersistor(_katasDataSet);
+            _persistor.Fill();
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -26,9 +27,9 @@ namespace JudoKataTournamentDB
             string kataName = InputBox.Show("Please insert the name of the new Kata to create", "Create new Kata");
             if (kataName != "")
             {
-                KatasDataSet.KatasRow row = katasDataSet.Katas.NewKatasRow();
+                KatasDataSet.KatasRow row = _katasDataSet.Katas.NewKatasRow();
                 row.Name = kataName;
-                katasDataSet.Katas.Rows.Add(row);
+                _katasDataSet.Katas.Rows.Add(row);
             }
         }
 
@@ -45,16 +46,54 @@ namespace JudoKataTournamentDB
             if (_lbKatas.SelectedIndex >= 0)
             {
                 int kataId = (int)_lbKatas.SelectedValue;
-                katasDataSet.Katas.Select(string.Format("Id = {0}", kataId))[0].Delete();
+                _katasDataSet.Katas.Select(string.Format("Id = {0}", kataId))[0].Delete();
             }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(katasDataSet.HasChanges())
+            //Force the lost of focus beforer update the data
+            ForceLostFocus();
+            //Stop edition before update the datas
+            EndBindingManagersEdition(this);
+            if(_katasDataSet.HasChanges())
             {
-                persistor.Update();
+                _persistor.Update();
             }
+        }
+
+        private void _btnNew_Click(object sender, EventArgs e)
+        {
+            KatasDataSet.TechnicsRow newRow = _katasDataSet.Technics.NewTechnicsRow();
+            newRow.KataId = (int) _lbKatas.SelectedValue;
+            _katasDataSet.Technics.AddTechnicsRow(newRow);
+        }
+
+        private static void EndBindingManagersEdition(Control rootControl)
+        {
+            BindingManagerBase bindingManager;
+            foreach (Control nodeControl in rootControl.Controls)
+            {
+                EndBindingManagersEdition(nodeControl);
+                foreach (DictionaryEntry entry in nodeControl.BindingContext)
+                {
+                    WeakReference weakRef = (WeakReference)entry.Value;
+                    if (weakRef.IsAlive)
+                    {
+                        bindingManager = (BindingManagerBase)weakRef.Target;
+                        if (bindingManager.Position >= 0)
+                            bindingManager.EndCurrentEdit();
+                    }
+                }
+            }
+        }
+
+        private void ForceLostFocus()
+        {
+            Control currentControl = ActiveControl;
+            _mnStrip.Focus();
+            currentControl.Focus();
+            
         }
     }
 }
