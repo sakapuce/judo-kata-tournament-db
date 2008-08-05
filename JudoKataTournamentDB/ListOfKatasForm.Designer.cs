@@ -31,6 +31,7 @@ namespace JudoKataTournamentDB
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListOfKatasForm));
             this._lbKatas = new System.Windows.Forms.ListBox();
             this._katasDataSet = new JudoKataTournamentDB.DataSets.KatasDataSet();
             this._btnNewKata = new System.Windows.Forms.Button();
@@ -307,9 +308,12 @@ namespace JudoKataTournamentDB
             // 
             // saveToolStripMenuItem
             // 
+            this.saveToolStripMenuItem.AutoToolTip = true;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.ToolTipText = "Save changes";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // ListOfKatasForm
@@ -321,6 +325,7 @@ namespace JudoKataTournamentDB
             this.Controls.Add(this.groupBoxTechnics);
             this.Controls.Add(this.groupBoxKata);
             this.Controls.Add(this._mnStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this._mnStrip;
             this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "ListOfKatasForm";
