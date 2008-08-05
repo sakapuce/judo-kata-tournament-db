@@ -177,6 +177,7 @@ namespace JudoKataTournamentDB
             this._dvTechnics.Location = new System.Drawing.Point(6, 19);
             this._dvTechnics.MultiSelect = false;
             this._dvTechnics.Name = "_dvTechnics";
+            this._dvTechnics.ReadOnly = true;
             this._dvTechnics.RowHeadersVisible = false;
             this._dvTechnics.Size = new System.Drawing.Size(192, 322);
             this._dvTechnics.TabIndex = 0;
@@ -186,6 +187,7 @@ namespace JudoKataTournamentDB
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // groupBoxTechnicDetails
             // 
