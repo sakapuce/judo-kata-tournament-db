@@ -60,6 +60,41 @@ namespace JudoKataTournamentDB.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap add_48 {
+            get {
+                object obj = ResourceManager.GetObject("add_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap arrow_down_48 {
+            get {
+                object obj = ResourceManager.GetObject("arrow_down_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap arrow_up_48 {
+            get {
+                object obj = ResourceManager.GetObject("arrow_up_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap cross_48 {
+            get {
+                object obj = ResourceManager.GetObject("cross_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap floppy_disk_48 {
+            get {
+                object obj = ResourceManager.GetObject("floppy_disk_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap UEJ {
             get {
                 object obj = ResourceManager.GetObject("UEJ", resourceCulture);
