@@ -107,6 +107,10 @@ namespace JudoKataTournamentDB
             KatasDataSet.TechnicsRow newRow = _katasDataSet.Technics.NewTechnicsRow();
             newRow.KataId = (int) _lbKatas.SelectedValue;
             _katasDataSet.Technics.AddTechnicsRow(newRow);
+
+            //Retrieve the corresponding CurrencyManager and position the current record to the last row
+            CurrencyManager cm = _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember] as CurrencyManager;
+            if(cm!=null) cm.Position = _katasDataSet.Technics.Rows.Count - 1;
         }
 
         private static void EndBindingManagersEdition(Control rootControl)
