@@ -37,6 +37,7 @@ namespace JudoKataTournamentDB
             this._btnDeleteKata = new System.Windows.Forms.Button();
             this.groupBoxKata = new System.Windows.Forms.GroupBox();
             this.groupBoxTechnics = new System.Windows.Forms.GroupBox();
+            this._btnNew = new System.Windows.Forms.Button();
             this._btnDown = new System.Windows.Forms.Button();
             this._btnUp = new System.Windows.Forms.Button();
             this._dvTechnics = new System.Windows.Forms.DataGridView();
@@ -52,7 +53,6 @@ namespace JudoKataTournamentDB
             this.label1 = new System.Windows.Forms.Label();
             this._mnStrip = new System.Windows.Forms.MenuStrip();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._btnNew = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._katasDataSet)).BeginInit();
             this.groupBoxKata.SuspendLayout();
             this.groupBoxTechnics.SuspendLayout();
@@ -130,6 +130,16 @@ namespace JudoKataTournamentDB
             this.groupBoxTechnics.TabIndex = 5;
             this.groupBoxTechnics.TabStop = false;
             this.groupBoxTechnics.Text = "Technics";
+            // 
+            // _btnNew
+            // 
+            this._btnNew.Location = new System.Drawing.Point(204, 77);
+            this._btnNew.Name = "_btnNew";
+            this._btnNew.Size = new System.Drawing.Size(75, 23);
+            this._btnNew.TabIndex = 3;
+            this._btnNew.Text = "New";
+            this._btnNew.UseVisualStyleBackColor = true;
+            this._btnNew.Click += new System.EventHandler(this._btnNew_Click);
             // 
             // _btnDown
             // 
@@ -300,16 +310,6 @@ namespace JudoKataTournamentDB
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // _btnNew
-            // 
-            this._btnNew.Location = new System.Drawing.Point(204, 77);
-            this._btnNew.Name = "_btnNew";
-            this._btnNew.Size = new System.Drawing.Size(75, 23);
-            this._btnNew.TabIndex = 3;
-            this._btnNew.Text = "New";
-            this._btnNew.UseVisualStyleBackColor = true;
-            this._btnNew.Click += new System.EventHandler(this._btnNew_Click);
-            // 
             // ListOfKatasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,6 +324,7 @@ namespace JudoKataTournamentDB
             this.Name = "ListOfKatasForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit Katas";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ListOfKatasForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this._katasDataSet)).EndInit();
             this.groupBoxKata.ResumeLayout(false);
             this.groupBoxTechnics.ResumeLayout(false);

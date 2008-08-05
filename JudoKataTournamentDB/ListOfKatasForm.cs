@@ -30,16 +30,9 @@ namespace JudoKataTournamentDB
                 KatasDataSet.KatasRow row = _katasDataSet.Katas.NewKatasRow();
                 row.Name = kataName;
                 _katasDataSet.Katas.Rows.Add(row);
+                _lbKatas.SelectedIndex = _lbKatas.Items.Count - 1;
             }
         }
-
-        //private void btnEdit_Click(object sender, EventArgs e)
-        //{
-        //    if(_lbKatas.SelectedIndex>=0)
-        //    {
-        //        int kataId = (int)lbKatas.SelectedValue;
-        //    }
-        //}
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -52,13 +45,60 @@ namespace JudoKataTournamentDB
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Force the lost of focus beforer update the data
-            ForceLostFocus();
-            //Stop edition before update the datas
-            EndBindingManagersEdition(this);
-            if(_katasDataSet.HasChanges())
+            SaveChanges();
+        }
+
+        private void SaveChanges()
+        {
+            if (IsDataDirty)
             {
-                _persistor.Update();
+                //Force the lost of focus beforer update the data
+                ForceLostFocus();
+                //Stop edition before update the datas
+                EndBindingManagersEdition(this);
+                if (_katasDataSet.HasChanges())
+                {
+                    _persistor.Update();
+                }
+            }
+        }
+
+        public bool IsDataDirty
+        {
+            get
+            {
+                return _katasDataSet.HasChanges();
+            }
+        }
+
+        private void ListOfKatasForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(!IsDataDirty) return; //if data has not changed, the form can continue to close
+
+            switch(e.CloseReason)
+            {
+                //following cases are 'normal' closing... (asked by the user or by code)
+                case CloseReason.ApplicationExitCall:
+                case CloseReason.FormOwnerClosing:
+                case CloseReason.UserClosing:
+                    switch(MessageBox.Show(this,"Do you want to save the changes you made ?","Close",MessageBoxButtons.YesNoCancel,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2))
+                    {
+                         case System.Windows.Forms.DialogResult.Cancel:
+                            e.Cancel = true;
+                            break;
+                        case System.Windows.Forms.DialogResult.Yes:
+                            SaveChanges();
+                            break;
+                        case System.Windows.Forms.DialogResult.No:
+                            break;
+                    }
+                    break;
+
+                //the following case are unexpected close, do not save changes and continue close.
+                case CloseReason.WindowsShutDown:
+                case CloseReason.MdiFormClosing:
+                case CloseReason.None:
+                    break;
             }
         }
 
