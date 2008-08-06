@@ -32,6 +32,11 @@ namespace JudoKataTournamentDB
             listOfKatasForm.ShowDialog();
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            //TODO: invoke a method to check if the database connection is available
+        }
+
         //private void LoadUserControl(UserControl uc)
         //{
         //    uc.Dock = DockStyle.Fill;

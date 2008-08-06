@@ -173,6 +173,7 @@ namespace JudoKataTournamentDB
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Kata Contest DB (server)";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuMainForm.ResumeLayout(false);
             this.menuMainForm.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
