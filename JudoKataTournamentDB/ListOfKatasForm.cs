@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Windows.Forms;
 using DALHelper;
 using JudoKataTournamentDB.DataSets;
@@ -9,7 +8,7 @@ namespace JudoKataTournamentDB
     public partial class ListOfKatasForm : Form
     {
         private DataSetPersistor _persistor;
-        
+
         public ListOfKatasForm()
         {
             InitializeComponent();
@@ -52,19 +51,12 @@ namespace JudoKataTournamentDB
         {
             if (IsDataDirty)
             {
-                //Force the lost of focus beforer update the data
-                ForceLostFocus();
-                //Stop edition before update the datas
-                EndBindingManagersEdition(this);
-                if (_katasDataSet.HasChanges())
-                {
-                    _persistor.Update();
-                }
+                _persistor.Update();
             }
         }
 
         public bool IsDataDirty
-        {
+        {          
             get
             {
                 return _katasDataSet.HasChanges();
@@ -73,6 +65,7 @@ namespace JudoKataTournamentDB
 
         private void ListOfKatasForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            ForceEndEdit();
             if(!IsDataDirty) return; //if data has not changed, the form can continue to close
 
             switch(e.CloseReason)
@@ -113,31 +106,8 @@ namespace JudoKataTournamentDB
             if(cm!=null) cm.Position = _katasDataSet.Technics.Rows.Count - 1;
         }
 
-        private static void EndBindingManagersEdition(Control rootControl)
+        private void ForceEndEdit()
         {
-            BindingManagerBase bindingManager;
-            foreach (Control nodeControl in rootControl.Controls)
-            {
-                EndBindingManagersEdition(nodeControl);
-                foreach (DictionaryEntry entry in nodeControl.BindingContext)
-                {
-                    WeakReference weakRef = (WeakReference)entry.Value;
-                    if (weakRef.IsAlive)
-                    {
-                        bindingManager = (BindingManagerBase)weakRef.Target;
-                        if (bindingManager.Position >= 0)
-                            bindingManager.EndCurrentEdit();
-                    }
-                }
-            }
-        }
-
-        private void ForceLostFocus()
-        {
-            Control currentControl = ActiveControl;
-            _mnStrip.Focus();
-            currentControl.Focus();
-            
         }
 
         private void _btnUp_Click(object sender, EventArgs e)
