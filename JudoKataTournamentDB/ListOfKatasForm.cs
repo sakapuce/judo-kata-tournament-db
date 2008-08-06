@@ -102,7 +102,7 @@ namespace JudoKataTournamentDB
             }
         }
 
-        private void _btnNew_Click(object sender, EventArgs e)
+        private void _btnNewTechnic_Click(object sender, EventArgs e)
         {
             KatasDataSet.TechnicsRow newRow = _katasDataSet.Technics.NewTechnicsRow();
             newRow.KataId = (int) _lbKatas.SelectedValue;
