@@ -81,9 +81,9 @@ namespace JudoKataTournamentDB.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap floppy_disk_48 {
+        internal static System.Drawing.Bitmap filesave_16x16 {
             get {
-                object obj = ResourceManager.GetObject("floppy_disk_48", resourceCulture);
+                object obj = ResourceManager.GetObject("filesave_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

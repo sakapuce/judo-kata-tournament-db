@@ -38,6 +38,7 @@ namespace JudoKataTournamentDB
             this._btnDeleteKata = new System.Windows.Forms.Button();
             this.groupBoxKata = new System.Windows.Forms.GroupBox();
             this.groupBoxTechnics = new System.Windows.Forms.GroupBox();
+            this._btnDeleteTechnic = new System.Windows.Forms.Button();
             this._btnNewTechnic = new System.Windows.Forms.Button();
             this._btnDown = new System.Windows.Forms.Button();
             this._btnUp = new System.Windows.Forms.Button();
@@ -54,7 +55,6 @@ namespace JudoKataTournamentDB
             this.label1 = new System.Windows.Forms.Label();
             this._mnStrip = new System.Windows.Forms.MenuStrip();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._btnDeleteTechnic = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._katasDataSet)).BeginInit();
             this.groupBoxKata.SuspendLayout();
             this.groupBoxTechnics.SuspendLayout();
@@ -139,6 +139,18 @@ namespace JudoKataTournamentDB
             this.groupBoxTechnics.TabIndex = 5;
             this.groupBoxTechnics.TabStop = false;
             this.groupBoxTechnics.Text = "Technics";
+            // 
+            // _btnDeleteTechnic
+            // 
+            this._btnDeleteTechnic.Image = global::JudoKataTournamentDB.Properties.Resources.edit_remove_16x16;
+            this._btnDeleteTechnic.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._btnDeleteTechnic.Location = new System.Drawing.Point(204, 103);
+            this._btnDeleteTechnic.Name = "_btnDeleteTechnic";
+            this._btnDeleteTechnic.Size = new System.Drawing.Size(75, 23);
+            this._btnDeleteTechnic.TabIndex = 4;
+            this._btnDeleteTechnic.Text = "Delete";
+            this._btnDeleteTechnic.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._btnDeleteTechnic.UseVisualStyleBackColor = true;
             // 
             // _btnNewTechnic
             // 
@@ -326,25 +338,13 @@ namespace JudoKataTournamentDB
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.AutoToolTip = true;
-            this.saveToolStripMenuItem.Image = global::JudoKataTournamentDB.Properties.Resources.floppy_disk_48;
+            this.saveToolStripMenuItem.Image = global::JudoKataTournamentDB.Properties.Resources.filesave_16x16;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.ToolTipText = "Save changes";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
-            // _btnDeleteTechnic
-            // 
-            this._btnDeleteTechnic.Image = global::JudoKataTournamentDB.Properties.Resources.edit_remove_16x16;
-            this._btnDeleteTechnic.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._btnDeleteTechnic.Location = new System.Drawing.Point(204, 103);
-            this._btnDeleteTechnic.Name = "_btnDeleteTechnic";
-            this._btnDeleteTechnic.Size = new System.Drawing.Size(75, 23);
-            this._btnDeleteTechnic.TabIndex = 4;
-            this._btnDeleteTechnic.Text = "Delete";
-            this._btnDeleteTechnic.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this._btnDeleteTechnic.UseVisualStyleBackColor = true;
             // 
             // ListOfKatasForm
             // 
