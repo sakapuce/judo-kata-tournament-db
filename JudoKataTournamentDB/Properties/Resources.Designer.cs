@@ -60,6 +60,13 @@ namespace JudoKataTournamentDB.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap db_status {
+            get {
+                object obj = ResourceManager.GetObject("db_status", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap down_16x16 {
             get {
                 object obj = ResourceManager.GetObject("down_16x16", resourceCulture);

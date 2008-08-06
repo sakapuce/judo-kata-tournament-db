@@ -131,7 +131,7 @@ namespace JudoKataTournamentDB
             // 
             this.aboutKataContestDBToolStripMenuItem.Name = "aboutKataContestDBToolStripMenuItem";
             this.aboutKataContestDBToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.aboutKataContestDBToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.aboutKataContestDBToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
             this.aboutKataContestDBToolStripMenuItem.Text = "&About Judo Kata Tournament DB";
             // 
             // statusStrip1
@@ -147,9 +147,10 @@ namespace JudoKataTournamentDB
             // 
             // toolStripStatusLabel1
             // 
+            this.toolStripStatusLabel1.Image = global::JudoKataTournamentDB.Properties.Resources.db_status;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(60, 17);
-            this.toolStripStatusLabel1.Text = "status: {0}";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(16, 17);
+            this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // toolStripProgressBar
             // 

@@ -32,13 +32,13 @@ namespace JudoKataTournamentDB
             listOfKatasForm.ShowDialog();
         }
 
-        private void LoadUserControl(UserControl uc)
-        {
-            uc.Dock = DockStyle.Fill;
-            Controls.Add(uc);
-            uc.Visible = true;
-            uc.BringToFront();
-            uc.Focus();
-        }
+        //private void LoadUserControl(UserControl uc)
+        //{
+        //    uc.Dock = DockStyle.Fill;
+        //    Controls.Add(uc);
+        //    uc.Visible = true;
+        //    uc.BringToFront();
+        //    uc.Focus();
+        //}
     }
 }
