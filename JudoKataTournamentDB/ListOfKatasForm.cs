@@ -139,5 +139,20 @@ namespace JudoKataTournamentDB
             currentControl.Focus();
             
         }
+
+        private void _btnUp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _btnDown_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _btnDeleteTechnic_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
