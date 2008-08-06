@@ -161,21 +161,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\floppy_disk_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\arrow_up_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\arrow_down_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\add_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cross_48.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\up.png" />
   </ItemGroup>
   <ItemGroup>
