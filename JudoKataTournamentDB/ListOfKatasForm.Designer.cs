@@ -151,6 +151,7 @@ namespace JudoKataTournamentDB
             this._btnDeleteTechnic.Text = "Delete";
             this._btnDeleteTechnic.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._btnDeleteTechnic.UseVisualStyleBackColor = true;
+            this._btnDeleteTechnic.Click += new System.EventHandler(this._btnDeleteTechnic_Click);
             // 
             // _btnNewTechnic
             // 
@@ -176,6 +177,7 @@ namespace JudoKataTournamentDB
             this._btnDown.Text = "Down";
             this._btnDown.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._btnDown.UseVisualStyleBackColor = true;
+            this._btnDown.Click += new System.EventHandler(this._btnDown_Click);
             // 
             // _btnUp
             // 
@@ -188,6 +190,7 @@ namespace JudoKataTournamentDB
             this._btnUp.Text = "Up";
             this._btnUp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._btnUp.UseVisualStyleBackColor = true;
+            this._btnUp.Click += new System.EventHandler(this._btnUp_Click);
             // 
             // _dvTechnics
             // 
