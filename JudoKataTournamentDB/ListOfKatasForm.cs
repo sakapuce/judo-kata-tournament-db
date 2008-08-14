@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Windows.Forms;
 using DALHelper;
 using JudoKataTournamentDB.DataSets;
@@ -59,7 +60,7 @@ namespace JudoKataTournamentDB
         {          
             get
             {
-                return _katasDataSet.HasChanges();
+              return _katasDataSet.HasChanges();
             }
         }
 
