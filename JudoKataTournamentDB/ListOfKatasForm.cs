@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Windows.Forms;
 using DALHelper;
 using JudoKataTournamentDB.DataSets;
@@ -44,22 +45,19 @@ namespace JudoKataTournamentDB
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveChanges();
+            if (IsDataDirty) SaveChanges();
         }
 
         private void SaveChanges()
         {
-            if (IsDataDirty)
-            {
-                _persistor.Update();
-            }
+            _persistor.Update();
         }
 
         public bool IsDataDirty
         {          
             get
             {
-              return _katasDataSet.HasChanges();
+                return IsDirty(_katasDataSet);
             }
         }
 
@@ -108,6 +106,8 @@ namespace JudoKataTournamentDB
 
         private void ForceEndEdit()
         {
+            _lbKatas.BindingContext[_lbKatas.DataSource].EndCurrentEdit();
+            _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember].EndCurrentEdit();
         }
 
         private void _btnUp_Click(object sender, EventArgs e)
@@ -117,12 +117,48 @@ namespace JudoKataTournamentDB
 
         private void _btnDown_Click(object sender, EventArgs e)
         {
+            //KatasDataSet.TechnicsRow currentRow = ((DataRowView)_dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember].Current).Row as KatasDataSet.TechnicsRow;
+            //int currentPosition = _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember].Position;
+            //currentRow = (KatasDataSet.TechnicsRow) _dvTechnics.Rows[currentPosition];
 
+            //// we'll just swap the order of the finding pointed to by the selected row and the previous one
+            //DataView dv = (DataView)_recommendationCurrencyManager.List;
+            //dv.Sort = string.Empty;
+            //int currentPosition = _recommendationCurrencyManager.Position;
+            //VisitWorkingSet.RecommendationsRow currentRow = (VisitWorkingSet.RecommendationsRow)dv[currentPosition].Row;
+            //VisitWorkingSet.RecommendationsRow previousRow = (VisitWorkingSet.RecommendationsRow)dv[currentPosition - 1].Row;
+            //int temp = previousRow.Order;
+            //previousRow.Order = currentRow.Order;
+            //currentRow.Order = temp;
+
+            //// move selection along with row
+            //_dgdRecommendations.UnSelect(currentPosition);
+            //_dgdRecommendations.Select(currentPosition - 1);
+            //_recommendationCurrencyManager.Position = currentPosition - 1;
+
+            //dv.Sort = "Order";
         }
 
         private void _btnDeleteTechnic_Click(object sender, EventArgs e)
         {
+            KatasDataSet.TechnicsRow row = ((DataRowView) _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember].Current).Row as KatasDataSet.TechnicsRow;
+            if(row != null) row.Delete();
+        }
 
+        private bool IsDirty(DataSet dataSet)
+        {
+            foreach(DataTable table in dataSet.Tables)
+                foreach(DataRow row in table.Rows)
+                {
+                    if (row.RowState == DataRowState.Added || row.RowState == DataRowState.Deleted)
+                        return true;
+                    for (int i = 0; i < row.ItemArray.Length; i++)
+                    {
+                        if (!row[i, DataRowVersion.Original].Equals(row[i, DataRowVersion.Current]))
+                            return true;
+                    }
+                }
+            return false; 
         }
     }
 }
