@@ -67,8 +67,11 @@ namespace DALHelper
                         if (!ReferenceEquals(helper, dsVertex.Table.ExtendedProperties["DataTableHelper"]))
                             dsVertex.Table.ExtendedProperties["DataTableHelper"] = helper;
 
-                        Console.WriteLine(string.Format("Persistors deletes {0} rows from table '{1}'", helper.Table.GetChanges(DataRowState.Deleted).Rows.Count, helper.Table.TableName));
-                        helper.Update();
+                        if(helper.Table.GetChanges(DataRowState.Deleted)!=null)
+                        {
+                            Console.WriteLine(string.Format("Persistors deletes {0} rows from table '{1}'", helper.Table.GetChanges(DataRowState.Deleted).Rows.Count, helper.Table.TableName));
+                            helper.Update();    
+                        }
                     }
                 }
             }
@@ -88,9 +91,14 @@ namespace DALHelper
 
                         if (!ReferenceEquals(helper, dsVertex.Table.ExtendedProperties["DataTableHelper"]))
                             dsVertex.Table.ExtendedProperties["DataTableHelper"] = helper;
-
-                        //Console.WriteLine(string.Format("Persistor adds {0} rows into table '{1}'", helper.Table.GetChanges(DataRowState.Added).Rows.Count, helper.Table.TableName));
-                        //Console.WriteLine(string.Format("Persistor updates {0} rows into table '{1}'", helper.Table.GetChanges(DataRowState.Modified).Rows.Count, helper.Table.TableName));
+                        if(helper.Table.GetChanges(DataRowState.Added)!=null)
+                        {
+                            Console.WriteLine(string.Format("Persistor adds {0} rows into table '{1}'", helper.Table.GetChanges(DataRowState.Added).Rows.Count, helper.Table.TableName));   
+                        }
+                        if (helper.Table.GetChanges(DataRowState.Modified) != null)
+                        {
+                            Console.WriteLine(string.Format("Persistor updates {0} rows into table '{1}'", helper.Table.GetChanges(DataRowState.Modified).Rows.Count, helper.Table.TableName));
+                        }
                         helper.Update();
                     }
                 }
