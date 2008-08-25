@@ -117,6 +117,21 @@ namespace JudoKataTournamentDB
 
         private void _btnDown_Click(object sender, EventArgs e)
         {
+
+            CurrencyManager cm = _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember] as CurrencyManager;
+            if (cm == null) return;
+            
+            int currentPosition = cm.Position;
+            
+            //If the current position is the last row there is no need to move down the current row.
+            if (currentPosition >= _dvTechnics.Rows.Count) return;
+
+
+            KatasDataSet.TechnicsRow currentRow = ((DataRowView)_dvTechnics.Rows[currentPosition].DataBoundItem).Row as KatasDataSet.TechnicsRow;
+            KatasDataSet.TechnicsRow nextRow = ((DataRowView)_dvTechnics.Rows[currentPosition+1].DataBoundItem).Row as KatasDataSet.TechnicsRow;
+            
+
+            
             //KatasDataSet.TechnicsRow currentRow = ((DataRowView)_dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember].Current).Row as KatasDataSet.TechnicsRow;
             //int currentPosition = _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember].Position;
             //currentRow = (KatasDataSet.TechnicsRow) _dvTechnics.Rows[currentPosition];
@@ -150,8 +165,7 @@ namespace JudoKataTournamentDB
             foreach(DataTable table in dataSet.Tables)
                 foreach(DataRow row in table.Rows)
                 {
-                    if (row.RowState == DataRowState.Added || row.RowState == DataRowState.Deleted)
-                        return true;
+                    if (row.RowState == DataRowState.Added || row.RowState == DataRowState.Deleted) return true;
                     for (int i = 0; i < row.ItemArray.Length; i++)
                     {
                         if (!row[i, DataRowVersion.Original].Equals(row[i, DataRowVersion.Current]))
