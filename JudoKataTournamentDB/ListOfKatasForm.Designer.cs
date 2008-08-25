@@ -43,7 +43,6 @@ namespace JudoKataTournamentDB
             this._btnDown = new System.Windows.Forms.Button();
             this._btnUp = new System.Windows.Forms.Button();
             this._dvTechnics = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxTechnicDetails = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this._richTextBoxNotes = new System.Windows.Forms.RichTextBox();
@@ -55,6 +54,8 @@ namespace JudoKataTournamentDB
             this.label1 = new System.Windows.Forms.Label();
             this._mnStrip = new System.Windows.Forms.MenuStrip();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Position = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this._katasDataSet)).BeginInit();
             this.groupBoxKata.SuspendLayout();
             this.groupBoxTechnics.SuspendLayout();
@@ -204,6 +205,7 @@ namespace JudoKataTournamentDB
             this._dvTechnics.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this._dvTechnics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this._dvTechnics.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Position,
             this.nameDataGridViewTextBoxColumn});
             this._dvTechnics.DataMember = "Katas.FK_Technics_Katas";
             this._dvTechnics.DataSource = this._katasDataSet;
@@ -214,13 +216,6 @@ namespace JudoKataTournamentDB
             this._dvTechnics.RowHeadersVisible = false;
             this._dvTechnics.Size = new System.Drawing.Size(192, 341);
             this._dvTechnics.TabIndex = 0;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // groupBoxTechnicDetails
             // 
@@ -349,6 +344,21 @@ namespace JudoKataTournamentDB
             this.saveToolStripMenuItem.ToolTipText = "Save changes";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
+            // Position
+            // 
+            this.Position.DataPropertyName = "Position";
+            this.Position.HeaderText = "Position";
+            this.Position.Name = "Position";
+            this.Position.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // ListOfKatasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -387,7 +397,6 @@ namespace JudoKataTournamentDB
         private System.Windows.Forms.GroupBox groupBoxKata;
         private System.Windows.Forms.GroupBox groupBoxTechnics;
         private System.Windows.Forms.DataGridView _dvTechnics;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button _btnUp;
         private System.Windows.Forms.Button _btnDown;
         private System.Windows.Forms.GroupBox groupBoxTechnicDetails;
@@ -403,5 +412,7 @@ namespace JudoKataTournamentDB
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.Button _btnNewTechnic;
         private System.Windows.Forms.Button _btnDeleteTechnic;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Position;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
     }
 }

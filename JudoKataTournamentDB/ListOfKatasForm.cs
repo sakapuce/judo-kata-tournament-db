@@ -95,13 +95,15 @@ namespace JudoKataTournamentDB
 
         private void _btnNewTechnic_Click(object sender, EventArgs e)
         {
-            KatasDataSet.TechnicsRow newRow = _katasDataSet.Technics.NewTechnicsRow();
-            newRow.KataId = (int) _lbKatas.SelectedValue;
-            _katasDataSet.Technics.AddTechnicsRow(newRow);
-
             //Retrieve the corresponding CurrencyManager and position the current record to the last row
             CurrencyManager cm = _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember] as CurrencyManager;
-            if(cm!=null) cm.Position = _katasDataSet.Technics.Rows.Count - 1;
+            if (cm == null) return;
+
+            KatasDataSet.TechnicsRow newRow = _katasDataSet.Technics.NewTechnicsRow();
+            newRow.KataId = (int)_lbKatas.SelectedValue;
+            _katasDataSet.Technics.AddTechnicsRow(newRow);
+            cm.Position = _katasDataSet.Technics.Rows.Count - 1;
+            newRow.Position = cm.Position + 1;
         }
 
         private void ForceEndEdit()
@@ -126,32 +128,13 @@ namespace JudoKataTournamentDB
             //If the current position is the last row there is no need to move down the current row.
             if (currentPosition >= _dvTechnics.Rows.Count) return;
 
-
             KatasDataSet.TechnicsRow currentRow = ((DataRowView)_dvTechnics.Rows[currentPosition].DataBoundItem).Row as KatasDataSet.TechnicsRow;
             KatasDataSet.TechnicsRow nextRow = ((DataRowView)_dvTechnics.Rows[currentPosition+1].DataBoundItem).Row as KatasDataSet.TechnicsRow;
-            
 
-            
-            //KatasDataSet.TechnicsRow currentRow = ((DataRowView)_dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember].Current).Row as KatasDataSet.TechnicsRow;
-            //int currentPosition = _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember].Position;
-            //currentRow = (KatasDataSet.TechnicsRow) _dvTechnics.Rows[currentPosition];
-
-            //// we'll just swap the order of the finding pointed to by the selected row and the previous one
-            //DataView dv = (DataView)_recommendationCurrencyManager.List;
-            //dv.Sort = string.Empty;
-            //int currentPosition = _recommendationCurrencyManager.Position;
-            //VisitWorkingSet.RecommendationsRow currentRow = (VisitWorkingSet.RecommendationsRow)dv[currentPosition].Row;
-            //VisitWorkingSet.RecommendationsRow previousRow = (VisitWorkingSet.RecommendationsRow)dv[currentPosition - 1].Row;
-            //int temp = previousRow.Order;
-            //previousRow.Order = currentRow.Order;
-            //currentRow.Order = temp;
-
-            //// move selection along with row
-            //_dgdRecommendations.UnSelect(currentPosition);
-            //_dgdRecommendations.Select(currentPosition - 1);
-            //_recommendationCurrencyManager.Position = currentPosition - 1;
-
-            //dv.Sort = "Order";
+            /// SWAP positions
+            int tmp = currentRow.Position;
+            currentRow.Position = nextRow.Position;
+            nextRow.Position = tmp;
         }
 
         private void _btnDeleteTechnic_Click(object sender, EventArgs e)
