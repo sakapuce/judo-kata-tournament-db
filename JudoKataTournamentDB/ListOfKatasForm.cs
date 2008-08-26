@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 using DALHelper;
@@ -14,6 +15,7 @@ namespace JudoKataTournamentDB
         {
             InitializeComponent();
             DataBind();
+            _dvTechnics.Sort(_dvTechnics.Columns["Position"], ListSortDirection.Ascending);
         }
 
         private void  DataBind()
@@ -114,39 +116,84 @@ namespace JudoKataTournamentDB
 
         private void _btnUp_Click(object sender, EventArgs e)
         {
+            CurrencyManager cm = _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember] as CurrencyManager;
+            if (cm == null) return;
 
+            int currentPosition = cm.Position;
+
+            //If the current position is the first row there is no need to move up the current row.
+            if (currentPosition <= 0) return;
+
+            //If we don't suspend the binding, all controls are still binded and as soon as we swap the Position 
+            //of the current and next row, the values of the current row will overwrite the values linked with the next row.
+            //To not lose the data corresponding to the next row, we need to suspend the databinding.
+            cm.SuspendBinding();
+
+            KatasDataSet.TechnicsRow currentRow = (KatasDataSet.TechnicsRow)((DataRowView)_dvTechnics.Rows[currentPosition].DataBoundItem).Row;
+            KatasDataSet.TechnicsRow previousRow = (KatasDataSet.TechnicsRow)((DataRowView)_dvTechnics.Rows[currentPosition - 1].DataBoundItem).Row;
+
+            /// SWAP positions
+            int tmp = currentRow.Position;
+            currentRow.Position = previousRow.Position;
+            previousRow.Position = tmp;
+
+            cm.ResumeBinding(); //see cm.SuspendBinding() for comments
+
+            cm.Position = currentPosition - 1;
+
+            _dvTechnics.CurrentCell = _dvTechnics.Rows[cm.Position].Cells[0];
+            _dvTechnics.Rows[cm.Position].Selected = true;
         }
 
         private void _btnDown_Click(object sender, EventArgs e)
         {
-
             CurrencyManager cm = _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember] as CurrencyManager;
+            
             if (cm == null) return;
             
             int currentPosition = cm.Position;
             
             //If the current position is the last row there is no need to move down the current row.
-            if (currentPosition >= _dvTechnics.Rows.Count) return;
+            if (currentPosition >= _dvTechnics.Rows.Count-1) return;
 
-            KatasDataSet.TechnicsRow currentRow = ((DataRowView)_dvTechnics.Rows[currentPosition].DataBoundItem).Row as KatasDataSet.TechnicsRow;
-            KatasDataSet.TechnicsRow nextRow = ((DataRowView)_dvTechnics.Rows[currentPosition+1].DataBoundItem).Row as KatasDataSet.TechnicsRow;
+            //If we don't suspend the binding, all controls are still binded and as soon as we swap the Position 
+            //of the current and next row, the values of the current row will overwrite the values linked with the next row.
+            //To not lose the data corresponding to the next row, we need to suspend the databinding.
+            cm.SuspendBinding();
+            
+            KatasDataSet.TechnicsRow currentRow = (KatasDataSet.TechnicsRow)((DataRowView)_dvTechnics.Rows[currentPosition].DataBoundItem).Row;
+            KatasDataSet.TechnicsRow nextRow = (KatasDataSet.TechnicsRow)((DataRowView)_dvTechnics.Rows[currentPosition + 1].DataBoundItem).Row;
 
             /// SWAP positions
             int tmp = currentRow.Position;
             currentRow.Position = nextRow.Position;
             nextRow.Position = tmp;
+
+            cm.ResumeBinding(); //see cm.SuspendBinding() for comments
+
+            cm.Position = currentPosition + 1;
+
+            _dvTechnics.CurrentCell = _dvTechnics.Rows[cm.Position].Cells[0];
+            _dvTechnics.Rows[cm.Position].Selected = true;
         }
 
         private void _btnDeleteTechnic_Click(object sender, EventArgs e)
         {
-            KatasDataSet.TechnicsRow row = ((DataRowView) _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember].Current).Row as KatasDataSet.TechnicsRow;
-            if(row != null) row.Delete();
+            KatasDataSet.TechnicsRow row = (KatasDataSet.TechnicsRow)((DataRowView) _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember].Current).Row;
+           
+            foreach(DataGridViewRow aRow in _dvTechnics.Rows)
+            {
+                int pos = (Int32)aRow.Cells["Position"].Value;
+                if (pos > row.Position) aRow.Cells["Position"].Value = pos - 1;
+            }
+
+           row.Delete();
         }
 
         private bool IsDirty(DataSet dataSet)
         {
-            foreach(DataTable table in dataSet.Tables)
-                foreach(DataRow row in table.Rows)
+            foreach (DataTable table in dataSet.Tables)
+                foreach (DataRow row in table.Rows)
                 {
                     if (row.RowState == DataRowState.Added || row.RowState == DataRowState.Deleted) return true;
                     for (int i = 0; i < row.ItemArray.Length; i++)
@@ -155,7 +202,7 @@ namespace JudoKataTournamentDB
                             return true;
                     }
                 }
-            return false; 
+            return false;
         }
     }
 }
