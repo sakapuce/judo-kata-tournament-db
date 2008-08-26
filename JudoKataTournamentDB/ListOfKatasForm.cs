@@ -52,7 +52,14 @@ namespace JudoKataTournamentDB
 
         private void SaveChanges()
         {
-            _persistor.Update();
+            try
+            {
+                _persistor.Update();   
+            }
+            catch(Exception e)
+            {
+                Logger.Log(string.Format("An exception raised while trying to save changes to the database. {0}",e.Message),Logger.LogLevel.Error);
+            }
         }
 
         public bool IsDataDirty

@@ -13,6 +13,8 @@ namespace JudoKataTournamentDB
         {
             InitializeComponent();
             currentUserControl = null;
+
+            Logger.Log("Application Started", Logger.LogLevel.Info);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
