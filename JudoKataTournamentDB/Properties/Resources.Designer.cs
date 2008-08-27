@@ -88,6 +88,13 @@ namespace JudoKataTournamentDB.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap file_doc {
+            get {
+                object obj = ResourceManager.GetObject("file_doc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap filesave_16x16 {
             get {
                 object obj = ResourceManager.GetObject("filesave_16x16", resourceCulture);

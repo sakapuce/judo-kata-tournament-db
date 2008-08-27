@@ -211,5 +211,16 @@ namespace JudoKataTournamentDB
                 }
             return false;
         }
+
+        private void saveToXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using(SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                if(saveDialog.ShowDialog()==System.Windows.Forms.DialogResult.OK)
+                {
+                    _katasDataSet.WriteXml(saveDialog.FileName, XmlWriteMode.WriteSchema);
+                }
+            }
+        }
     }
 }

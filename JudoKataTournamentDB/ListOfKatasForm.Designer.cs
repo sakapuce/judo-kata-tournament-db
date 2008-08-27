@@ -43,6 +43,8 @@ namespace JudoKataTournamentDB
             this._btnDown = new System.Windows.Forms.Button();
             this._btnUp = new System.Windows.Forms.Button();
             this._dvTechnics = new System.Windows.Forms.DataGridView();
+            this.Position = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxTechnicDetails = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this._richTextBoxNotes = new System.Windows.Forms.RichTextBox();
@@ -54,9 +56,8 @@ namespace JudoKataTournamentDB
             this.label1 = new System.Windows.Forms.Label();
             this._mnStrip = new System.Windows.Forms.MenuStrip();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.Position = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this._katasDataSet)).BeginInit();
             this.groupBoxKata.SuspendLayout();
             this.groupBoxTechnics.SuspendLayout();
@@ -227,6 +228,22 @@ namespace JudoKataTournamentDB
             this._dvTechnics.Size = new System.Drawing.Size(192, 267);
             this._dvTechnics.TabIndex = 0;
             // 
+            // Position
+            // 
+            this.Position.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Position.DataPropertyName = "Position";
+            this.Position.HeaderText = "Position";
+            this.Position.Name = "Position";
+            this.Position.ReadOnly = true;
+            this.Position.Width = 69;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // groupBoxTechnicDetails
             // 
             this.groupBoxTechnicDetails.Controls.Add(this.label4);
@@ -334,7 +351,8 @@ namespace JudoKataTournamentDB
             // _mnStrip
             // 
             this._mnStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveToolStripMenuItem});
+            this.saveToolStripMenuItem,
+            this.saveToXMLToolStripMenuItem});
             this._mnStrip.Location = new System.Drawing.Point(0, 0);
             this._mnStrip.Name = "_mnStrip";
             this._mnStrip.Size = new System.Drawing.Size(668, 24);
@@ -351,6 +369,14 @@ namespace JudoKataTournamentDB
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.ToolTipText = "Save changes";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // saveToXMLToolStripMenuItem
+            // 
+            this.saveToXMLToolStripMenuItem.Image = global::JudoKataTournamentDB.Properties.Resources.file_doc;
+            this.saveToXMLToolStripMenuItem.Name = "saveToXMLToolStripMenuItem";
+            this.saveToXMLToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.saveToXMLToolStripMenuItem.Text = "Save To XML";
+            this.saveToXMLToolStripMenuItem.Click += new System.EventHandler(this.saveToXMLToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -371,22 +397,6 @@ namespace JudoKataTournamentDB
             this.splitContainer1.Size = new System.Drawing.Size(642, 294);
             this.splitContainer1.SplitterDistance = 290;
             this.splitContainer1.TabIndex = 8;
-            // 
-            // Position
-            // 
-            this.Position.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Position.DataPropertyName = "Position";
-            this.Position.HeaderText = "Position";
-            this.Position.Name = "Position";
-            this.Position.ReadOnly = true;
-            this.Position.Width = 69;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // ListOfKatasForm
             // 
@@ -446,5 +456,6 @@ namespace JudoKataTournamentDB
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Position;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripMenuItem saveToXMLToolStripMenuItem;
     }
 }
