@@ -93,9 +93,9 @@ namespace DALHelper
         /// Set the queries for the SELECT, UPDATE, INSERT and DELETE statements used by the current instance of DataTableHelper. 
         /// </summary>
         /// <param name="selectQuery">a string with the SELECT statement</param>
-        /// <param name="updateQuery">a string with the SELECT statement</param>
-        /// <param name="insertQuery">a string with the SELECT statement</param>
-        /// <param name="deleteQuery">a string with the SELECT statement</param>
+        /// <param name="updateQuery">a string with the UPDATE statement</param>
+        /// <param name="insertQuery">a string with the INSERT statement</param>
+        /// <param name="deleteQuery">a string with the DELETE statement</param>
         /// <returns>a DbDataAdapter instance initialized with the specified queries.</returns>
         public DbDataAdapter SetAdapter(string selectQuery, string updateQuery, string insertQuery, string deleteQuery)
         {
