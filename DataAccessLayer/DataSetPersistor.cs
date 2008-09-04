@@ -38,7 +38,7 @@ namespace DALHelper
 
             if(helper.Table.TableName != tableName)
             {
-                throw new ArgumentException(string.Format("the provided DataHelper matchs the table '{0}' and cannot be assigned to table '{1}'.", helper.Table.TableName, tableName));
+                throw new ArgumentException(string.Format("the provided DataTableHelper matchs the table '{0}' and cannot be assigned to table '{1}'.", helper.Table.TableName, tableName));
             }
 
             table.ExtendedProperties["DataTableHelper"] = helper;
