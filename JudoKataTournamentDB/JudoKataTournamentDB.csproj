@@ -49,13 +49,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSets\ChampionshipsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChampionshipsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSets\KatasDataSet.cs">
       <DependentUpon>KatasDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="DataSets\KatasDataSet.Designer.cs">
       <DependentUpon>KatasDataSet.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="EditChampionshipsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditChampionshipsForm.Designer.cs">
+      <DependentUpon>EditChampionshipsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="InputBox.cs">
       <SubType>Form</SubType>
@@ -67,11 +79,11 @@
     <Compile Include="KatasUserControl.Designer.cs">
       <DependentUpon>KatasUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListOfKatasForm.cs">
+    <Compile Include="EditKatasForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ListOfKatasForm.Designer.cs">
-      <DependentUpon>ListOfKatasForm.cs</DependentUpon>
+    <Compile Include="EditKatasForm.Designer.cs">
+      <DependentUpon>EditKatasForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Logger.cs" />
     <Compile Include="MainForm.cs">
@@ -82,6 +94,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EditChampionshipsForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditChampionshipsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -90,9 +106,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>KatasUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListOfKatasForm.resx">
+    <EmbeddedResource Include="EditKatasForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>ListOfKatasForm.cs</DependentUpon>
+      <DependentUpon>EditKatasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <SubType>Designer</SubType>
@@ -177,6 +193,17 @@
     <None Include="Resources\filesave.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataSets\ChampionshipsDataSet.xsc">
+      <DependentUpon>ChampionshipsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ChampionshipsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ChampionshipsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\ChampionshipsDataSet.xss">
+      <DependentUpon>ChampionshipsDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Resources\db_status.png" />
   </ItemGroup>
   <ItemGroup>
