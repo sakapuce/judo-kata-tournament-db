@@ -116,10 +116,23 @@ namespace DALHelper
 
             dbCommandBuilder.DataAdapter = dbAdapter;
 
-            
-            dbAdapter.InsertCommand = dbCommandBuilder.GetInsertCommand();
-            dbAdapter.UpdateCommand = dbCommandBuilder.GetUpdateCommand();
-            dbAdapter.DeleteCommand = dbCommandBuilder.GetDeleteCommand();
+            //// INSERT COMMAND
+            dbAdapter.InsertCommand = dbCommandBuilder.GetInsertCommand(true);
+            string selectForAutoUpdate = string.Format("{0} WHERE ({1} = SCOPE_IDENTITY())",DefaultSelectQuery,GetPrimaryKeyFieldName());
+            dbAdapter.InsertCommand.CommandText = string.Format("{0};{2}{1}", dbAdapter.InsertCommand.CommandText, selectForAutoUpdate,Environment.NewLine);
+
+            //// UPDATE COMMAND
+            dbAdapter.UpdateCommand = dbCommandBuilder.GetUpdateCommand(true);
+            selectForAutoUpdate = string.Format("{0} WHERE ({1} = @{1})", DefaultSelectQuery, GetPrimaryKeyFieldName());
+            dbAdapter.UpdateCommand.CommandText = string.Format("{0};{2}{1}", dbAdapter.UpdateCommand.CommandText, selectForAutoUpdate,Environment.NewLine);
+            DbParameter idParameter = DbHelper.CreateDbParameter();
+            idParameter.ParameterName = string.Format("@{0}", GetPrimaryKeyFieldName());
+            idParameter.Direction = ParameterDirection.Input;
+            idParameter.SourceColumn = GetPrimaryKeyFieldName();
+            dbAdapter.UpdateCommand.Parameters.Add(idParameter);
+
+            //// DELETE COMMAND
+            dbAdapter.DeleteCommand = dbCommandBuilder.GetDeleteCommand(true);
             
             return dbAdapter;
         }
@@ -140,7 +153,6 @@ namespace DALHelper
 
             dbCommandBuilder.DataAdapter = dbAdapter;
 
-
             dbAdapter.InsertCommand = dbCommandBuilder.GetInsertCommand();
             dbAdapter.UpdateCommand = dbCommandBuilder.GetUpdateCommand();
             dbAdapter.DeleteCommand = dbCommandBuilder.GetDeleteCommand();
@@ -159,6 +171,12 @@ namespace DALHelper
                 string fields = string.Join(", ", GetColumnNames());
                 return string.Format("SELECT {0} FROM {1}", fields, Table.TableName);
             }
+        }
+
+        public virtual string GetPrimaryKeyFieldName()
+        {
+            if(Table.PrimaryKey.Length > 1) throw new InvalidOperationException("The Primary key is composed with 2 or more column names. The application can not determines the field name of the primary key.");
+            return Table.PrimaryKey.Length == 0 ? string.Empty : Table.PrimaryKey[0].ColumnName;
         }
 
         public virtual string[] GetColumnNames()

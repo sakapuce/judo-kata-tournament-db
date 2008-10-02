@@ -110,7 +110,9 @@ namespace DALHelper
         /// </summary>
         public void Fill()
         {
+            
             List<IVertex> itinerary = DFS.ComputeItinerary(new DataSetGraph(_dataset));
+            itinerary.Reverse();
 
             foreach (IVertex vertex in itinerary)
             {

@@ -79,7 +79,7 @@ namespace DALHelper.Tests
         public void TestCreateInsertCommand()
         {
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            const string expectedInsertQuery = "INSERT INTO [DetailsTable] ([IdMasterTable], [Details]) VALUES (@p1, @p2)";
+            const string expectedInsertQuery = "INSERT INTO [DetailsTable] ([IdMasterTable], [Details]) VALUES (@IdMasterTable, @Details); SELECT Id, IdMasterTable, Details FROM DetailsTable WHERE (Id = SCOPE_IDENTITY())";
             Assert.AreEqual(expectedInsertQuery, tableHelper.Adapter.InsertCommand.CommandText);
         }
 
@@ -87,7 +87,7 @@ namespace DALHelper.Tests
         public void TestCreateUpdateCommand()
         {
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            const string expectedUpdateQuery = "UPDATE [DetailsTable] SET [IdMasterTable] = @p1, [Details] = @p2 WHERE (([Id] = @p3) AND ([IdMasterTable] = @p4))";
+            const string expectedUpdateQuery = "UPDATE [DetailsTable] SET [IdMasterTable] = @IdMasterTable, [Details] = @Details WHERE (([Id] = @Original_Id) AND ([IdMasterTable] = @Original_IdMasterTable)); SELECT Id, IdMasterTable, Details FROM DetailsTable WHERE (Id = @Id)";
             Assert.AreEqual(expectedUpdateQuery, tableHelper.Adapter.UpdateCommand.CommandText);
         }
 
@@ -95,7 +95,7 @@ namespace DALHelper.Tests
         public void TestCreateDeleteCommand()
         {
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            const string expectedDeleteQuery = "DELETE FROM [DetailsTable] WHERE (([Id] = @p1) AND ([IdMasterTable] = @p2))";
+            const string expectedDeleteQuery = "DELETE FROM [DetailsTable] WHERE (([Id] = @Original_Id) AND ([IdMasterTable] = @Original_IdMasterTable))";
             Assert.AreEqual(expectedDeleteQuery, tableHelper.Adapter.DeleteCommand.CommandText);
         }
     }

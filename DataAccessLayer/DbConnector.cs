@@ -136,6 +136,15 @@ namespace DALHelper
         }
 
         /// <summary>
+        /// Returns a new instance of the provider's class that implements the DbParameter class.
+        /// </summary>
+        /// <returns>A new instance of DbParameter.</returns>
+        public DbParameter CreateDbParameter()
+        {
+            return DbFactory.CreateParameter();
+        }
+
+        /// <summary>
         /// Create and get the Connection with the current database.
         /// </summary>
         /// <returns></returns>

@@ -30,13 +30,20 @@ namespace JudoKataTournamentDB
         private void katasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //User asks to display the interface for the katas
-            ListOfKatasForm listOfKatasForm = new ListOfKatasForm();
-            listOfKatasForm.ShowDialog();
+            EditKatasForm editKatasForm = new EditKatasForm();
+            editKatasForm.ShowDialog();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             //TODO: invoke a method to check if the database connection is available
+        }
+
+        private void champtionshipsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //User asks to display the interface for the championships
+            EditChampionshipsForm editChampionshipsForm = new EditChampionshipsForm();
+            editChampionshipsForm.ShowDialog();
         }
 
         //private void LoadUserControl(UserControl uc)

@@ -49,6 +49,15 @@ namespace DALHelper
         }
 
         /// <summary>
+        /// Returns a new instance of the provider's class that implements the DbParameter class.
+        /// </summary>
+        /// <returns>A new instance of DbParameter.</returns>
+        public static DbParameter CreateDbParameter()
+        {
+            return DbConnector.Instance.CreateDbParameter();
+        }
+
+        /// <summary>
         /// Create a new DbDataAdapter
         /// </summary>
         /// <returns>returns an instance of DbDataAdapter for the current DbHelper</returns>

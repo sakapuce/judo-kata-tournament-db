@@ -67,33 +67,33 @@ namespace JudoKataTournamentDB
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.closeToolStripMenuItem.Text = "Close";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(152, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(146, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -103,19 +103,20 @@ namespace JudoKataTournamentDB
             this.champtionshipsToolStripMenuItem,
             this.katasToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "&Edit";
             // 
             // champtionshipsToolStripMenuItem
             // 
             this.champtionshipsToolStripMenuItem.Name = "champtionshipsToolStripMenuItem";
-            this.champtionshipsToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.champtionshipsToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.champtionshipsToolStripMenuItem.Text = "Champtionships";
+            this.champtionshipsToolStripMenuItem.Click += new System.EventHandler(this.champtionshipsToolStripMenuItem_Click);
             // 
             // katasToolStripMenuItem
             // 
             this.katasToolStripMenuItem.Name = "katasToolStripMenuItem";
-            this.katasToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.katasToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.katasToolStripMenuItem.Text = "Katas";
             this.katasToolStripMenuItem.Click += new System.EventHandler(this.katasToolStripMenuItem_Click);
             // 
@@ -124,14 +125,14 @@ namespace JudoKataTournamentDB
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutKataContestDBToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // aboutKataContestDBToolStripMenuItem
             // 
             this.aboutKataContestDBToolStripMenuItem.Name = "aboutKataContestDBToolStripMenuItem";
             this.aboutKataContestDBToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.aboutKataContestDBToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
+            this.aboutKataContestDBToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
             this.aboutKataContestDBToolStripMenuItem.Text = "&About Judo Kata Tournament DB";
             // 
             // statusStrip1

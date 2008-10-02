@@ -22,8 +22,8 @@
         <xs:element name="Katas" msprop:Generator_UserTableName="Katas" msprop:Generator_RowDeletedName="KatasRowDeleted" msprop:Generator_RowChangedName="KatasRowChanged" msprop:Generator_RowClassName="KatasRow" msprop:Generator_RowChangingName="KatasRowChanging" msprop:Generator_RowEvArgName="KatasRowChangeEvent" msprop:Generator_RowEvHandlerName="KatasRowChangeEventHandler" msprop:Generator_TableClassName="KatasDataTable" msprop:Generator_TableVarName="tableKatas" msprop:Generator_RowDeletingName="KatasRowDeleting" msprop:Generator_TablePropName="Katas">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
-              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" minOccurs="0">
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -36,18 +36,18 @@
         <xs:element name="Technics" msprop:Generator_UserTableName="Technics" msprop:Generator_RowDeletedName="TechnicsRowDeleted" msprop:Generator_RowChangedName="TechnicsRowChanged" msprop:Generator_RowClassName="TechnicsRow" msprop:Generator_RowChangingName="TechnicsRowChanging" msprop:Generator_RowEvArgName="TechnicsRowChangeEvent" msprop:Generator_RowEvHandlerName="TechnicsRowChangeEventHandler" msprop:Generator_TableClassName="TechnicsDataTable" msprop:Generator_TableVarName="tableTechnics" msprop:Generator_RowDeletingName="TechnicsRowDeleting" msprop:Generator_TablePropName="Technics">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
-              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" minOccurs="0">
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="KataId" msprop:Generator_UserColumnName="KataId" msprop:Generator_ColumnPropNameInRow="KataId" msprop:Generator_ColumnVarNameInTable="columnKataId" msprop:Generator_ColumnPropNameInTable="KataIdColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="ScoreMax" msprop:Generator_UserColumnName="ScoreMax" msprop:Generator_ColumnPropNameInRow="ScoreMax" msprop:Generator_ColumnVarNameInTable="columnScoreMax" msprop:Generator_ColumnPropNameInTable="ScoreMaxColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="Position" msprop:Generator_UserColumnName="Position" msprop:Generator_ColumnPropNameInRow="Position" msprop:Generator_ColumnVarNameInTable="columnPosition" msprop:Generator_ColumnPropNameInTable="PositionColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="Notes" msprop:Generator_UserColumnName="Notes" msprop:Generator_ColumnPropNameInRow="Notes" msprop:Generator_ColumnVarNameInTable="columnNotes" msprop:Generator_ColumnPropNameInTable="NotesColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="KataId" msprop:Generator_UserColumnName="KataId" msprop:Generator_ColumnVarNameInTable="columnKataId" msprop:Generator_ColumnPropNameInRow="KataId" msprop:Generator_ColumnPropNameInTable="KataIdColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="ScoreMax" msprop:Generator_UserColumnName="ScoreMax" msprop:Generator_ColumnVarNameInTable="columnScoreMax" msprop:Generator_ColumnPropNameInRow="ScoreMax" msprop:Generator_ColumnPropNameInTable="ScoreMaxColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Position" msprop:Generator_UserColumnName="Position" msprop:Generator_ColumnVarNameInTable="columnPosition" msprop:Generator_ColumnPropNameInRow="Position" msprop:Generator_ColumnPropNameInTable="PositionColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Notes" msprop:Generator_UserColumnName="Notes" msprop:Generator_ColumnVarNameInTable="columnNotes" msprop:Generator_ColumnPropNameInRow="Notes" msprop:Generator_ColumnPropNameInTable="NotesColumn" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -61,10 +61,9 @@
       <xs:selector xpath=".//mstns:Technics" />
       <xs:field xpath="mstns:Id" />
     </xs:unique>
+    <xs:keyref name="FK_Technics_Katas" refer="Constraint1" msprop:rel_Generator_UserRelationName="FK_Technics_Katas" msprop:rel_Generator_RelationVarName="relationFK_Technics_Katas" msprop:rel_Generator_UserChildTable="Technics" msprop:rel_Generator_UserParentTable="Katas" msprop:rel_Generator_ParentPropName="KatasRow" msprop:rel_Generator_ChildPropName="GetTechnicsRows">
+      <xs:selector xpath=".//mstns:Technics" />
+      <xs:field xpath="mstns:KataId" />
+    </xs:keyref>
   </xs:element>
-  <xs:annotation>
-    <xs:appinfo>
-      <msdata:Relationship name="FK_Technics_Katas" msdata:parent="Katas" msdata:child="Technics" msdata:parentkey="Id" msdata:childkey="KataId" msprop:Generator_UserRelationName="FK_Technics_Katas" msprop:Generator_RelationVarName="relationFK_Technics_Katas" msprop:Generator_UserChildTable="Technics" msprop:Generator_UserParentTable="Katas" msprop:Generator_ParentPropName="KatasRow" msprop:Generator_ChildPropName="GetTechnicsRows" />
-    </xs:appinfo>
-  </xs:annotation>
 </xs:schema>

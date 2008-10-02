@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.IO;
+using NUnit.Framework.SyntaxHelpers;
 
 namespace DALHelper.Tests
 {
@@ -53,6 +54,7 @@ namespace DALHelper.Tests
             {
                 DbHelper.ExecuteScript(reader.ReadToEnd());
             }
+            _testDataSet.Clear();
         }
 
         [Test]
@@ -72,18 +74,38 @@ namespace DALHelper.Tests
         }
 
         [Test]
+        public void InsertRecordTest()
+        {
+            _persistor.Fill();
+            
+            //add 1 new master record
+            TestDataSet.MasterTableRow masterTableRow = _testDataSet.MasterTable.NewMasterTableRow();
+            masterTableRow.Name = "Record_5";
+            _testDataSet.MasterTable.Rows.Add(masterTableRow);
+
+            //add 2 new details records
+            TestDataSet.DetailsTableRow detailsTableRow = _testDataSet.DetailsTable.NewDetailsTableRow();
+            detailsTableRow.IdMasterTable = masterTableRow.Id;
+            detailsTableRow.Details = "Details 1 for Record_5";
+            _testDataSet.DetailsTable.Rows.Add(detailsTableRow);
+
+            detailsTableRow = _testDataSet.DetailsTable.NewDetailsTableRow();
+            detailsTableRow.IdMasterTable = masterTableRow.Id;
+            detailsTableRow.Details = "Details 2 for Record_5";
+            _testDataSet.DetailsTable.Rows.Add(detailsTableRow);
+
+            _persistor.Update();
+
+            Assert.That(_testDataSet.MasterTable.Rows.Count, Is.EqualTo(5));
+            Assert.That(_testDataSet.DetailsTable.Rows.Count,Is.EqualTo(8));
+        }
+
+        [Test]
         public void DeleteRecordTest()
         {
             _persistor.Fill();
 
-            
-            foreach(TestDataSet.DetailsTableRow row in _testDataSet.DetailsTable.Select("IdMasterTable = 4"))
-            {
-                row.Delete();
-            }
-
             _testDataSet.MasterTable.Select("Id=4")[0].Delete();
-
 
             _persistor.Update();
 
