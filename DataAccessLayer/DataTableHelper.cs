@@ -118,18 +118,20 @@ namespace DALHelper
 
             //// INSERT COMMAND
             dbAdapter.InsertCommand = dbCommandBuilder.GetInsertCommand(true);
-            string selectForAutoUpdate = string.Format("{0} WHERE ({1} = SCOPE_IDENTITY())",DefaultSelectQuery,GetPrimaryKeyFieldName());
-            dbAdapter.InsertCommand.CommandText = string.Format("{0};{2}{1}", dbAdapter.InsertCommand.CommandText, selectForAutoUpdate,Environment.NewLine);
+            string selectForAutoUpdate = string.Format("{0} WHERE ([{1}] = SCOPE_IDENTITY())",DefaultSelectQuery,GetPrimaryKeyFieldName());
+            dbAdapter.InsertCommand.CommandText = string.Format("{0}; {1}", dbAdapter.InsertCommand.CommandText, selectForAutoUpdate);
+            dbAdapter.InsertCommand.UpdatedRowSource = UpdateRowSource.FirstReturnedRecord;
 
             //// UPDATE COMMAND
             dbAdapter.UpdateCommand = dbCommandBuilder.GetUpdateCommand(true);
-            selectForAutoUpdate = string.Format("{0} WHERE ({1} = @{1})", DefaultSelectQuery, GetPrimaryKeyFieldName());
-            dbAdapter.UpdateCommand.CommandText = string.Format("{0};{2}{1}", dbAdapter.UpdateCommand.CommandText, selectForAutoUpdate,Environment.NewLine);
+            selectForAutoUpdate = string.Format("{0} WHERE ([{1}] = @{1})", DefaultSelectQuery, GetPrimaryKeyFieldName());
+            dbAdapter.UpdateCommand.CommandText = string.Format("{0}; {1}", dbAdapter.UpdateCommand.CommandText, selectForAutoUpdate);
             DbParameter idParameter = DbHelper.CreateDbParameter();
             idParameter.ParameterName = string.Format("@{0}", GetPrimaryKeyFieldName());
             idParameter.Direction = ParameterDirection.Input;
             idParameter.SourceColumn = GetPrimaryKeyFieldName();
             dbAdapter.UpdateCommand.Parameters.Add(idParameter);
+            dbAdapter.UpdateCommand.UpdatedRowSource = UpdateRowSource.FirstReturnedRecord;
 
             //// DELETE COMMAND
             dbAdapter.DeleteCommand = dbCommandBuilder.GetDeleteCommand(true);
@@ -168,8 +170,16 @@ namespace DALHelper
                 {
                     throw new InvalidOperationException("The current Table contains no DataColumn. The 'SELECT' command cannot be created.");
                 }
-                string fields = string.Join(", ", GetColumnNames());
-                return string.Format("SELECT {0} FROM {1}", fields, Table.TableName);
+
+                string[] columnNames = GetColumnNames();
+                for (int i = 0; i < columnNames.Length; i++)
+                {
+                    columnNames[i] = string.Format("[{0}]", columnNames[i]);
+                }
+
+                string fields = string.Join(", ", columnNames);
+
+                return string.Format("SELECT {0} FROM [{1}]", fields, Table.TableName);
             }
         }
 
