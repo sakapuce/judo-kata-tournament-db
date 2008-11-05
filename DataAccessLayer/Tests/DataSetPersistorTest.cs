@@ -7,10 +7,9 @@ namespace DALHelper.Tests
     [TestFixture]
     public class DataSetPersistorTest
     {
-        DataSetPersistor _persistor;
-        TestDataSet _testDataSet;
+        private DataSetPersistor _persistor;
+        private TestDataSet _testDataSet;
 
-        
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
@@ -21,8 +20,7 @@ namespace DALHelper.Tests
                 DbHelper.ExecuteScript(reader.ReadToEnd());
             }
 
-            _testDataSet = new TestDataSet();
-            
+            _testDataSet = new TestDataSet();        
         }
 
         [TestFixtureTearDown]
