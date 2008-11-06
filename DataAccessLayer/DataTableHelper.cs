@@ -110,28 +110,49 @@ namespace DALHelper
         private DbDataAdapter CreateDefaultAdapter()
         {
             DbDataAdapter dbAdapter = DbHelper.CreateAdapter();
+
             DbCommandBuilder dbCommandBuilder = DbHelper.CreateDbCommandBuilder();
 
+            string selectStatement = DefaultSelectQuery;
             dbAdapter.SelectCommand = DbHelper.CreateCommand(DefaultSelectQuery);
 
             dbCommandBuilder.DataAdapter = dbAdapter;
 
             //// INSERT COMMAND
-            dbAdapter.InsertCommand = dbCommandBuilder.GetInsertCommand(true);
-            string selectForAutoUpdate = string.Format("{0} WHERE ([{1}] = SCOPE_IDENTITY())",DefaultSelectQuery,GetPrimaryKeyFieldName());
-            dbAdapter.InsertCommand.CommandText = string.Format("{0}; {1}", dbAdapter.InsertCommand.CommandText, selectForAutoUpdate);
-            dbAdapter.InsertCommand.UpdatedRowSource = UpdateRowSource.FirstReturnedRecord;
+            DbCommand cmd = dbCommandBuilder.GetInsertCommand(true);
+            dbAdapter.InsertCommand = DbHelper.CreateCommand(string.Format("{0};{1} WHERE ({2}=SCOPE_IDENTITY())",cmd.CommandText,selectStatement,GetPrimaryKeyFieldName()));
+            foreach(DbParameter p in cmd.Parameters)
+            {
+                DbParameter param = DbHelper.CreateDbParameter();
+                param.DbType = p.DbType;
+                param.Direction = p.Direction;
+                param.IsNullable = p.IsNullable;
+                param.ParameterName = p.ParameterName;
+                param.Size = p.Size;
+                param.SourceColumn = p.SourceColumn;
+                param.SourceColumnNullMapping = p.SourceColumnNullMapping;
+                param.SourceVersion = p.SourceVersion;
+                param.Value = p.Value;
+                dbAdapter.InsertCommand.Parameters.Add(param);
+            }
 
             //// UPDATE COMMAND
-            dbAdapter.UpdateCommand = dbCommandBuilder.GetUpdateCommand(true);
-            selectForAutoUpdate = string.Format("{0} WHERE ([{1}] = @{1})", DefaultSelectQuery, GetPrimaryKeyFieldName());
-            dbAdapter.UpdateCommand.CommandText = string.Format("{0}; {1}", dbAdapter.UpdateCommand.CommandText, selectForAutoUpdate);
-            DbParameter idParameter = DbHelper.CreateDbParameter();
-            idParameter.ParameterName = string.Format("@{0}", GetPrimaryKeyFieldName());
-            idParameter.Direction = ParameterDirection.Input;
-            idParameter.SourceColumn = GetPrimaryKeyFieldName();
-            dbAdapter.UpdateCommand.Parameters.Add(idParameter);
-            dbAdapter.UpdateCommand.UpdatedRowSource = UpdateRowSource.FirstReturnedRecord;
+            cmd = dbCommandBuilder.GetUpdateCommand(true);
+            dbAdapter.UpdateCommand = DbHelper.CreateCommand(string.Format("{0};{1} WHERE ({2}=SCOPE_IDENTITY())", cmd.CommandText, selectStatement, GetPrimaryKeyFieldName()));
+            foreach (DbParameter p in cmd.Parameters)
+            {
+                DbParameter param = DbHelper.CreateDbParameter();
+                param.DbType = p.DbType;
+                param.Direction = p.Direction;
+                param.IsNullable = p.IsNullable;
+                param.ParameterName = p.ParameterName;
+                param.Size = p.Size;
+                param.SourceColumn = p.SourceColumn;
+                param.SourceColumnNullMapping = p.SourceColumnNullMapping;
+                param.SourceVersion = p.SourceVersion;
+                param.Value = p.Value;
+                dbAdapter.UpdateCommand.Parameters.Add(param);
+            }
 
             //// DELETE COMMAND
             dbAdapter.DeleteCommand = dbCommandBuilder.GetDeleteCommand(true);
@@ -200,6 +221,13 @@ namespace DALHelper
             }
 
             return columnNames;
+        }
+
+        public virtual DataTable GetTableSchema()
+        {
+            DbCommand cmd = DbHelper.CreateCommand(DefaultSelectQuery);
+            DbDataReader reader = cmd.ExecuteReader();
+            return reader.GetSchemaTable();
         }
 
         public void Update()

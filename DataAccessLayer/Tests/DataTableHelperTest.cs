@@ -1,6 +1,7 @@
 using System.IO;
 using NUnit.Framework;
 using System.Data;
+using NUnit.Framework.SyntaxHelpers;
 
 namespace DALHelper.Tests
 {
@@ -68,35 +69,12 @@ namespace DALHelper.Tests
         }
 
         [Test]
-        public void TestCreateSelectCommand()
+        public void TestGetTableSchema()
         {
+            _dataTable = new TestDataSet.MasterTableDataTable();
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            const string expectedSelectQuery = "SELECT Id, IdMasterTable, Details FROM DetailsTable";
-            Assert.AreEqual(expectedSelectQuery, tableHelper.Adapter.SelectCommand.CommandText);
-        }
-
-        [Test]
-        public void TestCreateInsertCommand()
-        {
-            DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            const string expectedInsertQuery = "INSERT INTO [DetailsTable] ([IdMasterTable], [Details]) VALUES (@IdMasterTable, @Details); SELECT Id, IdMasterTable, Details FROM DetailsTable WHERE (Id = SCOPE_IDENTITY())";
-            Assert.AreEqual(expectedInsertQuery, tableHelper.Adapter.InsertCommand.CommandText);
-        }
-
-        [Test]
-        public void TestCreateUpdateCommand()
-        {
-            DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            const string expectedUpdateQuery = "UPDATE [DetailsTable] SET [IdMasterTable] = @IdMasterTable, [Details] = @Details WHERE (([Id] = @Original_Id) AND ([IdMasterTable] = @Original_IdMasterTable)); SELECT Id, IdMasterTable, Details FROM DetailsTable WHERE (Id = @Id)";
-            Assert.AreEqual(expectedUpdateQuery, tableHelper.Adapter.UpdateCommand.CommandText);
-        }
-
-        [Test]
-        public void TestCreateDeleteCommand()
-        {
-            DataTableHelper tableHelper = new DataTableHelper(_dataTable);
-            const string expectedDeleteQuery = "DELETE FROM [DetailsTable] WHERE (([Id] = @Original_Id) AND ([IdMasterTable] = @Original_IdMasterTable))";
-            Assert.AreEqual(expectedDeleteQuery, tableHelper.Adapter.DeleteCommand.CommandText);
+            DataTable schema = tableHelper.GetTableSchema();
+            Assert.That(schema,Is.Not.Null);
         }
     }
 }
