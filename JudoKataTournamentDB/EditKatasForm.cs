@@ -9,7 +9,7 @@ namespace JudoKataTournamentDB
     public partial class EditKatasForm : Form
     {
         private DataSetPersistor _persistor;
-        private DataSetListener _dataSetListener;
+        private DbListener _dbListener;
 
         public EditKatasForm()
         {
@@ -20,7 +20,14 @@ namespace JudoKataTournamentDB
         private void  DataBind()
         {
             _persistor = new DataSetPersistor(_katasDataSet);
-            _dataSetListener = new DataSetListener(_katasDataSet);
+            _dbListener = new DbListener();
+
+            foreach(DataTable table in _persistor.DataSet.Tables)
+            {
+                DataTableHelper helper = table.ExtendedProperties["DataTableHelper"] as DataTableHelper;
+                if(helper!=null) _dbListener.Add(helper);
+            }
+
             _persistor.Fill();
         }
 
@@ -76,13 +83,13 @@ namespace JudoKataTournamentDB
                 case CloseReason.UserClosing:
                     switch(MessageBox.Show(this,"Do you want to save the changes you made ?","Close",MessageBoxButtons.YesNoCancel,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2))
                     {
-                         case System.Windows.Forms.DialogResult.Cancel:
+                         case DialogResult.Cancel:
                             e.Cancel = true;
                             break;
-                        case System.Windows.Forms.DialogResult.Yes:
+                        case DialogResult.Yes:
                             SaveChanges();
                             break;
-                        case System.Windows.Forms.DialogResult.No:
+                        case DialogResult.No:
                             break;
                     }
                     break;
