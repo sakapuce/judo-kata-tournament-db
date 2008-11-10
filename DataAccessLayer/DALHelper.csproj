@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="DataSetEdge.cs" />
     <Compile Include="DataSetGraph.cs" />
+    <Compile Include="DbListener.cs" />
     <Compile Include="DataSetPersistor.cs" />
     <Compile Include="DataSetVertice.cs">
     </Compile>
