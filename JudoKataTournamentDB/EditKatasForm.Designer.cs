@@ -43,6 +43,8 @@ namespace JudoKataTournamentDB
             this._btnDown = new System.Windows.Forms.Button();
             this._btnUp = new System.Windows.Forms.Button();
             this._dvTechnics = new System.Windows.Forms.DataGridView();
+            this.Position = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxTechnicDetails = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this._richTextBoxNotes = new System.Windows.Forms.RichTextBox();
@@ -56,8 +58,6 @@ namespace JudoKataTournamentDB
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.Position = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this._katasDataSet)).BeginInit();
             this.groupBoxKata.SuspendLayout();
             this.groupBoxTechnics.SuspendLayout();
@@ -103,7 +103,7 @@ namespace JudoKataTournamentDB
             this._btnNewKata.Text = "New";
             this._btnNewKata.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._btnNewKata.UseVisualStyleBackColor = true;
-            this._btnNewKata.Click += new System.EventHandler(this.btnNew_Click);
+            this._btnNewKata.Click += new System.EventHandler(this.btnNewKata_Click);
             // 
             // _btnDeleteKata
             // 
@@ -117,7 +117,7 @@ namespace JudoKataTournamentDB
             this._btnDeleteKata.Text = "Delete";
             this._btnDeleteKata.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._btnDeleteKata.UseVisualStyleBackColor = true;
-            this._btnDeleteKata.Click += new System.EventHandler(this.btnDelete_Click);
+            this._btnDeleteKata.Click += new System.EventHandler(this.btnDeleteKata_Click);
             // 
             // groupBoxKata
             // 
@@ -187,7 +187,7 @@ namespace JudoKataTournamentDB
             this._btnDown.Text = "Down";
             this._btnDown.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._btnDown.UseVisualStyleBackColor = true;
-            this._btnDown.Click += new System.EventHandler(this._btnDown_Click);
+            this._btnDown.Click += new System.EventHandler(this._btnDownTechnic_Click);
             // 
             // _btnUp
             // 
@@ -201,7 +201,7 @@ namespace JudoKataTournamentDB
             this._btnUp.Text = "Up";
             this._btnUp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._btnUp.UseVisualStyleBackColor = true;
-            this._btnUp.Click += new System.EventHandler(this._btnUp_Click);
+            this._btnUp.Click += new System.EventHandler(this._btnUpTechnic_Click);
             // 
             // _dvTechnics
             // 
@@ -227,6 +227,24 @@ namespace JudoKataTournamentDB
             this._dvTechnics.RowHeadersVisible = false;
             this._dvTechnics.Size = new System.Drawing.Size(196, 390);
             this._dvTechnics.TabIndex = 3;
+            // 
+            // Position
+            // 
+            this.Position.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Position.DataPropertyName = "Position";
+            this.Position.HeaderText = "Position";
+            this.Position.Name = "Position";
+            this.Position.ReadOnly = true;
+            this.Position.Width = 69;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // groupBoxTechnicDetails
             // 
@@ -388,24 +406,6 @@ namespace JudoKataTournamentDB
             this.splitContainer2.Size = new System.Drawing.Size(784, 417);
             this.splitContainer2.SplitterDistance = 289;
             this.splitContainer2.TabIndex = 7;
-            // 
-            // Position
-            // 
-            this.Position.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Position.DataPropertyName = "Position";
-            this.Position.HeaderText = "Position";
-            this.Position.Name = "Position";
-            this.Position.ReadOnly = true;
-            this.Position.Width = 69;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // EditKatasForm
             // 

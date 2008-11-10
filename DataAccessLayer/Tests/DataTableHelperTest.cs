@@ -1,3 +1,5 @@
+using System;
+using System.Data.SqlClient;
 using System.IO;
 using NUnit.Framework;
 using System.Data;
@@ -75,6 +77,13 @@ namespace DALHelper.Tests
             DataTableHelper tableHelper = new DataTableHelper(_dataTable);
             DataTable schema = tableHelper.GetTableSchema();
             Assert.That(schema,Is.Not.Null);
+        }
+
+        [Test]
+        public void TestAdapterType()
+        {
+            DataTableHelper tableHelper = new DataTableHelper(_dataTable);
+            Assert.That(tableHelper.Adapter, Is.TypeOf(typeof(SqlDataAdapter)));
         }
     }
 }

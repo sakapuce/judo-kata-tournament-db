@@ -12,6 +12,12 @@ namespace DALHelper
         public DataSetPersistor(DataSet ds)
         {
             _dataset = ds;
+
+            //for each DataTable create an instance of DataTableHelper
+            foreach(DataTable table in _dataset.Tables)
+            {
+                table.ExtendedProperties["DataTableHelper"] = new DataTableHelper(table);
+            }
         }
 
         public DataSet DataSet
@@ -20,32 +26,7 @@ namespace DALHelper
         }
 
         /// <summary>
-        /// Set a specific DataTableHelper for a particular table of the inner dataset.
-        /// </summary>
-        public void SetDataTableHelper(string tableName, DataTableHelper helper)
-        {
-            DataTable table = _dataset.Tables[tableName];
-            if (table == null)
-            {
-                throw new ArgumentException("the table '{0}' cannot be find.", tableName);
-            }
-
-            if(helper == null)
-            {
-                table.ExtendedProperties["DataTableHelper"] = null;
-                return;
-            }
-
-            if(helper.Table.TableName != tableName)
-            {
-                throw new ArgumentException(string.Format("the provided DataTableHelper matchs the table '{0}' and cannot be assigned to table '{1}'.", helper.Table.TableName, tableName));
-            }
-
-            table.ExtendedProperties["DataTableHelper"] = helper;
-        }
-
-        /// <summary>
-        /// This funtions calls the INSERT, DELETE and UPDATE queries to update the inner dataset and reflects the changes done on it.
+        /// This funtions calls the INSERT, DELETE and UPDATE queries to update the inner dataset and reflect the changes done on it.
         /// </summary>
         public void Update()
         {
@@ -60,47 +41,41 @@ namespace DALHelper
                 foreach (IVertex vertex in itinerary)
                 {
                     DataSetVertice dsVertex = vertex as DataSetVertice;
-                    if (dsVertex != null)
-                    {
-                        DataTableHelper helper = dsVertex.Table.ExtendedProperties["DataTableHelper"] as DataTableHelper ?? new DataTableHelper(dsVertex.Table);
+                    if (dsVertex == null) continue;
 
-                        if (!ReferenceEquals(helper, dsVertex.Table.ExtendedProperties["DataTableHelper"]))
-                            dsVertex.Table.ExtendedProperties["DataTableHelper"] = helper;
+                    DataTableHelper helper = dsVertex.Table.ExtendedProperties["DataTableHelper"] as DataTableHelper; //?? new DataTableHelper(dsVertex.Table);
 
-                        if(helper.Table.GetChanges(DataRowState.Deleted)!=null)
-                        {
-                            Console.WriteLine(string.Format("Persistors deletes {0} rows from table '{1}'", helper.Table.GetChanges(DataRowState.Deleted).Rows.Count, helper.Table.TableName));
-                            helper.Update();    
-                        }
-                    }
+                    if (helper == null)
+                        throw new InvalidOperationException(string.Format("Operation cannot be performed because no DataTableHelper is defined for the table {0}.", dsVertex.Table));
+
+                    if (helper.Table.GetChanges(DataRowState.Deleted) == null) continue;
+                    Console.WriteLine(string.Format("Persistors deletes {0} rows from table '{1}'", helper.Table.GetChanges(DataRowState.Deleted).Rows.Count, helper.Table.TableName));
+                    helper.Update();
                 }
             }
 
             ds = _dataset.GetChanges(DataRowState.Modified | DataRowState.Added);
-            if(ds!=null)
+            if (ds != null)
             {
-                    
                 itinerary.Reverse();
 
                 foreach (IVertex vertex in itinerary)
                 {
                     DataSetVertice dsVertex = vertex as DataSetVertice;
-                    if (dsVertex != null)
-                    {
-                        DataTableHelper helper = dsVertex.Table.ExtendedProperties["DataTableHelper"] as DataTableHelper ?? new DataTableHelper(dsVertex.Table);
+                    if (dsVertex == null) continue;
 
-                        if (!ReferenceEquals(helper, dsVertex.Table.ExtendedProperties["DataTableHelper"]))
-                            dsVertex.Table.ExtendedProperties["DataTableHelper"] = helper;
-                        if(helper.Table.GetChanges(DataRowState.Added)!=null)
-                        {
-                            Console.WriteLine(string.Format("Persistor adds {0} rows into table '{1}'", helper.Table.GetChanges(DataRowState.Added).Rows.Count, helper.Table.TableName));   
-                        }
-                        if (helper.Table.GetChanges(DataRowState.Modified) != null)
-                        {
-                            Console.WriteLine(string.Format("Persistor updates {0} rows into table '{1}'", helper.Table.GetChanges(DataRowState.Modified).Rows.Count, helper.Table.TableName));
-                        }
-                        helper.Update();
-                    }
+                    DataTableHelper helper = dsVertex.Table.ExtendedProperties["DataTableHelper"] as DataTableHelper; // ?? new DataTableHelper(dsVertex.Table);
+
+                    if (helper == null)
+                        throw new InvalidOperationException(string.Format("Operation cannot be performed because no DataTableHelper is defined for the table {0}.", dsVertex.Table));
+
+                    if (helper.Table.GetChanges(DataRowState.Added) != null)
+                        Console.WriteLine(string.Format("Persistor adds {0} rows into table '{1}'", helper.Table.GetChanges(DataRowState.Added).Rows.Count, helper.Table.TableName));
+
+                    if (helper.Table.GetChanges(DataRowState.Modified) != null)
+                        Console.WriteLine(string.Format("Persistor updates {0} rows into table '{1}'", helper.Table.GetChanges(DataRowState.Modified).Rows.Count, helper.Table.TableName));
+
+                    helper.Update();
                 }
             }
         }
@@ -117,15 +92,13 @@ namespace DALHelper
             foreach (IVertex vertex in itinerary)
             {
                 DataSetVertice dsVertex = vertex as DataSetVertice;
-                if (dsVertex != null)
-                {
-                    DataTableHelper helper = dsVertex.Table.ExtendedProperties["DataTableHelper"] as DataTableHelper ?? new DataTableHelper(dsVertex.Table);
+                if (dsVertex == null) continue;
+                DataTableHelper helper = dsVertex.Table.ExtendedProperties["DataTableHelper"] as DataTableHelper;
 
-                    if (!ReferenceEquals(helper, dsVertex.Table.ExtendedProperties["DataTableHelper"])) 
-                        dsVertex.Table.ExtendedProperties["DataTableHelper"] = helper;
+                if (helper == null)
+                    throw new InvalidOperationException(string.Format("Operation cannot be performed because no DataTableHelper is defined for the table {0}.", dsVertex.Table));
 
-                    helper.Fill(_dataset);
-                }
+                helper.Fill(_dataset);
             }
         }
     }

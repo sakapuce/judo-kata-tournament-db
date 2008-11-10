@@ -138,7 +138,7 @@ namespace DALHelper
 
             //// UPDATE COMMAND
             cmd = dbCommandBuilder.GetUpdateCommand(true);
-            dbAdapter.UpdateCommand = DbHelper.CreateCommand(string.Format("{0};{1} WHERE ({2}=SCOPE_IDENTITY())", cmd.CommandText, selectStatement, GetPrimaryKeyFieldName()));
+            dbAdapter.UpdateCommand = DbHelper.CreateCommand(cmd.CommandText);
             foreach (DbParameter p in cmd.Parameters)
             {
                 DbParameter param = DbHelper.CreateDbParameter();

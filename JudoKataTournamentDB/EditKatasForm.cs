@@ -9,6 +9,7 @@ namespace JudoKataTournamentDB
     public partial class EditKatasForm : Form
     {
         private DataSetPersistor _persistor;
+        private DataSetListener _dataSetListener;
 
         public EditKatasForm()
         {
@@ -19,10 +20,11 @@ namespace JudoKataTournamentDB
         private void  DataBind()
         {
             _persistor = new DataSetPersistor(_katasDataSet);
+            _dataSetListener = new DataSetListener(_katasDataSet);
             _persistor.Fill();
         }
 
-        private void btnNew_Click(object sender, EventArgs e)
+        private void btnNewKata_Click(object sender, EventArgs e)
         {
             string kataName = InputBox.Show("Please insert the name of the new Kata to create", "Create new Kata");
             if (kataName == "") return;
@@ -32,7 +34,7 @@ namespace JudoKataTournamentDB
             _lbKatas.SelectedIndex = _lbKatas.Items.Count - 1;
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDeleteKata_Click(object sender, EventArgs e)
         {
             if (_lbKatas.SelectedIndex >= 0)
             {
@@ -112,12 +114,12 @@ namespace JudoKataTournamentDB
             _lbKatas.BindingContext[_lbKatas.DataSource].EndCurrentEdit();
         }
 
-        private void _btnUp_Click(object sender, EventArgs e)
+        private void _btnUpTechnic_Click(object sender, EventArgs e)
         {
-
+            throw new NotImplementedException("Moving up one position a technic is not yet implemented");
         }
 
-        private void _btnDown_Click(object sender, EventArgs e)
+        private void _btnDownTechnic_Click(object sender, EventArgs e)
         {
 
             CurrencyManager cm = _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember] as CurrencyManager;
