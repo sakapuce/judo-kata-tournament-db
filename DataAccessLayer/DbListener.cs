@@ -23,7 +23,19 @@ namespace DALHelper
             _helpers.Add(helper);
             SqlDataAdapter adapter = helper.Adapter as SqlDataAdapter;
             if(adapter != null)
+            {
                 adapter.RowUpdating += OnRowUpdating;
+                adapter.RowUpdated += OnRowUpdated;
+            }
+        }
+
+        void OnRowUpdated(object sender, SqlRowUpdatedEventArgs e)
+        {
+            if (DataUpdatedEvent != null)
+            {
+                DataSetListenerEventArgs args = new DataSetListenerEventArgs(e.Row.Table, e.StatementType, e.Row);
+                DataUpdatedEvent(this, args);
+            }
         }
 
         void OnRowUpdating(object sender, SqlRowUpdatingEventArgs e)
