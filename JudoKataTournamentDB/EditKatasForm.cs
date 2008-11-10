@@ -15,19 +15,19 @@ namespace JudoKataTournamentDB
         {
             InitializeComponent();
             DataBind();
+
+            //Watcher for database updates
+            _dbListener = new DbListener();
+            foreach (DataTable table in _persistor.DataSet.Tables)
+            {
+                DataTableHelper helper = table.ExtendedProperties["DataTableHelper"] as DataTableHelper;
+                if (helper != null) _dbListener.Add(helper);
+            }
         }
 
         private void  DataBind()
         {
             _persistor = new DataSetPersistor(_katasDataSet);
-            _dbListener = new DbListener();
-
-            foreach(DataTable table in _persistor.DataSet.Tables)
-            {
-                DataTableHelper helper = table.ExtendedProperties["DataTableHelper"] as DataTableHelper;
-                if(helper!=null) _dbListener.Add(helper);
-            }
-
             _persistor.Fill();
         }
 
