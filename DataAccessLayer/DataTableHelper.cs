@@ -135,6 +135,7 @@ namespace DALHelper
                 param.Value = p.Value;
                 dbAdapter.InsertCommand.Parameters.Add(param);
             }
+            dbAdapter.InsertCommand.UpdatedRowSource = UpdateRowSource.FirstReturnedRecord;
 
             //// UPDATE COMMAND
             cmd = dbCommandBuilder.GetUpdateCommand(true);
