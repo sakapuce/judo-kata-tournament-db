@@ -117,8 +117,8 @@ namespace JudoKataTournamentDB
 
         private void ForceEndEdit()
         {
-            _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember].EndCurrentEdit();
             _lbKatas.BindingContext[_lbKatas.DataSource].EndCurrentEdit();
+            _dvTechnics.BindingContext[_dvTechnics.DataSource, _dvTechnics.DataMember].EndCurrentEdit();
         }
 
         private void _btnUpTechnic_Click(object sender, EventArgs e)
