@@ -11,9 +11,9 @@ namespace DALHelper
         public event EventHandler<DataSetListenerEventArgs> DataUpdatingEvent;
         public event EventHandler<DataSetListenerEventArgs> DataUpdatedEvent;
 
-        private List<DataTableHelper> _helpers;
+        private readonly List<DataTableHelper> _helpers;
 
-        public void DataSetListener()
+        public DbListener()
         {
             _helpers = new List<DataTableHelper>();
         }
@@ -31,6 +31,7 @@ namespace DALHelper
 
         void OnRowUpdated(object sender, SqlRowUpdatedEventArgs e)
         {
+            
             if (DataUpdatedEvent != null)
             {
                 DataSetListenerEventArgs args = new DataSetListenerEventArgs(e.Row.Table, e.StatementType, e.Row);
@@ -40,6 +41,8 @@ namespace DALHelper
 
         void OnRowUpdating(object sender, SqlRowUpdatingEventArgs e)
         {
+            e.Row.EndEdit();
+            e.Row.AcceptChanges();
             if(DataUpdatingEvent!=null)
             {
                 DataSetListenerEventArgs args = new DataSetListenerEventArgs(e.Row.Table, e.StatementType, e.Row);
@@ -52,9 +55,9 @@ namespace DALHelper
 
     public class DataSetListenerEventArgs: EventArgs
     {
-        private DataTable _table;
-        private StatementType _statementType;
-        private DataRow _row;
+        private readonly DataTable _table;
+        private readonly StatementType _statementType;
+        private readonly DataRow _row;
         
         public DataSetListenerEventArgs(DataTable table, StatementType statementType, DataRow row)
         {
