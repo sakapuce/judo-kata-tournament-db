@@ -131,7 +131,7 @@ namespace DALHelper
                 param.Size = p.Size;
                 param.SourceColumn = p.SourceColumn;
                 param.SourceColumnNullMapping = p.SourceColumnNullMapping;
-                param.SourceVersion = p.SourceVersion;
+                param.SourceVersion = DataRowVersion.Proposed;
                 param.Value = p.Value;
                 dbAdapter.InsertCommand.Parameters.Add(param);
             }

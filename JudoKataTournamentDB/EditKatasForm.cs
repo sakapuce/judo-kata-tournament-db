@@ -16,7 +16,7 @@ namespace JudoKataTournamentDB
             InitializeComponent();
             DataBind();
 
-            //Watcher for database updates
+            //Listener for database updates
             _dbListener = new DbListener();
             foreach (DataTable table in _persistor.DataSet.Tables)
             {

@@ -41,8 +41,6 @@ namespace DALHelper
 
         void OnRowUpdating(object sender, SqlRowUpdatingEventArgs e)
         {
-            e.Row.EndEdit();
-            e.Row.AcceptChanges();
             if(DataUpdatingEvent!=null)
             {
                 DataSetListenerEventArgs args = new DataSetListenerEventArgs(e.Row.Table, e.StatementType, e.Row);
